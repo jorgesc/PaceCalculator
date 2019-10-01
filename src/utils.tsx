@@ -1,0 +1,25 @@
+export const HHMMSSToSeconds = (time: string): number => {
+  const splittedValues = time.trim().split(":");
+  return splittedValues
+    .reverse()
+    .reduce((acc: number, v: string, i: number) => {
+      acc += parseInt(v, 10) * 60 ** i;
+      return acc;
+    }, 0);
+};
+
+export const secondsToHHMMSS = (
+  s: number,
+  withHours: boolean = true,
+): string => {
+  const output = [];
+  let rem = s;
+  const steps = withHours ? 2 : 1;
+
+  for (let i = steps; i >= 0; i--) {
+    output.push(Math.floor(rem / 60 ** i));
+    rem = rem % 60 ** i;
+  }
+
+  return output.map(x => x.toString().padStart(2, "0")).join(":");
+};
