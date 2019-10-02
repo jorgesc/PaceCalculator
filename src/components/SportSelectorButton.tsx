@@ -4,10 +4,18 @@ import styled from "styled-components";
 interface IButtonProps {
   title: string;
   icon: string;
-  selected?: boolean;
+  selected: boolean;
+  position: number;
+  onChange: (selected: number) => void;
 }
 
-const StyledButton = styled.button<IButtonProps>`
+interface IStyleProps {
+  title: string;
+  icon: string;
+  selected: boolean;
+}
+
+const StyledButton = styled.button<IStyleProps>`
   color: ${props => (props.selected ? "white" : "gray")};
   background-color: ${props => (props.selected ? "limeGreen" : "#dfdfdf")};
   font-size: 1.2em;
@@ -55,9 +63,23 @@ const StyledIconImage = styled.img`
   object-fit: contain;
 `;
 
-const SportSelectorButton = ({title, icon, selected}: IButtonProps) => {
+const SportSelectorButton = ({
+  title,
+  icon,
+  selected,
+  position,
+  onChange,
+}: IButtonProps) => {
+  const onClick = () => {
+    onChange(position);
+  };
+
   return (
-    <StyledButton selected={selected} title={title} icon={icon}>
+    <StyledButton
+      selected={selected}
+      title={title}
+      icon={icon}
+      onClick={onClick}>
       <div>{title}</div>
       <StyledIconImage src={icon} />
     </StyledButton>

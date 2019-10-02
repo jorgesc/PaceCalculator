@@ -12,6 +12,7 @@ import SwimmingIcon from "../static/2swim_icon.png";
 interface ISportSelectorProps {
   sports: Sport[];
   selected: number;
+  onChange: (selected: number) => void;
 }
 
 const StyledSportSelectorDiv = styled.div`
@@ -23,6 +24,7 @@ const StyledSportSelectorDiv = styled.div`
 const SportSelector = ({
   sports,
   selected,
+  onChange,
 }: ISportSelectorProps): ReactElement => {
   return (
     <StyledSportSelectorDiv>
@@ -30,9 +32,11 @@ const SportSelector = ({
         return (
           <Button
             key={i}
+            position={i}
             title={sport.name}
             icon={sport.icon}
             selected={selected === i}
+            onChange={onChange}
           />
         );
       })}
