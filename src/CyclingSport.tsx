@@ -1,10 +1,12 @@
 import Sport from "./Sport";
+import CyclingIcon from "./static/2biking_icon.png";
 
 import {HHMMSSToSeconds, secondsToHHMMSS} from "./utils";
 
 const CyclingSport: Sport = {
   name: "Ciclismo",
   units: "km/h",
+  icon: CyclingIcon,
   showRythm: (distance: number, totalTime: string): string => {
     const seconds = HHMMSSToSeconds(totalTime);
     return (distance / (seconds / 3.6)).toString();
