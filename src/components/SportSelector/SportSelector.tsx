@@ -5,7 +5,7 @@ import Sport from "../../models/Sport";
 
 import Button from "./SportSelectorButton";
 
-interface ISportSelectorProps {
+export interface ISportSelectorProps {
   sports: Sport[];
   selected: number;
   onChange: (selected: number) => void;

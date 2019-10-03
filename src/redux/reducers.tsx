@@ -1,4 +1,4 @@
-import {IReduxAction} from "./actions";
+import {AppActionTypes} from "./actions";
 
 import Sport from "../models/Sport";
 
@@ -17,12 +17,14 @@ const initialState: IAppState = {
 
 export const appReducer = (
   state: IAppState = initialState,
-  action: IReduxAction,
+  action: AppActionTypes,
 ) => {
-  switch (action.actionType) {
+  switch (action.type) {
     case "CHANGE_SELECTED_SPORT":
       return {...state, selectedSport: action.payload};
   }
 
   return state;
 };
+
+export default appReducer;

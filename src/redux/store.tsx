@@ -1,5 +1,12 @@
-import {createStore} from "redux";
+import {createStore, combineReducers, applyMiddleware} from "redux";
+import logger from "redux-logger";
 
-// const initialState = {
-//   app: appState,
-// };
+import appReducer, {IAppState} from "./reducers";
+
+export interface IState {
+  app: IAppState;
+}
+
+const reducers = combineReducers({app: appReducer});
+
+export default createStore(reducers, applyMiddleware(logger));

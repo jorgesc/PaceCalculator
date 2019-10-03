@@ -1,20 +1,21 @@
 import React from "react";
-import SportSelector from "./components/SportSelector/SportSelector";
+
+import {Provider} from "react-redux";
+
+import store from "./redux/store";
+
+import SportSelectorWrapper from "./components/SportSelectorWrapper";
 
 import RunningSport from "./models/RunningSport";
 import CyclingSport from "./models/CyclingSport";
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <SportSelector
-        sports={[RunningSport, CyclingSport, RunningSport, CyclingSport]}
-        selected={0}
-        onChange={e => {
-          console.log("Changed!!", e);
-        }}
-      />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <SportSelectorWrapper />
+      </div>
+    </Provider>
   );
 };
 
