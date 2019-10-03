@@ -2,8 +2,8 @@ import {appReducer, IAppState} from "../reducers";
 
 import {changeSelectedSportAction} from "../actions";
 
-import RunningSport from "../../RunningSport";
-import CyclingSport from "../../CyclingSport";
+import RunningSport from "../../models/RunningSport";
+import CyclingSport from "../../models/CyclingSport";
 
 describe("appReducer", () => {
   it("Changes selected sport", () => {

@@ -1,13 +1,9 @@
 import React, {ReactElement} from "react";
 import styled from "styled-components";
 
-import Sport from "../Sport";
+import Sport from "../../models/Sport";
 
 import Button from "./SportSelectorButton";
-
-import CyclingIcon from "../static/2biking_icon.png";
-import RunningIcon from "../static/2running_icon.png";
-import SwimmingIcon from "../static/2swim_icon.png";
 
 interface ISportSelectorProps {
   sports: Sport[];

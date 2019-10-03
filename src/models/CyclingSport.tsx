@@ -1,7 +1,7 @@
 import Sport from "./Sport";
-import CyclingIcon from "./static/2biking_icon.png";
+import CyclingIcon from "../static/2biking_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "./utils";
+import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 
 const CyclingSport: Sport = {
   name: "Ciclismo",

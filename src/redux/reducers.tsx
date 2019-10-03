@@ -1,9 +1,9 @@
 import {IReduxAction} from "./actions";
 
-import Sport from "../Sport";
+import Sport from "../models/Sport";
 
-import RunningSport from "../RunningSport";
-import CyclingSport from "../CyclingSport";
+import RunningSport from "../models/RunningSport";
+import CyclingSport from "../models/CyclingSport";
 
 export interface IAppState {
   sports: Sport[];

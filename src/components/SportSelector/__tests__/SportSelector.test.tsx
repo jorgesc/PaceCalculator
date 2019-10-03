@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({adapter: new Adapter()});
 
-import Sport from "../../Sport";
+import Sport from "../../../models/Sport";
 import SportSelector from "../SportSelector";
 import SportSelectorButton from "../SportSelectorButton";
 

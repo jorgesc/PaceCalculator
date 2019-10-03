@@ -1,8 +1,8 @@
 import React from "react";
-import SportSelector from "./components/SportSelector";
+import SportSelector from "./components/SportSelector/SportSelector";
 
-import RunningSport from "./RunningSport";
-import CyclingSport from "./CyclingSport";
+import RunningSport from "./models/RunningSport";
+import CyclingSport from "./models/CyclingSport";
 
 const App: React.FC = () => {
   return (
@@ -10,6 +10,9 @@ const App: React.FC = () => {
       <SportSelector
         sports={[RunningSport, CyclingSport, RunningSport, CyclingSport]}
         selected={0}
+        onChange={e => {
+          console.log("Changed!!", e);
+        }}
       />
     </div>
   );

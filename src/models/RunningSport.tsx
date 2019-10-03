@@ -1,7 +1,7 @@
 import Sport from "./Sport";
-import RunningIcon from "./static/2running_icon.png";
+import RunningIcon from "../static/2running_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "./utils";
+import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 
 const RunningSport: Sport = {
   name: "Atletismo",
