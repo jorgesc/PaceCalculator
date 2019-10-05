@@ -78,7 +78,7 @@ const StyledInput = styled.input`
   border: 1px solid ;
   border-right: 0px;
   border-color: #cccccc
-  transition: border-color 0.5s ease;
+  transition: border-color 0.2s linear;
 
   :focus {
     border-color: #2185d0;
