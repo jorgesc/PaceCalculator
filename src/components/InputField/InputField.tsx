@@ -17,8 +17,8 @@ interface IUnitProps {
 
 interface IInputProps {
   placeholder: string;
-  value?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface IInputRowProps extends IUnitProps, IInputProps {}
@@ -30,8 +30,8 @@ interface IButtonRowProps {
 
 interface IInputFieldProps extends ILabelRowProps, IUnitProps {
   placeholder: string;
-  value?: string;
-  onChange?: (newText: string) => void;
+  value: string;
+  onChange: (newText: string) => void;
   buttons?: Array<{text: string; value: string}>;
 }
 
@@ -136,8 +136,10 @@ const InputRow = ({
 const ButtonsRow = ({buttons, onClick}: IButtonRowProps): ReactElement => {
   const renderButtons = (): ReactElement[] | null => {
     if (!buttons) return null;
-    return buttons.map(b => (
-      <button onClick={() => onClick(b.value)}>{b.text}</button>
+    return buttons.map((b, i) => (
+      <button key={i} onClick={() => onClick(b.value)}>
+        {b.text}
+      </button>
     ));
   };
 
@@ -154,12 +156,10 @@ const InputField = ({
   buttons,
 }: IInputFieldProps): ReactElement => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (!onChange) return;
     onChange(e.target.value);
   };
 
   const buttonClick = (val: string): void => {
-    if (!onChange) return;
     onChange(val);
   };
 

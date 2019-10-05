@@ -21,6 +21,7 @@ describe("InputField tests", () => {
         units="test"
         placeholder=""
         onChange={onChange}
+        buttons={[{text: "Hello", value: "H"}, {text: "World", value: "wo"}]}
       />,
     );
   });
@@ -32,5 +33,22 @@ describe("InputField tests", () => {
   it("Changing its value triggers onChange function", () => {
     wrapper.find("input").simulate("change", {target: {value: "It works!!"}});
     expect(onChange.mock.calls).toHaveLength(1);
+    expect(onChange.mock.calls[0][0]).toEqual("It works!!");
+  });
+
+  it("Clicking a button triggers onChange", () => {
+    wrapper
+      .find("button")
+      .at(1)
+      .simulate("click");
+    expect(onChange.mock.calls).toHaveLength(1);
+    expect(onChange.mock.calls[0][0]).toEqual("wo");
+
+    wrapper
+      .find("button")
+      .at(0)
+      .simulate("click");
+    expect(onChange.mock.calls).toHaveLength(2);
+    expect(onChange.mock.calls[1][0]).toEqual("H");
   });
 });
