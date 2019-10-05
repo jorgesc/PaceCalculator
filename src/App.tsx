@@ -30,6 +30,7 @@ const App: React.FC = () => {
           placeholder={"34223"}
           units={"km/h"}
           label={"Distance"}
+          value="Hello world"
           onChange={val => {
             console.log("ONCHANGE!!", val);
           }}

@@ -73,9 +73,11 @@ const StyledUnits = styled.div`
 const StyledInputRow = styled.div`
   display: flex;
   flex-direction: row;
+  width: 100%;
 `;
 
 const StyledInput = styled.input`
+width: 100%;
   color: rgba(0, 0, 0, 0.87);
   font-size: 0.8em;
   font-weight: 700;
@@ -98,6 +100,31 @@ const StyledInput = styled.input`
 
   ::placeholder{
     color: #cccccc
+  }
+`;
+
+const StyledButtonsRow = styled.div`
+  margin-top: 0;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const StyledButton = styled.button`
+  border: none;
+  background: #dfdfdf;
+  padding: 0.6em 2em 0.6em 2em;
+
+  :hover {
+    filter: brightness(90%);
+    cursor: pointer;
+  }
+
+  :first-of-type {
+    border-radius: 8px 0px 0px 8px;
+  }
+
+  :last-of-type {
+    border-radius: 0px 8px 8px 0px;
   }
 `;
 
@@ -137,13 +164,13 @@ const ButtonsRow = ({buttons, onClick}: IButtonRowProps): ReactElement => {
   const renderButtons = (): ReactElement[] | null => {
     if (!buttons) return null;
     return buttons.map((b, i) => (
-      <button key={i} onClick={() => onClick(b.value)}>
+      <StyledButton key={i} onClick={() => onClick(b.value)}>
         {b.text}
-      </button>
+      </StyledButton>
     ));
   };
 
-  return <div>{renderButtons()}</div>;
+  return <StyledButtonsRow>{renderButtons()}</StyledButtonsRow>;
 };
 
 const InputField = ({
