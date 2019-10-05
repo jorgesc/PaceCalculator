@@ -30,6 +30,13 @@ const App: React.FC = () => {
           placeholder={"34223"}
           units={"km/h"}
           label={"Distance"}
+          onChange={val => {
+            console.log("ONCHANGE!!", val);
+          }}
+          buttons={[
+            {text: "Hello", value: "hel"},
+            {text: "World", value: "wor"},
+          ]}
         />
       </div>
     </Provider>

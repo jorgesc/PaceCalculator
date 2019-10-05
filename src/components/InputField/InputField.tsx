@@ -18,12 +18,22 @@ interface IUnitProps {
 interface IInputProps {
   placeholder: string;
   value?: string;
-  onChange?: (newText: string) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface IInputRowProps extends IUnitProps, IInputProps {}
 
-interface IInputFieldProps extends ILabelRowProps, IInputRowProps {}
+interface IButtonRowProps {
+  buttons?: Array<{text: string; value: string}>;
+  onClick: (newText: string) => void;
+}
+
+interface IInputFieldProps extends ILabelRowProps, IUnitProps {
+  placeholder: string;
+  value?: string;
+  onChange?: (newText: string) => void;
+  buttons?: Array<{text: string; value: string}>;
+}
 
 const StyledLabel = styled.label`
   font-size: 0.8em;
@@ -110,22 +120,28 @@ const InputRow = ({
   value,
   onChange,
 }: IInputRowProps): ReactElement => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (!onChange) return;
-    onChange(e.target.value);
-  };
-
   return (
     <StyledInputRow>
       <StyledInput
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
       />
       <Units units={units} />
     </StyledInputRow>
   );
+};
+
+const ButtonsRow = ({buttons, onClick}: IButtonRowProps): ReactElement => {
+  const renderButtons = (): ReactElement[] | null => {
+    if (!buttons) return null;
+    return buttons.map(b => (
+      <button onClick={() => onClick(b.value)}>{b.text}</button>
+    ));
+  };
+
+  return <div>{renderButtons()}</div>;
 };
 
 const InputField = ({
@@ -135,7 +151,18 @@ const InputField = ({
   units,
   value,
   onChange,
+  buttons,
 }: IInputFieldProps): ReactElement => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!onChange) return;
+    onChange(e.target.value);
+  };
+
+  const buttonClick = (val: string): void => {
+    if (!onChange) return;
+    onChange(val);
+  };
+
   return (
     <StyledInputField>
       <LabelRow icon={icon} label={label} />
@@ -143,8 +170,9 @@ const InputField = ({
         placeholder={placeholder}
         units={units}
         value={value}
-        onChange={onChange}
+        onChange={handleChange}
       />
+      <ButtonsRow buttons={buttons} onClick={buttonClick} />
     </StyledInputField>
   );
 };
