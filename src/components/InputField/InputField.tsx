@@ -17,6 +17,8 @@ interface IUnitProps {
 
 interface IInputProps {
   placeholder: string;
+  value?: string;
+  onChange?: (newText: string) => void;
 }
 
 interface IInputRowProps extends IUnitProps, IInputProps {}
@@ -102,10 +104,25 @@ const LabelRow = ({icon, label}: ILabelRowProps): ReactElement => {
   );
 };
 
-const InputRow = ({placeholder, units}: IInputRowProps): ReactElement => {
+const InputRow = ({
+  placeholder,
+  units,
+  value,
+  onChange,
+}: IInputRowProps): ReactElement => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!onChange) return;
+    onChange(e.target.value);
+  };
+
   return (
     <StyledInputRow>
-      <StyledInput type="text" placeholder={placeholder} />
+      <StyledInput
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={handleChange}
+      />
       <Units units={units} />
     </StyledInputRow>
   );
@@ -116,11 +133,18 @@ const InputField = ({
   label,
   placeholder,
   units,
+  value,
+  onChange,
 }: IInputFieldProps): ReactElement => {
   return (
     <StyledInputField>
       <LabelRow icon={icon} label={label} />
-      <InputRow placeholder={placeholder} units={units} />
+      <InputRow
+        placeholder={placeholder}
+        units={units}
+        value={value}
+        onChange={onChange}
+      />
     </StyledInputField>
   );
 };
