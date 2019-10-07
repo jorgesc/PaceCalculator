@@ -6,7 +6,7 @@ import {Provider} from "react-redux";
 import store from "./redux/store";
 
 import SportSelectorWrapper from "./components/SportSelectorWrapper";
-import InputField from "./components/InputField/InputField";
+import InputFieldsWrapper from "./components/InputFieldsWrapper";
 
 import DistanceIcon from "./static/icon-distance.svg";
 
@@ -25,20 +25,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <div className="App">
         <GlobalStyles />
-        <InputField
-          icon={DistanceIcon}
-          placeholder={"34223"}
-          units={"km/h"}
-          label={"Distance"}
-          value="Hello world"
-          onChange={val => {
-            console.log("ONCHANGE!!", val);
-          }}
-          buttons={[
-            {text: "Hello", value: "hel"},
-            {text: "World", value: "wor"},
-          ]}
-        />
+        <InputFieldsWrapper />
       </div>
     </Provider>
   );

@@ -24,6 +24,9 @@ describe("SportSelector integration", () => {
       app: {
         sports: [RunningSport, RunningSport, CyclingSport],
         selectedSport: 0,
+        distanceFieldValue: "",
+        timeFieldValue: "",
+        rythmFieldValue: "",
       },
     };
   });

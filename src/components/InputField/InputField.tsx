@@ -18,6 +18,7 @@ const StyledInputField = styled.div`
   font-family: "Days One", sans-serif;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 700;
+  margin-bottom: 1em;
 `;
 
 const InputField = ({

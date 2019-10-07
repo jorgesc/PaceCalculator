@@ -6,6 +6,7 @@ import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 const SwimmingSport: Sport = {
   name: "Natación",
   units: "mm/100m",
+  rythmPlaceholder: "22",
   icon: SwimmingIcon,
   showRythm: (distance: number, totalTime: string): string => {
     return "NONE!";

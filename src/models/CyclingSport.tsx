@@ -6,6 +6,7 @@ import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 const CyclingSport: Sport = {
   name: "Ciclismo",
   units: "km/h",
+  rythmPlaceholder: "37.5",
   icon: CyclingIcon,
   showRythm: (distance: number, totalTime: string): string => {
     const seconds = HHMMSSToSeconds(totalTime);
