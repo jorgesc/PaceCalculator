@@ -8,6 +8,7 @@ import CyclingSport from "../../models/CyclingSport";
 
 import {Provider} from "react-redux";
 import {IState} from "../../redux/store";
+import {updateInputFieldDistance} from "../../redux/actions";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
 import InputField from "../InputField/InputField";
@@ -80,5 +81,6 @@ describe("InputFieldsWrapper", () => {
 
     const actions = store.getActions();
     expect(actions).toHaveLength(1);
+    expect(actions[0]).toEqual(updateInputFieldDistance("38432"));
   });
 });
