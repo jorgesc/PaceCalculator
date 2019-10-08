@@ -6,7 +6,12 @@ import styled from "styled-components";
 import {IState} from "../redux/store";
 
 import InputField from "./InputField/InputField";
-import {updateInputFieldDistance, AppActionTypes} from "../redux/actions";
+import {
+  updateInputFieldDistance,
+  updateInputFieldTime,
+  updateInputFieldRythm,
+  AppActionTypes,
+} from "../redux/actions";
 
 import distanceIcon from "../static/icon-distance.svg";
 import timeIcon from "../static/icon-clock.svg";
@@ -15,11 +20,15 @@ import rythmIcon from "../static/icon-stopwatch.svg";
 interface IInputFieldsWrapperStateProps {
   rythmUnits: string;
   rythmPlaceholder: string;
-  distanceValue: string;
+  distanceFieldValue: string;
+  timeFieldValue: string;
+  rythmFieldValue: string;
 }
 
 interface IInputFieldsWrapperDispatchProps {
   updateDistance: (newText: string) => void;
+  updateTime: (newText: string) => void;
+  updateRythm: (newText: string) => void;
 }
 
 interface IInputFieldsWrapperProps
@@ -32,10 +41,14 @@ const StyledWrapper = styled.div`
 `;
 
 const InputFieldsWrapper = ({
-  distanceValue,
+  distanceFieldValue,
+  timeFieldValue,
+  rythmFieldValue,
   rythmUnits,
   rythmPlaceholder,
   updateDistance,
+  updateTime,
+  updateRythm,
 }: IInputFieldsWrapperProps): ReactElement => {
   return (
     <StyledWrapper>
@@ -44,28 +57,28 @@ const InputFieldsWrapper = ({
         icon={distanceIcon}
         placeholder="10000"
         units="meters"
-        value={distanceValue}
+        value={distanceFieldValue}
         onChange={updateDistance}
       />
 
       <InputField
-        disabled={distanceValue === ""}
+        disabled={distanceFieldValue === ""}
         label="Time"
         icon={timeIcon}
         placeholder="02:34:16"
         units="hh:mm:ss"
-        value=""
-        onChange={() => null}
+        value={timeFieldValue}
+        onChange={updateTime}
       />
 
       <InputField
-        disabled={distanceValue === ""}
+        disabled={distanceFieldValue === ""}
         label="Rythm"
         icon={rythmIcon}
         placeholder={rythmPlaceholder}
         units={rythmUnits}
-        value=""
-        onChange={() => null}
+        value={rythmFieldValue}
+        onChange={updateRythm}
       />
     </StyledWrapper>
   );
@@ -75,8 +88,15 @@ const mapStateToProps = (state: IState): IInputFieldsWrapperStateProps => {
   const selectedSport = state.app.sports[state.app.selectedSport];
   const rythmUnits = selectedSport.units;
   const rythmPlaceholder = selectedSport.rythmPlaceholder;
-  const distanceValue = state.app.distanceFieldValue;
-  return {rythmUnits, rythmPlaceholder, distanceValue};
+  const {distanceFieldValue, timeFieldValue, rythmFieldValue} = state.app;
+
+  return {
+    rythmUnits,
+    rythmPlaceholder,
+    distanceFieldValue,
+    timeFieldValue,
+    rythmFieldValue,
+  };
 };
 
 const mapDispatchToProps = (
@@ -84,6 +104,8 @@ const mapDispatchToProps = (
 ): IInputFieldsWrapperDispatchProps => {
   return {
     updateDistance: (s: string) => dispatch(updateInputFieldDistance(s)),
+    updateTime: (s: string) => dispatch(updateInputFieldTime(s)),
+    updateRythm: (s: string) => dispatch(updateInputFieldRythm(s)),
   };
 };
 
