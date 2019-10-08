@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import Enzyme, {shallow, mount, ReactWrapper} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import configureStore, {MockStoreCreator} from "redux-mock-store";
+import configureStore, {MockStoreCreator, MockStore} from "redux-mock-store";
 import RunningSport from "../../models/RunningSport";
 import CyclingSport from "../../models/CyclingSport";
 
@@ -23,6 +23,8 @@ Enzyme.configure({adapter: new Adapter()});
 describe("InputFieldsWrapper", () => {
   let mockStoreCreator: MockStoreCreator;
   let initialState: IState;
+  let store: MockStore;
+  let wrapper: ReactWrapper;
 
   beforeAll(() => {
     mockStoreCreator = configureStore([thunk]);
@@ -35,26 +37,20 @@ describe("InputFieldsWrapper", () => {
         rythmFieldValue: "12:57",
       },
     };
-  });
-
-  it("Shows the correct rythm units", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
+    store = mockStoreCreator(initialState);
+    wrapper = mount(
       <Provider store={store}>
         <InputFieldsWrapper />
       </Provider>,
     );
+  });
+
+  it("Shows the correct rythm units", () => {
     const rythmFieldWrapper = wrapper.find(InputField).at(2);
     expect(rythmFieldWrapper.text()).toContain(CyclingSport.units);
   });
 
   it("Shows the correct rythm placeholder", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
-        <InputFieldsWrapper />
-      </Provider>,
-    );
     const rythmFieldWrapper = wrapper.find(InputField).at(2);
     expect(rythmFieldWrapper.find("input").props().placeholder).toEqual(
       CyclingSport.rythmPlaceholder,
@@ -62,23 +58,11 @@ describe("InputFieldsWrapper", () => {
   });
 
   it("Distance field contains store value", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
-        <InputFieldsWrapper />
-      </Provider>,
-    );
     const distanceFieldWrapper = wrapper.find(InputField).at(0);
     expect(distanceFieldWrapper.props().value).toEqual("10000");
   });
 
   it("Changing distance calls update distance action", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
-        <InputFieldsWrapper />
-      </Provider>,
-    );
     const distanceFieldWrapper = wrapper.find(InputField).at(0);
     distanceFieldWrapper
       .find("input")
@@ -105,75 +89,63 @@ describe("InputFieldsWrapper", () => {
     expect(timeFieldWrapper2.find("input").props().disabled).toBe(true);
     expect(rythmFieldWrapper2.find("input").props().disabled).toBe(true);
 
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
+    const store3 = mockStoreCreator(initialState);
+    const wrapper3 = mount(
+      <Provider store={store3}>
         <InputFieldsWrapper />
       </Provider>,
     );
-    const distanceFieldWrapper = wrapper.find(InputField).at(0);
-    const timeFieldWrapper = wrapper.find(InputField).at(1);
-    const rythmFieldWrapper = wrapper.find(InputField).at(2);
+    const distanceFieldWrapper = wrapper3.find(InputField).at(0);
+    const timeFieldWrapper = wrapper3.find(InputField).at(1);
+    const rythmFieldWrapper = wrapper3.find(InputField).at(2);
 
     expect(timeFieldWrapper.find("input").props().disabled).toBe(false);
     expect(rythmFieldWrapper.find("input").props().disabled).toBe(false);
   });
 
   it("Time field contains the right store value", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
-        <InputFieldsWrapper />
-      </Provider>,
-    );
     const timeFieldWrapper = wrapper.find(InputField).at(1);
     expect(timeFieldWrapper.props().value).toEqual("44:32:47");
   });
 
   it("Changing time calls update time action", () => {
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
-    const store = mockStoreCreator(myInitialState);
-    const wrapper = mount(
-      <Provider store={store}>
+    const myStore = mockStoreCreator(myInitialState);
+    const myWrapper = mount(
+      <Provider store={myStore}>
         <InputFieldsWrapper />
       </Provider>,
     );
-    const timeFieldWrapper = wrapper.find(InputField).at(1);
+    const timeFieldWrapper = myWrapper.find(InputField).at(1);
     timeFieldWrapper
       .find("input")
       .simulate("change", {target: {value: "02:21:33"}});
 
-    const actions = store.getActions();
+    const actions = myStore.getActions();
     expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldTime("02:21:33"));
     expect(actions[1]).toEqual(updateInputFieldRythm("14:09"));
   });
 
   it("Rythm field contains the right store value", () => {
-    const store = mockStoreCreator(initialState);
-    const wrapper = mount(
-      <Provider store={store}>
-        <InputFieldsWrapper />
-      </Provider>,
-    );
     const rythmFieldWrapper = wrapper.find(InputField).at(2);
     expect(rythmFieldWrapper.props().value).toEqual("12:57");
   });
 
   it("Changing rythm calls update rythm action", () => {
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
-    const store = mockStoreCreator(myInitialState);
-    const wrapper = mount(
-      <Provider store={store}>
+    const myStore = mockStoreCreator(myInitialState);
+    const myWrapper = mount(
+      <Provider store={myStore}>
         <InputFieldsWrapper />
       </Provider>,
     );
-    const rythmFieldWrapper = wrapper.find(InputField).at(2);
+    const rythmFieldWrapper = myWrapper.find(InputField).at(2);
     rythmFieldWrapper
       .find("input")
       .simulate("change", {target: {value: "21:33"}});
 
-    const actions = store.getActions();
+    const actions = myStore.getActions();
     expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldRythm("21:33"));
     expect(actions[1]).toEqual(updateInputFieldTime("03:35:30"));
