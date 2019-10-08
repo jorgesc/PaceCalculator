@@ -49,6 +49,7 @@ const InputFieldsWrapper = ({
       />
 
       <InputField
+        disabled={distanceValue === ""}
         label="Time"
         icon={timeIcon}
         placeholder="02:34:16"
@@ -58,6 +59,7 @@ const InputFieldsWrapper = ({
       />
 
       <InputField
+        disabled={distanceValue === ""}
         label="Rythm"
         icon={rythmIcon}
         placeholder={rythmPlaceholder}

@@ -9,6 +9,7 @@ interface IInputProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  disabled?: boolean;
 }
 
 interface IInputRowProps extends IUnitProps, IInputProps {}
@@ -67,6 +68,7 @@ const SecondRow = ({
   units,
   value,
   onChange,
+  disabled,
 }: IInputRowProps): ReactElement => {
   return (
     <StyledInputRow>
@@ -75,6 +77,7 @@ const SecondRow = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       />
       <Units units={units} />
     </StyledInputRow>

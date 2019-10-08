@@ -83,4 +83,34 @@ describe("InputFieldsWrapper", () => {
     expect(actions).toHaveLength(1);
     expect(actions[0]).toEqual(updateInputFieldDistance("38432"));
   });
+
+  it("Rythm and Time inputs are disabled when Distance is empty", () => {
+    const initialState2 = {app: {...initialState.app, distanceFieldValue: ""}};
+
+    const store2 = mockStoreCreator(initialState2);
+    const wrapper2 = mount(
+      <Provider store={store2}>
+        <InputFieldsWrapper />
+      </Provider>,
+    );
+    const distanceFieldWrapper2 = wrapper2.find(InputField).at(0);
+    const timeFieldWrapper2 = wrapper2.find(InputField).at(1);
+    const rythmFieldWrapper2 = wrapper2.find(InputField).at(2);
+
+    expect(timeFieldWrapper2.find("input").props().disabled).toBe(true);
+    expect(rythmFieldWrapper2.find("input").props().disabled).toBe(true);
+
+    const store = mockStoreCreator(initialState);
+    const wrapper = mount(
+      <Provider store={store}>
+        <InputFieldsWrapper />
+      </Provider>,
+    );
+    const distanceFieldWrapper = wrapper.find(InputField).at(0);
+    const timeFieldWrapper = wrapper.find(InputField).at(1);
+    const rythmFieldWrapper = wrapper.find(InputField).at(2);
+
+    expect(timeFieldWrapper.find("input").props().disabled).toBe(false);
+    expect(rythmFieldWrapper.find("input").props().disabled).toBe(false);
+  });
 });

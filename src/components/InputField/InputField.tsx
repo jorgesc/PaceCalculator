@@ -11,6 +11,7 @@ interface IInputFieldProps extends IFirstRowProps {
   onChange: (newText: string) => void;
   units: string;
   buttons?: Array<{text: string; value: string}>;
+  disabled?: boolean;
 }
 
 const StyledInputField = styled.div`
@@ -29,6 +30,7 @@ const InputField = ({
   value,
   onChange,
   buttons,
+  disabled,
 }: IInputFieldProps): ReactElement => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     onChange(e.target.value);
@@ -46,6 +48,7 @@ const InputField = ({
         units={units}
         value={value}
         onChange={handleChange}
+        disabled={disabled}
       />
       <ThirdRow buttons={buttons} onClick={buttonClick} />
     </StyledInputField>
