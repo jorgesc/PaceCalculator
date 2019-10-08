@@ -58,18 +58,6 @@ export const updateInputFieldRythm = (s: string): IUpdateInputFieldRythm => {
   return {type: UPDATE_INPUT_FIELD_RYTHM, payload: s};
 };
 
-// export const timeInputFieldChanged = (
-//   s: string,
-// ): ThunkAction<Promise<void>, {}, {}, AnyAction> => {
-//   return async (dispatch: ThunkDispatch<{}, {}, AnyAction>): Promise<void> => {
-//     return new Promise<void>(resolve => {
-//       dispatch(updateInputFieldTime(s));
-//       dispatch(updateInputFieldRythm(s));
-//       resolve();
-//     });
-//   };
-// };
-
 export const timeInputFieldChanged = (
   s: string,
 ): ThunkAction<void, IState, undefined, AppActionTypes> => {
@@ -99,9 +87,6 @@ export const rythmInputFieldChanged = (
     dispatch(updateInputFieldTime(currSport.showTotalTime(distance, s)));
   };
 };
-// export const rythmInputFieldChanged = (s: string): IRythmInputFieldChanged => {
-//   return {type: RYTHM_INPUT_FIELD_CHANGED, payload: s};
-// };
 
 export type AppActionTypes =
   | IChangeSelectedSportAction
