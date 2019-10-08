@@ -5,8 +5,6 @@ const CHANGE_SELECTED_SPORT = "CHANGE_SELECTED_SPORT";
 const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";
 const UPDATE_INPUT_FIELD_TIME = "UPDATE_INPUT_FIELD_TIME";
 const UPDATE_INPUT_FIELD_RYTHM = "UPDATE_INPUT_FIELD_RYTHM";
-const TIME_INPUT_FIELD_CHANGED = "TIME_INPUT_FIELD_CHANGED";
-const RYTHM_INPUT_FIELD_CHANGED = "TIME_INPUT_FIELD_CHANGED";
 
 interface IChangeSelectedSportAction {
   type: typeof CHANGE_SELECTED_SPORT;
@@ -25,16 +23,6 @@ interface IUpdateInputFieldTime {
 
 interface IUpdateInputFieldRythm {
   type: typeof UPDATE_INPUT_FIELD_RYTHM;
-  payload: string;
-}
-
-interface ITimeInputFieldChanged {
-  type: typeof TIME_INPUT_FIELD_CHANGED;
-  payload: string;
-}
-
-interface IRythmInputFieldChanged {
-  type: typeof RYTHM_INPUT_FIELD_CHANGED;
   payload: string;
 }
 
@@ -92,6 +80,4 @@ export type AppActionTypes =
   | IChangeSelectedSportAction
   | IUpdateInputFieldDistance
   | IUpdateInputFieldTime
-  | IUpdateInputFieldRythm
-  | ITimeInputFieldChanged
-  | IRythmInputFieldChanged;
+  | IUpdateInputFieldRythm;
