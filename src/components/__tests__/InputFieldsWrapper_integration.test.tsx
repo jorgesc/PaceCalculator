@@ -1,4 +1,5 @@
 import React from "react";
+import thunk from "redux-thunk";
 import Enzyme, {shallow, mount, ReactWrapper} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -24,12 +25,12 @@ describe("InputFieldsWrapper", () => {
   let initialState: IState;
 
   beforeAll(() => {
-    mockStoreCreator = configureStore([]);
+    mockStoreCreator = configureStore([thunk]);
     initialState = {
       app: {
         sports: [CyclingSport, RunningSport, CyclingSport],
         selectedSport: 0,
-        distanceFieldValue: "34534621234",
+        distanceFieldValue: "10000",
         timeFieldValue: "44:32:47",
         rythmFieldValue: "12:57",
       },
@@ -68,7 +69,7 @@ describe("InputFieldsWrapper", () => {
       </Provider>,
     );
     const distanceFieldWrapper = wrapper.find(InputField).at(0);
-    expect(distanceFieldWrapper.props().value).toEqual("34534621234");
+    expect(distanceFieldWrapper.props().value).toEqual("10000");
   });
 
   it("Changing distance calls update distance action", () => {
@@ -130,7 +131,8 @@ describe("InputFieldsWrapper", () => {
   });
 
   it("Changing time calls update time action", () => {
-    const store = mockStoreCreator(initialState);
+    const myInitialState = {app: {...initialState.app, selectedSport: 1}};
+    const store = mockStoreCreator(myInitialState);
     const wrapper = mount(
       <Provider store={store}>
         <InputFieldsWrapper />
@@ -142,8 +144,9 @@ describe("InputFieldsWrapper", () => {
       .simulate("change", {target: {value: "02:21:33"}});
 
     const actions = store.getActions();
-    expect(actions).toHaveLength(1);
+    expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldTime("02:21:33"));
+    expect(actions[1]).toEqual(updateInputFieldRythm("14:09"));
   });
 
   it("Rythm field contains the right store value", () => {
@@ -158,7 +161,8 @@ describe("InputFieldsWrapper", () => {
   });
 
   it("Changing rythm calls update rythm action", () => {
-    const store = mockStoreCreator(initialState);
+    const myInitialState = {app: {...initialState.app, selectedSport: 1}};
+    const store = mockStoreCreator(myInitialState);
     const wrapper = mount(
       <Provider store={store}>
         <InputFieldsWrapper />
@@ -170,7 +174,8 @@ describe("InputFieldsWrapper", () => {
       .simulate("change", {target: {value: "21:33"}});
 
     const actions = store.getActions();
-    expect(actions).toHaveLength(1);
+    expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldRythm("21:33"));
+    expect(actions[1]).toEqual(updateInputFieldTime("03:35:30"));
   });
 });

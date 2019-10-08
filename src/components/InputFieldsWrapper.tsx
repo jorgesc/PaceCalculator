@@ -1,5 +1,6 @@
 import React, {ReactElement} from "react";
 import {Dispatch} from "redux";
+import {ThunkDispatch} from "redux-thunk";
 import {connect} from "react-redux";
 import styled from "styled-components";
 
@@ -10,6 +11,8 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
+  timeInputFieldChanged,
+  rythmInputFieldChanged,
   AppActionTypes,
 } from "../redux/actions";
 
@@ -100,12 +103,12 @@ const mapStateToProps = (state: IState): IInputFieldsWrapperStateProps => {
 };
 
 const mapDispatchToProps = (
-  dispatch: Dispatch,
+  dispatch: ThunkDispatch<IState, undefined, AppActionTypes>,
 ): IInputFieldsWrapperDispatchProps => {
   return {
     updateDistance: (s: string) => dispatch(updateInputFieldDistance(s)),
-    updateTime: (s: string) => dispatch(updateInputFieldTime(s)),
-    updateRythm: (s: string) => dispatch(updateInputFieldRythm(s)),
+    updateTime: (s: string) => dispatch(timeInputFieldChanged(s)),
+    updateRythm: (s: string) => dispatch(rythmInputFieldChanged(s)),
   };
 };
 
