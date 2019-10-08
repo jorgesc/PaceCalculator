@@ -30,7 +30,7 @@ export const appReducer = (
       return {...state, selectedSport: action.payload};
 
     case "UPDATE_INPUT_FIELD_DISTANCE":
-      return {...state, distanceFieldValue: action.payload};
+      return {...state, distanceFieldValue: action.payload.replace(/\D/g, "")};
   }
 
   return state;

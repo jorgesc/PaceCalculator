@@ -31,9 +31,24 @@ describe("appReducer", () => {
       rythmFieldValue: "",
     };
 
-    const finalState = {...initialState, distanceFieldValue: "hello world"};
+    const finalState = {...initialState, distanceFieldValue: "54634351"};
     expect(
-      appReducer(initialState, updateInputFieldDistance("hello world")),
+      appReducer(initialState, updateInputFieldDistance("54634351")),
+    ).toEqual(finalState);
+  });
+
+  it("Only passes numbers on Distance input field updates", () => {
+    const initialState: IAppState = {
+      selectedSport: 0,
+      sports: [RunningSport, CyclingSport],
+      distanceFieldValue: "543",
+      timeFieldValue: "",
+      rythmFieldValue: "",
+    };
+
+    const finalState = {...initialState, distanceFieldValue: "246897"};
+    expect(
+      appReducer(initialState, updateInputFieldDistance("24n6k8hne9,.-ñ7&")),
     ).toEqual(finalState);
   });
 });
