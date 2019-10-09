@@ -26,7 +26,7 @@ describe("InputFieldsWrapper", () => {
   let store: MockStore;
   let wrapper: ReactWrapper;
 
-  beforeAll(() => {
+  beforeEach(() => {
     mockStoreCreator = configureStore([thunk]);
     initialState = {
       app: {
@@ -108,7 +108,7 @@ describe("InputFieldsWrapper", () => {
     expect(timeFieldWrapper.props().value).toEqual("44:32:47");
   });
 
-  it("Changing time calls update time action", () => {
+  it("Changing time also updates rythm with the correct value", () => {
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
     const myStore = mockStoreCreator(myInitialState);
     const myWrapper = mount(
@@ -132,7 +132,7 @@ describe("InputFieldsWrapper", () => {
     expect(rythmFieldWrapper.props().value).toEqual("12:57");
   });
 
-  it("Changing rythm calls update rythm action", () => {
+  it("Changing rythm also updates time with the correct value", () => {
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
     const myStore = mockStoreCreator(myInitialState);
     const myWrapper = mount(
@@ -149,5 +149,29 @@ describe("InputFieldsWrapper", () => {
     expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldRythm("21:33"));
     expect(actions[1]).toEqual(updateInputFieldTime("03:35:30"));
+  });
+
+  it("Time calculations also works for other sports", () => {
+    const timeFieldWrapper = wrapper.find(InputField).at(1);
+    timeFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "02:21:33"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0]).toEqual(updateInputFieldTime("02:21:33"));
+    expect(actions[1]).toEqual(updateInputFieldRythm("4.24"));
+  });
+
+  it("Rythm calculations also works for other sports", () => {
+    const timeFieldWrapper = wrapper.find(InputField).at(2);
+    timeFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "4.24"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0]).toEqual(updateInputFieldRythm("4.24"));
+    expect(actions[1]).toEqual(updateInputFieldTime("02:21:31"));
   });
 });

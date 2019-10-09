@@ -10,7 +10,9 @@ const CyclingSport: Sport = {
   icon: CyclingIcon,
   showRythm: (distance: number, totalTime: string): string => {
     const seconds = HHMMSSToSeconds(totalTime);
-    return (distance / (seconds / 3.6)).toString();
+    const speed = distance / (seconds / 3.6);
+    const rounded = Math.round(speed * 100) / 100;
+    return rounded.toString();
   },
 
   showTotalTime: (distance: number, rythm: string): string => {
