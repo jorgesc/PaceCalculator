@@ -164,8 +164,8 @@ describe("InputFieldsWrapper", () => {
   });
 
   it("Rythm calculations also works for other sports", () => {
-    const timeFieldWrapper = wrapper.find(InputField).at(2);
-    timeFieldWrapper
+    const rythmFieldWrapper = wrapper.find(InputField).at(2);
+    rythmFieldWrapper
       .find("input")
       .simulate("change", {target: {value: "4.24"}});
 
