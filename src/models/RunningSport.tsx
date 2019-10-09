@@ -17,6 +17,19 @@ const RunningSport: Sport = {
     const secondsPerKm = HHMMSSToSeconds(rythm);
     return secondsToHHMMSS(secondsPerKm * (distance / 1000));
   },
+
+  cleanInputRythm: (newValue: string, oldValue: string): string => {
+    const pattern = /^\d?(\d(:([0-5](\d?)?)?)?)?$/;
+    if (!pattern.test(newValue)) return oldValue;
+    if (
+      /^\d{2}$/.test(newValue.slice(-2)) &&
+      newValue.length > oldValue.length &&
+      (newValue.match(/:/g) || []).length < 1
+    ) {
+      return newValue + ":";
+    }
+    return newValue;
+  },
 };
 
 export default RunningSport;

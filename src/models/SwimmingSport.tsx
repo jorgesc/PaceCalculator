@@ -15,6 +15,10 @@ const SwimmingSport: Sport = {
   showTotalTime: (distance: number, rythm: string): string => {
     return "NONE!";
   },
+
+  cleanInputRythm: (newValue: string, oldValue: string): string => {
+    return "";
+  },
 };
 
 export default SwimmingSport;

@@ -185,4 +185,22 @@ describe("InputFieldsWrapper", () => {
     expect(actions).toHaveLength(2);
     expect(actions[0]).toEqual(updateInputFieldTime("44:32:47"));
   });
+
+  it("Rythm onchange cleans the data before updating the state", () => {
+    const myInitialState = {
+      app: {...initialState.app, selectedSport: 1, rythmFieldValue: "0"},
+    };
+    const myStore = mockStoreCreator(myInitialState);
+    const myWrapper = mount(
+      <Provider store={myStore}>
+        <InputFieldsWrapper />
+      </Provider>,
+    );
+    const rythmFieldWrapper = myWrapper.find(InputField).at(2);
+    rythmFieldWrapper.find("input").simulate("change", {target: {value: "02"}});
+
+    const actions = myStore.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0]).toEqual(updateInputFieldRythm("02:"));
+  });
 });

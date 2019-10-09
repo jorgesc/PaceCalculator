@@ -75,11 +75,18 @@ export const rythmInputFieldChanged = (
     dispatch: ThunkDispatch<IState, undefined, AppActionTypes>,
     getState: () => IState,
   ): void => {
-    const state = getState();
-    const distance = parseInt(state.app.distanceFieldValue, 10);
-    const currSport = state.app.sports[state.app.selectedSport];
-    dispatch(updateInputFieldRythm(s));
-    dispatch(updateInputFieldTime(currSport.showTotalTime(distance, s)));
+    const {
+      distanceFieldValue,
+      rythmFieldValue,
+      sports,
+      selectedSport,
+    } = getState().app;
+    const distance = parseInt(distanceFieldValue, 10);
+    const currSport = sports[selectedSport];
+    const newRythm = currSport.cleanInputRythm(s, rythmFieldValue);
+    const newTime = currSport.showTotalTime(distance, newRythm);
+    dispatch(updateInputFieldRythm(newRythm));
+    dispatch(updateInputFieldTime(newTime));
   };
 };
 

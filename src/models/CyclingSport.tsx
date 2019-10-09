@@ -19,6 +19,10 @@ const CyclingSport: Sport = {
     const seconds = Math.round((3600 * (distance / 1000)) / parseFloat(rythm));
     return secondsToHHMMSS(seconds);
   },
+
+  cleanInputRythm: (newValue: string, oldValue: string): string => {
+    return /^\d*(\.\d{0,2})?$/.test(newValue) ? newValue : oldValue;
+  },
 };
 
 export default CyclingSport;

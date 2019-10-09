@@ -31,5 +31,10 @@ describe("distanceInputFieldCleaner", () => {
     oldValue = "11:25:4";
     result = "11:25:44";
     expect(timeInputFieldCleaner(newValue, oldValue)).toEqual(result);
+
+    newValue = "11:25:4t";
+    oldValue = "11:25:4";
+    result = "11:25:4";
+    expect(timeInputFieldCleaner(newValue, oldValue)).toEqual(result);
   });
 });

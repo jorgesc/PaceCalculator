@@ -5,4 +5,5 @@ export default interface ISport {
   icon: string;
   showRythm: (distance: number, totalTime: string) => string;
   showTotalTime: (distance: number, rythm: string) => string;
+  cleanInputRythm: (newValue: string, oldValue: string) => string;
 }
