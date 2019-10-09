@@ -1,5 +1,34 @@
+import Sport from "../Sport";
 import RunningSport from "../RunningSport";
 import CyclingSport from "../CyclingSport";
+
+describe("Sport", () => {
+  it("cleanInputTime works as expected", () => {
+    class MyTestClass extends Sport {
+      public name = "";
+      public units = "";
+      public icon = "";
+      public rythmPlaceholder = "";
+      public showTotalTime = (distance: number, rythm: string): string => "";
+      public showRythm = (distance: number, totalTime: string): string => "";
+      public cleanInputRythm = (newVal: string, oldVal: string): string => "";
+    }
+
+    const myTestClass = new MyTestClass();
+
+    expect(myTestClass.cleanInputTime("11:25:2", "11:25:")).toEqual("11:25:2");
+    expect(myTestClass.cleanInputTime("11:25:8", "11:25:")).toEqual("11:25:");
+    expect(myTestClass.cleanInputTime("11", "1")).toEqual("11:");
+    expect(myTestClass.cleanInputTime("11:25", "11:2")).toEqual("11:25:");
+    expect(myTestClass.cleanInputTime("11:25", "11:25:")).toEqual("11:25");
+    expect(myTestClass.cleanInputTime("11:25:44", "11:25:4")).toEqual(
+      "11:25:44",
+    );
+    expect(myTestClass.cleanInputTime("11:25:4t", "11:25:4")).toEqual(
+      "11:25:4",
+    );
+  });
+});
 
 describe("Running", () => {
   it("Calculates rythm correctly", () => {

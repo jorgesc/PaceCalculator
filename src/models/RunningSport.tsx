@@ -3,22 +3,23 @@ import RunningIcon from "../static/2running_icon.png";
 
 import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 
-const RunningSport: Sport = {
-  name: "Atletismo",
-  units: "mm:ss",
-  rythmPlaceholder: "04:57",
-  icon: RunningIcon,
-  showRythm: (distance: number, totalTime: string): string => {
+class RunningSport extends Sport {
+  public name = "Atletismo";
+  public units = "mm:ss";
+  public rythmPlaceholder = "04:57";
+  public icon = RunningIcon;
+
+  public showRythm = (distance: number, totalTime: string): string => {
     const seconds = HHMMSSToSeconds(totalTime) / (distance / 1000);
     return secondsToHHMMSS(seconds, false);
-  },
+  };
 
-  showTotalTime: (distance: number, rythm: string): string => {
+  public showTotalTime = (distance: number, rythm: string): string => {
     const secondsPerKm = HHMMSSToSeconds(rythm);
     return secondsToHHMMSS(secondsPerKm * (distance / 1000));
-  },
+  };
 
-  cleanInputRythm: (newValue: string, oldValue: string): string => {
+  public cleanInputRythm = (newValue: string, oldValue: string): string => {
     const pattern = /^\d?(\d(:([0-5](\d?)?)?)?)?$/;
     if (!pattern.test(newValue)) return oldValue;
     if (
@@ -29,7 +30,7 @@ const RunningSport: Sport = {
       return newValue + ":";
     }
     return newValue;
-  },
-};
+  };
+}
 
-export default RunningSport;
+export default new RunningSport();

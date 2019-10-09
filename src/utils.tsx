@@ -23,19 +23,3 @@ export const secondsToHHMMSS = (
 
   return output.map(x => x.toString().padStart(2, "0")).join(":");
 };
-
-export const timeInputFieldCleaner = (
-  newValue: string,
-  oldValue: string,
-): string => {
-  const pattern = /^\d?(\d(:([0-5](\d(:([0-5](\d)?)?)?)?)?)?)?$/;
-  if (!pattern.test(newValue)) return oldValue;
-  if (
-    /^\d{2}$/.test(newValue.slice(-2)) &&
-    newValue.length > oldValue.length &&
-    (newValue.match(/:/g) || []).length < 2
-  ) {
-    return newValue + ":";
-  }
-  return newValue;
-};
