@@ -1,6 +1,5 @@
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {IState} from "./store";
-import {timeInputFieldCleaner} from "../utils";
 
 const CHANGE_SELECTED_SPORT = "CHANGE_SELECTED_SPORT";
 const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";
