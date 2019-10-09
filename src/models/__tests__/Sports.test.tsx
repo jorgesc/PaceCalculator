@@ -25,45 +25,14 @@ describe("Running", () => {
   });
 
   it("Cleans rythm input correctly", () => {
-    let newValue = "1";
-    let oldValue = "";
-    let result = "1";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "81:4";
-    oldValue = "8";
-    result = "81:4";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11";
-    oldValue = "1";
-    result = "11:";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "02";
-    oldValue = "0";
-    result = "02:";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11:25";
-    oldValue = "11:2";
-    result = "11:25";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11";
-    oldValue = "11:";
-    result = "11";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11:25:44";
-    oldValue = "11:25";
-    result = "11:25";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11:2a";
-    oldValue = "11:2";
-    result = "11:2";
-    expect(RunningSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
+    expect(RunningSport.cleanInputRythm("1", "")).toEqual("1");
+    expect(RunningSport.cleanInputRythm("81:4", "81:")).toEqual("81:4");
+    expect(RunningSport.cleanInputRythm("11", "1")).toEqual("11:");
+    expect(RunningSport.cleanInputRythm("02", "0")).toEqual("02:");
+    expect(RunningSport.cleanInputRythm("11:25", "11:2")).toEqual("11:25");
+    expect(RunningSport.cleanInputRythm("11", "11:")).toEqual("11");
+    expect(RunningSport.cleanInputRythm("11:25:44", "11:25")).toEqual("11:25");
+    expect(RunningSport.cleanInputRythm("11:2a", "11:2")).toEqual("11:2");
   });
 });
 
@@ -91,29 +60,10 @@ describe("Cycling", () => {
   });
 
   it("Cleans rythm input correctly", () => {
-    let newValue = "1";
-    let oldValue = "";
-    let result = "1";
-    expect(CyclingSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "81.4";
-    oldValue = "81.";
-    result = "81.4";
-    expect(CyclingSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "11:";
-    oldValue = "11";
-    result = "11";
-    expect(CyclingSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "403";
-    oldValue = "40";
-    result = "403";
-    expect(CyclingSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
-
-    newValue = "112a";
-    oldValue = "112";
-    result = "112";
-    expect(CyclingSport.cleanInputRythm(newValue, oldValue)).toEqual(result);
+    expect(CyclingSport.cleanInputRythm("1", "")).toEqual("1");
+    expect(CyclingSport.cleanInputRythm("81.4", "81.")).toEqual("81.4");
+    expect(CyclingSport.cleanInputRythm("11:", "11")).toEqual("11");
+    expect(CyclingSport.cleanInputRythm("403", "40")).toEqual("403");
+    expect(CyclingSport.cleanInputRythm("112a", "112")).toEqual("112");
   });
 });
