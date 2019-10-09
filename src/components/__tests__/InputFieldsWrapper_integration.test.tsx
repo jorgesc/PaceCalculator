@@ -174,4 +174,15 @@ describe("InputFieldsWrapper", () => {
     expect(actions[0]).toEqual(updateInputFieldRythm("4.24"));
     expect(actions[1]).toEqual(updateInputFieldTime("02:21:31"));
   });
+
+  it("Time onchange cleans the data before updating the state", () => {
+    const timeFieldWrapper = wrapper.find(InputField).at(1);
+    timeFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "02:21:8"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0]).toEqual(updateInputFieldTime("44:32:47"));
+  });
 });

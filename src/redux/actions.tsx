@@ -1,5 +1,6 @@
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
 import {IState} from "./store";
+import {timeInputFieldCleaner} from "../utils";
 
 const CHANGE_SELECTED_SPORT = "CHANGE_SELECTED_SPORT";
 const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";
@@ -53,11 +54,17 @@ export const timeInputFieldChanged = (
     dispatch: ThunkDispatch<IState, undefined, AppActionTypes>,
     getState: () => IState,
   ): void => {
-    const state = getState();
-    const distance = parseInt(state.app.distanceFieldValue, 10);
-    const currSport = state.app.sports[state.app.selectedSport];
-    dispatch(updateInputFieldTime(s));
-    dispatch(updateInputFieldRythm(currSport.showRythm(distance, s)));
+    const {
+      distanceFieldValue,
+      timeFieldValue,
+      selectedSport,
+      sports,
+    } = getState().app;
+    const distance = parseInt(distanceFieldValue, 10);
+    const newTime = timeInputFieldCleaner(s, timeFieldValue);
+    const newRythm = sports[selectedSport].showRythm(distance, newTime);
+    dispatch(updateInputFieldTime(newTime));
+    dispatch(updateInputFieldRythm(newRythm));
   };
 };
 
