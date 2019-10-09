@@ -3,22 +3,22 @@ import SwimmingIcon from "../static/2swim_icon.png";
 
 import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 
-const SwimmingSport: Sport = {
-  name: "Natación",
-  units: "mm/100m",
-  rythmPlaceholder: "22",
-  icon: SwimmingIcon,
-  showRythm: (distance: number, totalTime: string): string => {
+class SwimmingSport extends Sport {
+  public name = "Natación";
+  public units = "mm/100m";
+  public rythmPlaceholder = "22";
+  public icon = SwimmingIcon;
+  public showRythm = (distance: number, totalTime: string): string => {
     return "NONE!";
-  },
+  };
 
-  showTotalTime: (distance: number, rythm: string): string => {
+  public showTotalTime = (distance: number, rythm: string): string => {
     return "NONE!";
-  },
+  };
 
-  cleanInputRythm: (newValue: string, oldValue: string): string => {
+  public cleanInputRythm = (newValue: string, oldValue: string): string => {
     return "";
-  },
-};
+  };
+}
 
-export default SwimmingSport;
+export default new SwimmingSport();
