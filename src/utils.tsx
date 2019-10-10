@@ -1,23 +1,34 @@
+const arrayPad = <T extends unknown>(a: T[], len: number, pad: T): T[] => {
+  while (a.length < len) a.push(pad);
+  return [...a];
+};
+
+const HMSToNumberArray = (hhmmss: string): number[] => {
+  const padElement = (v: string, i: number): string => {
+    return i > 0 ? v.padEnd(2, "0") : v;
+  };
+  const parts = hhmmss.trim().split(":");
+  const fixed = parts.map(padElement);
+  return fixed.map(x => parseInt(x, 10));
+};
+
+const addWeightedValue = (
+  acc: number,
+  v: number,
+  i: number,
+  arr: number[],
+): number => {
+  acc += v * 60 ** (arr.length - i - 1);
+  return acc;
+};
+
 export const HHMMSSToSeconds = (
   time: string,
   withHour: boolean = true,
 ): number => {
-  if (!time) return 0;
-  const splittedValues = time
-    .trim()
-    .split(":")
-    .map((v: string, i: number): string => (i > 0 ? v.padEnd(2, "0") : v));
-
-  while (splittedValues.length < (withHour ? 3 : 2)) {
-    splittedValues.push("0");
-  }
-
-  return splittedValues
-    .reverse()
-    .reduce((acc: number, v: string, i: number) => {
-      acc += parseInt(v, 10) * 60 ** i;
-      return acc;
-    }, 0);
+  const splitted = HMSToNumberArray(time);
+  const completedArray = arrayPad<number>(splitted, withHour ? 3 : 2, 0);
+  return completedArray.reduce(addWeightedValue, 0);
 };
 
 export const secondsToHHMMSS = (
@@ -29,7 +40,8 @@ export const secondsToHHMMSS = (
   const steps = withHours ? 2 : 1;
 
   for (let i = steps; i >= 0; i--) {
-    output.push(Math.floor(rem / 60 ** i));
+    const val = rem / 60 ** i;
+    output.push(i !== 0 ? Math.floor(val) : Math.round(val));
     rem = rem % 60 ** i;
   }
 
