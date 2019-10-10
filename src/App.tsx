@@ -25,6 +25,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <div className="App">
         <GlobalStyles />
+        <SportSelectorWrapper />
         <InputFieldsWrapper />
       </div>
     </Provider>

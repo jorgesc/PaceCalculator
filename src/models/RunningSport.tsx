@@ -16,7 +16,7 @@ class RunningSport extends Sport {
   };
 
   public showTotalTime = (distance: number, rythm: string): string => {
-    const secondsPerKm = HHMMSSToSeconds(rythm);
+    const secondsPerKm = HHMMSSToSeconds(rythm, false);
     return secondsToHHMMSS(secondsPerKm * (distance / 1000));
   };
 

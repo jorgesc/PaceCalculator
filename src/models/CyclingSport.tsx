@@ -11,13 +11,16 @@ class CyclingSport extends Sport {
 
   public showRythm = (distance: number, totalTime: string): string => {
     const seconds = HHMMSSToSeconds(totalTime);
+    if (seconds === 0) return "0";
     const speed = distance / (seconds / 3.6);
     const rounded = Math.round(speed * 100) / 100;
     return rounded.toString();
   };
 
   public showTotalTime = (distance: number, rythm: string): string => {
-    const seconds = Math.round((3600 * (distance / 1000)) / parseFloat(rythm));
+    const rythmN = parseFloat(rythm);
+    if (rythmN === 0 || isNaN(rythmN)) return "00:00:00";
+    const seconds = Math.round((3600 * (distance / 1000)) / rythmN);
     return secondsToHHMMSS(seconds);
   };
 
