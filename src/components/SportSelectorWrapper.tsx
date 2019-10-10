@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
@@ -20,8 +21,16 @@ interface IComponentDispatchProps {
   onChange: (selected: number) => void;
 }
 
+const StyledWrapper = styled.div`
+  margin-bottom: 30px;
+`;
+
 const SportSelectorWrapper = (props: ISportSelectorProps) => {
-  return <SportSelector {...props} />;
+  return (
+    <StyledWrapper>
+      <SportSelector {...props} />
+    </StyledWrapper>
+  );
 };
 
 const mapStateToProps = (state: IState): IComponentStateProps => {
