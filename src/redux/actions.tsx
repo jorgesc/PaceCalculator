@@ -61,7 +61,7 @@ export const timeInputFieldChanged = (
     } = getState().app;
     const distance = parseInt(distanceFieldValue, 10);
     const newTime = sports[selectedSport].cleanInputTime(s, timeFieldValue);
-    const newRythm = sports[selectedSport].showRythm(distance, newTime);
+    const newRythm = sports[selectedSport].calculateRythmFromTotalTime(distance, newTime);
     dispatch(updateInputFieldTime(newTime));
     dispatch(updateInputFieldRythm(newRythm));
   };
@@ -82,7 +82,7 @@ export const rythmInputFieldChanged = (
     } = getState().app;
     const distance = parseInt(distanceFieldValue, 10);
     const newRythm = sports[selectedSport].cleanInputRythm(s, rythmFieldValue);
-    const newTime = sports[selectedSport].showTotalTime(distance, newRythm);
+    const newTime = sports[selectedSport].calculateTotalTimeFromRythm(distance, newRythm);
     dispatch(updateInputFieldRythm(newRythm));
     dispatch(updateInputFieldTime(newTime));
   };

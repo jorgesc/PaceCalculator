@@ -9,9 +9,9 @@ describe("Sport", () => {
       public units = "";
       public icon = "";
       public rythmPlaceholder = "";
-      public showTotalTime = (distance: number, rythm: string): string => "";
-      public showRythm = (distance: number, totalTime: string): string => "";
       public cleanInputRythm = (newVal: string, oldVal: string): string => "";
+      public metersPerSecondToRythm = (mps: number): string => "";
+      public rythmToMetersPerSecond = (rythm: string): number => 0;
     }
 
     const myTestClass = new MyTestClass();
@@ -50,11 +50,13 @@ describe("Running", () => {
       "1200:00",
       "288:00",
       "16:40",
-      "00:00",
+      "",
     ];
 
     for (let i = 0; i < distances.length; i++) {
-      expect(RunningSport.showRythm(distances[i], times[i])).toEqual(rythms[i]);
+      expect(
+        RunningSport.calculateRythmFromTotalTime(distances[i], times[i]),
+      ).toEqual(rythms[i]);
     }
   });
 
@@ -66,14 +68,14 @@ describe("Running", () => {
       "02:46:40",
       "00:00:02",
       "00:48:00",
-      "00:00:00",
+      "",
     ];
     const rythms = ["16:40", "33:20", "08:20", "00:20", "04:48", ""];
 
     for (let i = 0; i < distances.length; i++) {
-      expect(RunningSport.showTotalTime(distances[i], rythms[i])).toEqual(
-        times[i],
-      );
+      expect(
+        RunningSport.calculateTotalTimeFromRythm(distances[i], rythms[i]),
+      ).toEqual(times[i]);
     }
   });
 
@@ -94,10 +96,12 @@ describe("Cycling", () => {
   it("Calculates rythm correctly", () => {
     const distances = [10000, 5000, 20000, 100, 10000, 1000];
     const times = ["02:46:40", "02:46:40", "02:46:40", "2", "48:00", ""];
-    const rythms = ["3.6", "1.8", "7.2", "0.05", "0.21", "0"];
+    const rythms = ["3.6", "1.8", "7.2", "0.05", "0.21", ""];
 
     for (let i = 0; i < distances.length; i++) {
-      expect(CyclingSport.showRythm(distances[i], times[i])).toEqual(rythms[i]);
+      expect(
+        CyclingSport.calculateRythmFromTotalTime(distances[i], times[i]),
+      ).toEqual(rythms[i]);
     }
   });
 
@@ -109,14 +113,14 @@ describe("Cycling", () => {
       "02:46:40",
       "00:00:02",
       "00:48:00",
-      "00:00:00",
+      "",
     ];
     const rythms = ["3.6", "1.8", "7.2", "180", "12.5", ""];
 
     for (let i = 0; i < distances.length; i++) {
-      expect(CyclingSport.showTotalTime(distances[i], rythms[i])).toEqual(
-        times[i],
-      );
+      expect(
+        CyclingSport.calculateTotalTimeFromRythm(distances[i], rythms[i]),
+      ).toEqual(times[i]);
     }
   });
 

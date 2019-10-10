@@ -10,22 +10,20 @@ class RunningSport extends Sport {
   public rythmPlaceholder = "04:57";
   public icon = RunningIcon;
 
-  public showRythm = (distance: number, totalTime: string): string => {
-    const seconds = HHMMSSToSeconds(totalTime) / (distance / 1000);
-    return secondsToHHMMSS(seconds, false);
-  };
-
-  public showTotalTime = (distance: number, rythm: string): string => {
-    const secondsPerKm = HHMMSSToSeconds(rythm, false);
-    return secondsToHHMMSS(secondsPerKm * (distance / 1000));
-  };
-
   public cleanInputRythm = (newValue: string, oldValue: string): string => {
     const pattern = /^\d?(\d(:([0-5](\d?)?)?)?)?$/;
     let output = newValue;
     output = addColonBetweenThreeNumbers(output);
     output = addColonAfterTwoNumbers(output, oldValue, 1);
     return pattern.test(output) ? output : oldValue;
+  };
+
+  protected rythmToMetersPerSecond = (rythm: string): number => {
+    return 1000 / HHMMSSToSeconds(rythm, false);
+  };
+
+  protected metersPerSecondToRythm = (mps: number): string => {
+    return secondsToHHMMSS(1000 / mps, false);
   };
 }
 

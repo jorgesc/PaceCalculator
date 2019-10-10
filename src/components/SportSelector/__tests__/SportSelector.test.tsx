@@ -23,8 +23,8 @@ describe("SportSelector tests", () => {
       name: "Sport1",
       icon: "",
       units: "a",
-      showRythm: (distance: number, time: string): string => "",
-      showTotalTime: (distance: number, rythm: string): string => "",
+      calculateRythmFromTotalTime: (distance: number, time: string): string => "",
+      calculateTotalTimeFromRythm: (distance: number, rythm: string): string => "",
     };
     sport2 = {...sport1, name: "Sport2", units: "b"};
     sport3 = {...sport1, name: "Sport3", units: "c"};
