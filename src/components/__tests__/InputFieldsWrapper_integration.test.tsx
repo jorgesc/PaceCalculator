@@ -20,6 +20,8 @@ import InputField from "../InputField/InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 
+import * as ActionsModule from "../../redux/actions";
+
 describe("InputFieldsWrapper", () => {
   let mockStoreCreator: MockStoreCreator;
   let initialState: IState;
@@ -109,6 +111,8 @@ describe("InputFieldsWrapper", () => {
   });
 
   it("Changing time also updates rythm with the correct value", () => {
+    const spy = jest.spyOn(ActionsModule, "timeInputFieldChanged");
+
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
     const myStore = mockStoreCreator(myInitialState);
     const myWrapper = mount(
@@ -121,10 +125,10 @@ describe("InputFieldsWrapper", () => {
       .find("input")
       .simulate("change", {target: {value: "02:21:33"}});
 
-    const actions = myStore.getActions();
-    expect(actions).toHaveLength(2);
-    expect(actions[0]).toEqual(updateInputFieldTime("02:21:33"));
-    expect(actions[1]).toEqual(updateInputFieldRythm("14:09"));
+    expect(spy.mock.calls).toHaveLength(1);
+    expect(spy.mock.calls[0][0]).toEqual("02:21:33");
+
+    spy.mockClear();
   });
 
   it("Rythm field contains the right store value", () => {
@@ -132,7 +136,9 @@ describe("InputFieldsWrapper", () => {
     expect(rythmFieldWrapper.props().value).toEqual("12:57");
   });
 
-  it("Changing rythm also updates time with the correct value", () => {
+  it("Changing rythm calls rythmInputFieldChanged with the correct args", () => {
+    const spy = jest.spyOn(ActionsModule, "rythmInputFieldChanged");
+
     const myInitialState = {app: {...initialState.app, selectedSport: 1}};
     const myStore = mockStoreCreator(myInitialState);
     const myWrapper = mount(
@@ -145,34 +151,38 @@ describe("InputFieldsWrapper", () => {
       .find("input")
       .simulate("change", {target: {value: "21:33"}});
 
-    const actions = myStore.getActions();
-    expect(actions).toHaveLength(2);
-    expect(actions[0]).toEqual(updateInputFieldRythm("21:33"));
-    expect(actions[1]).toEqual(updateInputFieldTime("03:35:30"));
+    expect(spy.mock.calls).toHaveLength(1);
+    expect(spy.mock.calls[0][0]).toEqual("21:33");
+
+    spy.mockClear();
   });
 
   it("Time calculations also works for other sports", () => {
+    const spy = jest.spyOn(ActionsModule, "timeInputFieldChanged");
+
     const timeFieldWrapper = wrapper.find(InputField).at(1);
     timeFieldWrapper
       .find("input")
       .simulate("change", {target: {value: "02:21:33"}});
 
-    const actions = store.getActions();
-    expect(actions).toHaveLength(2);
-    expect(actions[0]).toEqual(updateInputFieldTime("02:21:33"));
-    expect(actions[1]).toEqual(updateInputFieldRythm("4.24"));
+    expect(spy.mock.calls).toHaveLength(1);
+    expect(spy.mock.calls[0][0]).toEqual("02:21:33");
+
+    spy.mockClear();
   });
 
   it("Rythm calculations also works for other sports", () => {
+    const spy = jest.spyOn(ActionsModule, "rythmInputFieldChanged");
+
     const rythmFieldWrapper = wrapper.find(InputField).at(2);
     rythmFieldWrapper
       .find("input")
       .simulate("change", {target: {value: "4.24"}});
 
-    const actions = store.getActions();
-    expect(actions).toHaveLength(2);
-    expect(actions[0]).toEqual(updateInputFieldRythm("4.24"));
-    expect(actions[1]).toEqual(updateInputFieldTime("02:21:31"));
+    expect(spy.mock.calls).toHaveLength(1);
+    expect(spy.mock.calls[0][0]).toEqual("4.24");
+
+    spy.mockClear();
   });
 
   it("Time onchange cleans the data before updating the state", () => {

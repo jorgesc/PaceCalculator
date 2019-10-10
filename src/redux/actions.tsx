@@ -8,12 +8,40 @@ import {
 } from "./actionCreators";
 
 type myThunkAction<T> = ThunkAction<T, IState, undefined, AppActionTypes>;
-type myThunkDispatch = ThunkDispatch<IState, undefined, AppActionTypes>;
+export type myThunkDispatch = ThunkDispatch<IState, undefined, AppActionTypes>;
 type myGetState = () => IState;
 
 const getSelectedSportInstance = (state: IState): Sport => {
   const {sports, selectedSport} = state.app;
   return sports[selectedSport];
+};
+
+export const updateTimeFromState = (): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    const state = getState();
+    const sport = getSelectedSportInstance(state);
+    const {distanceFieldValue, rythmFieldValue} = state.app;
+    const distance = parseInt(distanceFieldValue, 10);
+    const newTime = sport.calculateTotalTimeFromRythm(
+      distance,
+      rythmFieldValue,
+    );
+    dispatch(updateInputFieldTime(newTime));
+  };
+};
+
+export const updateRythmFromState = (): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    const state = getState();
+    const sport = getSelectedSportInstance(state);
+    const {distanceFieldValue, timeFieldValue} = state.app;
+    const distance = parseInt(distanceFieldValue, 10);
+    const newRythm = sport.calculateRythmFromTotalTime(
+      distance,
+      timeFieldValue,
+    );
+    dispatch(updateInputFieldRythm(newRythm));
+  };
 };
 
 export const timeInputFieldChanged = (s: string): myThunkAction<void> => {
@@ -23,28 +51,17 @@ export const timeInputFieldChanged = (s: string): myThunkAction<void> => {
     const {timeFieldValue} = state.app;
     const newTime = sport.cleanInputTime(s, timeFieldValue);
     dispatch(updateInputFieldTime(newTime));
-
-    const {distanceFieldValue} = state.app;
-    const distance = parseInt(distanceFieldValue, 10);
-    const newRythm = sport.calculateRythmFromTotalTime(distance, newTime);
-    dispatch(updateInputFieldRythm(newRythm));
+    dispatch(updateRythmFromState());
   };
 };
+
 export const rythmInputFieldChanged = (s: string): myThunkAction<void> => {
   return (dispatch: myThunkDispatch, getState: myGetState): void => {
-    const {
-      distanceFieldValue,
-      rythmFieldValue,
-      sports,
-      selectedSport,
-    } = getState().app;
-    const distance = parseInt(distanceFieldValue, 10);
-    const newRythm = sports[selectedSport].cleanInputRythm(s, rythmFieldValue);
-    const newTime = sports[selectedSport].calculateTotalTimeFromRythm(
-      distance,
-      newRythm,
-    );
+    const state = getState();
+    const sport = getSelectedSportInstance(state);
+    const {rythmFieldValue} = getState().app;
+    const newRythm = sport.cleanInputRythm(s, rythmFieldValue);
     dispatch(updateInputFieldRythm(newRythm));
-    dispatch(updateInputFieldTime(newTime));
+    dispatch(updateTimeFromState());
   };
 };
