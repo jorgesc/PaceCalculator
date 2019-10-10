@@ -11,10 +11,10 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
-  timeInputFieldChanged,
-  rythmInputFieldChanged,
   AppActionTypes,
-} from "../redux/actions";
+} from "../redux/actionCreators";
+
+import {timeInputFieldChanged, rythmInputFieldChanged} from "../redux/actions";
 
 import distanceIcon from "../static/icon-distance.svg";
 import timeIcon from "../static/icon-clock.svg";

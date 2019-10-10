@@ -1,4 +1,4 @@
-import {AppActionTypes} from "./actions";
+import {AppActionTypes} from "./actionCreators";
 
 import Sport from "../models/Sport";
 

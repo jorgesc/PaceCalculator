@@ -13,7 +13,7 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
-} from "../../redux/actions";
+} from "../../redux/actionCreators";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
 import InputField from "../InputField/InputField";

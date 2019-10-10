@@ -5,7 +5,7 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
-} from "../actions";
+} from "../actionCreators";
 
 import RunningSport from "../../models/RunningSport";
 import CyclingSport from "../../models/CyclingSport";

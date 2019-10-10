@@ -10,7 +10,7 @@ import SportSelector, {
   ISportSelectorProps,
 } from "./SportSelector/SportSelector";
 
-import {changeSelectedSportAction} from "../redux/actions";
+import {changeSelectedSportAction} from "../redux/actionCreators";
 
 interface IComponentStateProps {
   sports: Sport[];
