@@ -23,3 +23,28 @@ export const secondsToHHMMSS = (
 
   return output.map(x => x.toString().padStart(2, "0")).join(":");
 };
+
+export const addColonAfterTwoNumbers = (
+  newValue: string,
+  oldValue: string,
+  blocks: number = 2,
+): string => {
+  let output = newValue;
+  if (
+    /\d{2}$/.test(output) &&
+    output.length > oldValue.length &&
+    (output.match(/:/g) || []).length < blocks
+  ) {
+    output = output + ":";
+  }
+
+  return output;
+};
+
+export const addColonBetweenThreeNumbers = (newValue: string): string => {
+  let output = newValue;
+  if (/\d{3}$/.test(output)) {
+    output = newValue.slice(0, -1) + ":" + newValue.slice(-1);
+  }
+  return output;
+};

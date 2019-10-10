@@ -2,6 +2,7 @@ import Sport from "./Sport";
 import RunningIcon from "../static/2running_icon.png";
 
 import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
+import {addColonAfterTwoNumbers, addColonBetweenThreeNumbers} from "../utils";
 
 class RunningSport extends Sport {
   public name = "Atletismo";
@@ -21,15 +22,10 @@ class RunningSport extends Sport {
 
   public cleanInputRythm = (newValue: string, oldValue: string): string => {
     const pattern = /^\d?(\d(:([0-5](\d?)?)?)?)?$/;
-    if (!pattern.test(newValue)) return oldValue;
-    if (
-      /^\d{2}$/.test(newValue.slice(-2)) &&
-      newValue.length > oldValue.length &&
-      (newValue.match(/:/g) || []).length < 1
-    ) {
-      return newValue + ":";
-    }
-    return newValue;
+    let output = newValue;
+    output = addColonBetweenThreeNumbers(output);
+    output = addColonAfterTwoNumbers(output, oldValue, 1);
+    return pattern.test(output) ? output : oldValue;
   };
 }
 
