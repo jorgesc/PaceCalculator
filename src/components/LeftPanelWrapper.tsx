@@ -14,9 +14,13 @@ const ComponentWrapper = styled.div`
   margin: 0px 12px 0px 12px;
 `;
 
+const StyledLeftPanelWrapper = styled.div`
+  flex: 1 1 0;
+`;
+
 const LeftPanelWrapper = () => {
   return (
-    <div>
+    <StyledLeftPanelWrapper>
       <ComponentWrapper>
         <SportSelectorWrapper />
       </ComponentWrapper>
@@ -24,7 +28,7 @@ const LeftPanelWrapper = () => {
       <ComponentWrapper>
         <InputFieldsWrapper />
       </ComponentWrapper>
-    </div>
+    </StyledLeftPanelWrapper>
   );
 };
 

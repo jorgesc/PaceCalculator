@@ -8,6 +8,7 @@ import store from "./redux/store";
 import SportSelectorWrapper from "./components/SportSelectorWrapper";
 import InputFieldsWrapper from "./components/InputFieldsWrapper";
 import LeftPanelWrapper from "./components/LeftPanelWrapper";
+import AppWrapper from "./components/AppWrapper";
 
 import DistanceIcon from "./static/icon-distance.svg";
 
@@ -26,7 +27,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <div className="App">
         <GlobalStyles />
-        <LeftPanelWrapper />
+        <AppWrapper />
       </div>
     </Provider>
   );
