@@ -14,7 +14,10 @@ import {
   AppActionTypes,
 } from "../redux/actionCreators";
 
-import {timeInputFieldChanged, rythmInputFieldChanged} from "../redux/actions";
+import {
+  timeInputFieldChanged,
+  rythmInputFieldChanged,
+} from "../redux/logicActions";
 
 import distanceIcon from "../static/icon-distance.svg";
 import timeIcon from "../static/icon-clock.svg";

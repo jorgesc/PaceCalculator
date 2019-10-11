@@ -23,7 +23,7 @@ import {
   updateRythmFromState,
   updateTimeFromState,
   myThunkDispatch,
-} from "../actions";
+} from "../logicActions";
 
 const initialState = {
   app: {

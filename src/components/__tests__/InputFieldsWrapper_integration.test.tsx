@@ -20,7 +20,7 @@ import InputField from "../InputField/InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 
-import * as ActionsModule from "../../redux/actions";
+import * as ActionsModule from "../../redux/logicActions";
 
 describe("InputFieldsWrapper", () => {
   let mockStoreCreator: MockStoreCreator;
