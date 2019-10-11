@@ -30,6 +30,8 @@ const StyledUnits = styled.div`
   border-bottom-right-radius: 5px;
   padding-left: 1em;
   padding-right: 1em;
+  min-width: 140px;
+  justify-content: center;
 `;
 
 const StyledInput = styled.input`

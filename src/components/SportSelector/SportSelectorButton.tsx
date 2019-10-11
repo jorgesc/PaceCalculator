@@ -28,6 +28,8 @@ const StyledButton = styled.button<IStyleProps>`
   border: none;
   padding: 10px;
 
+  transition: filter 0.5s, background-color 0.25s;
+
   :first-of-type {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
