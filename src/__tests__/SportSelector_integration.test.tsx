@@ -1,4 +1,5 @@
 import React from "react";
+import thunk from "redux-thunk";
 import Enzyme, {shallow, mount, ReactWrapper} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -12,6 +13,10 @@ import SportSelectorButton from "../components/SportSelector/SportSelectorButton
 import RunningSport from "../models/RunningSport";
 import CyclingSport from "../models/CyclingSport";
 
+import {sportSelectorClicked} from "../redux/logicActions";
+
+import * as logicActions from "../redux/logicActions";
+
 Enzyme.configure({adapter: new Adapter()});
 
 describe("SportSelector integration", () => {
@@ -19,7 +24,7 @@ describe("SportSelector integration", () => {
   let initialState: IState;
 
   beforeAll(() => {
-    mockStoreCreator = configureStore([]);
+    mockStoreCreator = configureStore([thunk]);
     initialState = {
       app: {
         sports: [RunningSport, RunningSport, CyclingSport],
@@ -61,6 +66,7 @@ describe("SportSelector integration", () => {
   });
 
   it("Fires the right action", () => {
+    const myMock = jest.spyOn(logicActions, "sportSelectorClicked");
     const store = mockStoreCreator(initialState);
     const wrapper = mount(
       <Provider store={store}>
@@ -73,20 +79,25 @@ describe("SportSelector integration", () => {
     buttons.at(2).simulate("click");
     buttons.at(0).simulate("click");
 
-    const actions = store.getActions();
-    expect(actions).toHaveLength(3);
+    expect(myMock.mock.calls).toHaveLength(3);
+    expect(myMock.mock.calls[0][0]).toEqual(1);
+    expect(myMock.mock.calls[1][0]).toEqual(2);
+    expect(myMock.mock.calls[2][0]).toEqual(0);
 
-    expect(actions[0]).toEqual({
-      type: "CHANGE_SELECTED_SPORT",
-      payload: 1,
-    });
-    expect(actions[1]).toEqual({
-      type: "CHANGE_SELECTED_SPORT",
-      payload: 2,
-    });
-    expect(actions[2]).toEqual({
-      type: "CHANGE_SELECTED_SPORT",
-      payload: 0,
-    });
+    // const actions = store.getActions();
+    // expect(actions).toHaveLength(3);
+
+    // expect(actions[0]).toEqual({
+    //   type: "CHANGE_SELECTED_SPORT",
+    //   payload: 1,
+    // });
+    // expect(actions[1]).toEqual({
+    //   type: "CHANGE_SELECTED_SPORT",
+    //   payload: 2,
+    // });
+    // expect(actions[2]).toEqual({
+    //   type: "CHANGE_SELECTED_SPORT",
+    //   payload: 0,
+    // });
   });
 });

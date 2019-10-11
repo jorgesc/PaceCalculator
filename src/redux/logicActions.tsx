@@ -5,6 +5,7 @@ import {
   AppActionTypes,
   updateInputFieldTime,
   updateInputFieldRythm,
+  changeSelectedSportAction,
 } from "./actionCreators";
 
 type myThunkAction<T> = ThunkAction<T, IState, undefined, AppActionTypes>;
@@ -67,5 +68,12 @@ export const rythmInputFieldChanged = (s: string): myThunkAction<void> => {
     const newRythm = sport.cleanInputRythm(s, rythmFieldValue);
     dispatch(updateInputFieldRythm(newRythm));
     dispatch(updateTimeFromState());
+  };
+};
+
+export const sportSelectorClicked = (s: number): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    dispatch(changeSelectedSportAction(s));
+    dispatch(updateRythmFromState());
   };
 };

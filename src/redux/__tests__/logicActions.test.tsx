@@ -14,6 +14,7 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
+  changeSelectedSportAction,
 } from "../../redux/actionCreators";
 
 import {AppActionTypes} from "../actionCreators";
@@ -23,6 +24,7 @@ import {
   updateRythmFromState,
   updateTimeFromState,
   myThunkDispatch,
+  sportSelectorClicked,
 } from "../logicActions";
 
 const initialState = {
@@ -92,5 +94,14 @@ describe("Action logic tests", () => {
         RunningSport.calculateTotalTimeFromRythm(10000, "12:57"),
       ),
     );
+  });
+
+  it("SportSelector clicked changes sport and refreshes rythm", () => {
+    const store = mockStoreCreator(initialState);
+    store.dispatch(sportSelectorClicked(0));
+    const actions = store.getActions();
+    expect(actions).toHaveLength(2);
+    expect(actions[0]).toEqual(changeSelectedSportAction(0));
+    expect(actions[1].type).toEqual("UPDATE_INPUT_FIELD_RYTHM");
   });
 });

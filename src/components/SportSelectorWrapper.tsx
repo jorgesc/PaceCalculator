@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
 
 import {IState} from "../redux/store";
 import Sport from "../models/Sport";
+
+import {myThunkDispatch} from "../redux/logicActions";
 
 import SportSelector, {
   ISportSelectorProps,
 } from "./SportSelector/SportSelector";
 
 import {changeSelectedSportAction} from "../redux/actionCreators";
+import {sportSelectorClicked} from "../redux/logicActions";
 
 interface IComponentStateProps {
   sports: Sport[];
@@ -38,10 +40,11 @@ const mapStateToProps = (state: IState): IComponentStateProps => {
   return {sports, selected: selectedSport};
 };
 
-const mapDispatchToProps = (dispatch: Dispatch): IComponentDispatchProps => {
+const mapDispatchToProps = (
+  dispatch: myThunkDispatch,
+): IComponentDispatchProps => {
   return {
-    onChange: (selected: number) =>
-      dispatch(changeSelectedSportAction(selected)),
+    onChange: (selected: number) => dispatch(sportSelectorClicked(selected)),
   };
 };
 
