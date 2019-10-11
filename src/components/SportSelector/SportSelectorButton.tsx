@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {BREAKPOINTS} from "../../constants";
 
 interface IButtonProps {
   title: string;
@@ -18,10 +19,10 @@ interface IStyleProps {
 const StyledButton = styled.button<IStyleProps>`
   color: ${props => (props.selected ? "white" : "gray")};
   background-color: ${props => (props.selected ? "limeGreen" : "#dfdfdf")};
-  font-size: 1.2em;
+  font-size: 0.9em;
   font-weight: bold;
 
-  height: 100px;
+  height: 70px;
   display: inline-block;
   flex-grow: 1;
   border-radius: 0px;
@@ -29,6 +30,11 @@ const StyledButton = styled.button<IStyleProps>`
   padding: 10px;
 
   transition: filter 0.5s, background-color 0.25s;
+
+  @media (min-width: ${BREAKPOINTS.MOBILE}) {
+    height: 100px;
+    font-size: 1.2em;
+  }
 
   :first-of-type {
     border-top-left-radius: 8px;
@@ -61,8 +67,12 @@ const StyledButton = styled.button<IStyleProps>`
 
 const StyledIconImage = styled.img`
   width: 100%;
-  height: 70%;
+  height: 60%;
   object-fit: contain;
+
+  @media (min-width: ${BREAKPOINTS.MOBILE}) {
+    height: 70%;
+  }
 `;
 
 const SportSelectorButton = ({

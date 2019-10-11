@@ -1,5 +1,6 @@
 import React, {ReactElement} from "react";
 import styled from "styled-components";
+import {BREAKPOINTS} from "../../constants";
 
 import FirstRow, {IFirstRowProps} from "./FirstRow";
 import SecondRow from "./SecondRow";
@@ -15,11 +16,15 @@ interface IInputFieldProps extends IFirstRowProps {
 }
 
 const StyledInputField = styled.div`
-  font-size: 2em;
+  font-size: 1.2em;
   font-family: "Days One", sans-serif;
   color: rgba(0, 0, 0, 0.87);
   font-weight: 700;
   margin-bottom: 1em;
+
+  @media (min-width: ${BREAKPOINTS.MOBILE}) {
+    font-size: 2em;
+  }
 `;
 
 const InputField = ({
