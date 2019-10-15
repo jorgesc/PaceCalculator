@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {BREAKPOINTS} from "../constants";
 
 import LeftPanelWrapper from "./LeftPanelWrapper";
+import RightPanelWrapper from "./RightPanelWrapper";
 
 const StyledAppWrapper = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ const AppWrapper = () => {
   return (
     <StyledAppWrapper>
       <LeftPanelWrapper />
-      <div style={{flex: "1 1 0"}}></div>
+      <RightPanelWrapper />
     </StyledAppWrapper>
   );
 };

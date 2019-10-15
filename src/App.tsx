@@ -8,6 +8,7 @@ import store from "./redux/store";
 import SportSelectorWrapper from "./components/SportSelectorWrapper";
 import InputFieldsWrapper from "./components/InputFieldsWrapper";
 import LeftPanelWrapper from "./components/LeftPanelWrapper";
+import RightPanelWrapper from "./components/RightPanelWrapper";
 import AppWrapper from "./components/AppWrapper";
 
 import DistanceIcon from "./static/icon-distance.svg";
