@@ -24,7 +24,7 @@ const StyledButton = styled.button<IStyleProps>`
 
   height: 70px;
   display: inline-block;
-  flex-grow: 1;
+  flex: 1 1 100%;
   border-radius: 0px;
   border: none;
   padding: 10px;
