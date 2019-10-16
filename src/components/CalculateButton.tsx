@@ -20,6 +20,12 @@ const StyledCalculateButton = styled.button`
       0px 10px 10px rgba(0, 0, 0, 0.22);
     transform: scale(1.01);
   }
+
+  :active {
+    transition: box-shadow 0.01s ease-out, transform 0.01s ease-out;
+    transform: scale(1);
+    box-shadow: none;
+  }
 `;
 
 const CalculateButton = () => {
