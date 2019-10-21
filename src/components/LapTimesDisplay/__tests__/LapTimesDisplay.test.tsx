@@ -61,4 +61,13 @@ describe("LapTimes Container", () => {
     expect(timesWrapper.at(2).props().index).toEqual(3);
     expect(timesWrapper.at(3).props().index).toEqual(4);
   });
+
+  it("When times is null, it displays 10 empty elements", () => {
+    const wrapper = mount(<LapTimesDisplay times={null} />);
+    const timesWrapper = wrapper.find(LapTimesTime);
+    expect(timesWrapper).toHaveLength(10);
+    for (let i = 0; i < timesWrapper.length; i++) {
+      expect(timesWrapper.at(i).text()).toEqual(`km ${i + 1} --:--:-- `);
+    }
+  });
 });

@@ -3,8 +3,14 @@ import styled from "styled-components";
 
 import LapTimesTime from "./LapTimesTime";
 
+export type ILapTimesArray = null | Array<{
+  label: string;
+  time: string;
+  renderAlways?: boolean;
+}>;
+
 interface ILapTimesContainerProps {
-  times: Array<{label: string; time: string; renderAlways?: boolean}>;
+  times?: ILapTimesArray;
 }
 
 const StyledLapTimesContainer = styled.div`
@@ -16,13 +22,17 @@ const StyledLapTimesContainer = styled.div`
 `;
 
 const LapTimesContainer = ({times}: ILapTimesContainerProps) => {
-  return (
-    <StyledLapTimesContainer>
-      {times.map((t, i) => (
-        <LapTimesTime key={i} label={t.label} time={t.time} index={i + 1} />
-      ))}
-    </StyledLapTimesContainer>
-  );
+  const generateContent = () => {
+    return times
+      ? times.map((t, i) => (
+          <LapTimesTime key={i} label={t.label} time={t.time} index={i + 1} />
+        ))
+      : [...new Array(10)].map((v, i) => (
+          <LapTimesTime key={i} label={`km ${i + 1}`} />
+        ));
+  };
+
+  return <StyledLapTimesContainer>{generateContent()}</StyledLapTimesContainer>;
 };
 
 export default LapTimesContainer;
