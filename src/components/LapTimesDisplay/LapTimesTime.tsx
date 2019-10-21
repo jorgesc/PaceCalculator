@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 interface ILapTimesTimeProps {
-  distance?: string;
+  label?: string;
   time?: string;
   index?: number;
 }
@@ -16,8 +16,9 @@ const StyledLapTimesTime = styled.div`
   margin-bottom: 32px;
 `;
 
-const StyledDistance = styled.div`
+const StyledLabel = styled.div`
   font-family: Lato;
+  font-size: 0.75em;
   margin-right: 32px;
 `;
 
@@ -60,7 +61,7 @@ export const Digit = ({value, delay}: {value: string; delay?: number}) => {
   return <StyledDiv>{valuesToShow[0]}</StyledDiv>;
 };
 
-const LapTimesTime = ({distance, time, index}: ILapTimesTimeProps) => {
+const LapTimesTime = ({label, time, index}: ILapTimesTimeProps) => {
   const generateTime = () => {
     if (!time) return "--:--:--";
     return time.split("").map((curr, i) => {
@@ -71,7 +72,7 @@ const LapTimesTime = ({distance, time, index}: ILapTimesTimeProps) => {
 
   return (
     <StyledLapTimesTime>
-      <StyledDistance>{distance || "km x"}</StyledDistance>
+      <StyledLabel>{label || "km x"}</StyledLabel>
       <StyledTime> {generateTime()} </StyledTime>
     </StyledLapTimesTime>
   );

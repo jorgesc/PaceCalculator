@@ -21,11 +21,11 @@ import InputField from "../InputField/InputField";
 Enzyme.configure({adapter: new Adapter()});
 
 import LapTimesTime from "../LapTimesTime";
-import LapTimesContainer from "../LapTimesContainer";
+import LapTimesDisplay from "../LapTimesDisplay";
 
 describe("LapTimesComponent", () => {
   it("LapTimesTime shows correct text", () => {
-    const wrapper = mount(<LapTimesTime distance="km 4" time="00:23:44" />);
+    const wrapper = mount(<LapTimesTime label="km 4" time="00:23:44" />);
     expect(wrapper.text().trim()).toEqual("km 4 00:23:44");
   });
 
@@ -38,18 +38,18 @@ describe("LapTimesComponent", () => {
 describe("LapTimes Container", () => {
   it("Contains as many LapTimesTime element as elements in input array", () => {
     const times = [
-      {distance: "km1", time: "12:12:12"},
-      {distance: "km2", time: "14:14:14"},
-      {distance: "km3", time: "16:16:16"},
-      {distance: "km4", time: "18:18:18"},
+      {label: "km1", time: "12:12:12"},
+      {label: "km2", time: "14:14:14"},
+      {label: "km3", time: "16:16:16"},
+      {label: "km4", time: "18:18:18"},
     ];
-    const wrapper = mount(<LapTimesContainer times={times} />);
+    const wrapper = mount(<LapTimesDisplay times={times} />);
     const timesWrapper = wrapper.find(LapTimesTime);
     expect(timesWrapper).toHaveLength(times.length);
-    expect(timesWrapper.at(0).props().distance).toEqual("km1");
-    expect(timesWrapper.at(1).props().distance).toEqual("km2");
-    expect(timesWrapper.at(2).props().distance).toEqual("km3");
-    expect(timesWrapper.at(3).props().distance).toEqual("km4");
+    expect(timesWrapper.at(0).props().label).toEqual("km1");
+    expect(timesWrapper.at(1).props().label).toEqual("km2");
+    expect(timesWrapper.at(2).props().label).toEqual("km3");
+    expect(timesWrapper.at(3).props().label).toEqual("km4");
 
     expect(timesWrapper.at(0).props().time).toEqual("12:12:12");
     expect(timesWrapper.at(1).props().time).toEqual("14:14:14");

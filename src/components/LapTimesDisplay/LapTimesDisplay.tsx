@@ -4,7 +4,7 @@ import styled from "styled-components";
 import LapTimesTime from "./LapTimesTime";
 
 interface ILapTimesContainerProps {
-  times: Array<{distance: string; time: string; renderAlways?: boolean}>;
+  times: Array<{label: string; time: string; renderAlways?: boolean}>;
 }
 
 const StyledLapTimesContainer = styled.div`
@@ -19,12 +19,7 @@ const LapTimesContainer = ({times}: ILapTimesContainerProps) => {
   return (
     <StyledLapTimesContainer>
       {times.map((t, i) => (
-        <LapTimesTime
-          key={i}
-          distance={t.distance}
-          time={t.time}
-          index={i + 1}
-        />
+        <LapTimesTime key={i} label={t.label} time={t.time} index={i + 1} />
       ))}
     </StyledLapTimesContainer>
   );

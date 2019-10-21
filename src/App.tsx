@@ -11,8 +11,6 @@ import LeftPanelWrapper from "./components/LeftPanelWrapper";
 import RightPanelWrapper from "./components/RightPanelWrapper";
 import AppWrapper from "./components/AppWrapper";
 
-import LapTimesTime, {Digit} from "./components/LapTimesTime";
-
 import DistanceIcon from "./static/icon-distance.svg";
 
 import RunningSport from "./models/RunningSport";
