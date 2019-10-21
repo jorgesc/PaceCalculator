@@ -1,9 +1,9 @@
 import {AppActionTypes} from "./actionCreators";
 
-import {initialStateApp, IAppState} from "./initialState";
+import initialState, {IStateAppReducer} from "./initialState";
 
 export const appReducer = (
-  state: IAppState = initialStateApp,
+  state: IStateAppReducer = initialState.app,
   action: AppActionTypes,
 ) => {
   switch (action.type) {

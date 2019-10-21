@@ -5,7 +5,7 @@ import CyclingSport from "../models/CyclingSport";
 
 import {ILapTimesArray} from "../components/LapTimesDisplay/LapTimesDisplay";
 
-export interface IAppState {
+export interface IStateAppReducer {
   sports: Sport[];
   selectedSport: number;
   distanceFieldValue: string;
@@ -15,10 +15,10 @@ export interface IAppState {
 }
 
 export interface IState {
-  app: IAppState;
+  app: IStateAppReducer;
 }
 
-export const initialStateApp: IAppState = {
+const initialStateApp: IStateAppReducer = {
   selectedSport: 0,
   sports: [RunningSport, CyclingSport],
   distanceFieldValue: "",
@@ -27,8 +27,6 @@ export const initialStateApp: IAppState = {
   lapTimes: null,
 };
 
-const initialState = {
+export default {
   app: initialStateApp,
 };
-
-export default initialState;
