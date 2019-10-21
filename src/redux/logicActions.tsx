@@ -1,5 +1,5 @@
 import {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {IState} from "./store";
+import {IState} from "./initialState";
 import Sport from "../models/Sport";
 import {
   AppActionTypes,

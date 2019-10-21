@@ -9,7 +9,7 @@ export type ILapTimesArray = null | Array<{
   renderAlways?: boolean;
 }>;
 
-interface ILapTimesContainerProps {
+export interface ILapTimesDisplayProps {
   times?: ILapTimesArray;
 }
 
@@ -30,7 +30,7 @@ const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
 
 const LapTimesContainer = ({
   times,
-}: ILapTimesContainerProps): React.ReactElement => {
+}: ILapTimesDisplayProps): React.ReactElement => {
   const generateEmptyContent = () => {
     return [...new Array(10)].map((v, i) => (
       <LapTimesTime key={i} label={`km ${i + 1}`} />
@@ -49,13 +49,9 @@ const LapTimesContainer = ({
     ));
   };
 
-  const generateContent = () => {
-    return times ? generateRealContent() : generateEmptyContent();
-  };
-
   return (
     <StyledLapTimesContainer empty={!times}>
-      {generateContent()}
+      {times ? generateRealContent() : generateEmptyContent()}
     </StyledLapTimesContainer>
   );
 };

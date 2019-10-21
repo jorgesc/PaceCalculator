@@ -8,7 +8,7 @@ import RunningSport from "../../models/RunningSport";
 import CyclingSport from "../../models/CyclingSport";
 
 import {Provider} from "react-redux";
-import {IState} from "../../redux/store";
+import {IState} from "../../redux/initialState";
 import {
   updateInputFieldDistance,
   updateInputFieldTime,
@@ -37,6 +37,7 @@ describe("InputFieldsWrapper", () => {
         distanceFieldValue: "10000",
         timeFieldValue: "44:32:47",
         rythmFieldValue: "12:57",
+        lapTimes: null,
       },
     };
     store = mockStoreCreator(initialState);

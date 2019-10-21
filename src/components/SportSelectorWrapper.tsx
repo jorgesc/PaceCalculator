@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {connect} from "react-redux";
 
-import {IState} from "../redux/store";
+import {IState} from "../redux/initialState";
 import Sport from "../models/Sport";
 
 import {myThunkDispatch} from "../redux/logicActions";

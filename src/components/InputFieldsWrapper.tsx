@@ -4,7 +4,7 @@ import {ThunkDispatch} from "redux-thunk";
 import {connect} from "react-redux";
 import styled from "styled-components";
 
-import {IState} from "../redux/store";
+import {IState} from "../redux/initialState";
 
 import InputField from "./InputField/InputField";
 import {

@@ -14,13 +14,21 @@ export interface IAppState {
   lapTimes: ILapTimesArray;
 }
 
-const initialState: IAppState = {
+export interface IState {
+  app: IAppState;
+}
+
+export const initialStateApp: IAppState = {
   selectedSport: 0,
   sports: [RunningSport, CyclingSport],
   distanceFieldValue: "",
   timeFieldValue: "",
   rythmFieldValue: "",
   lapTimes: null,
+};
+
+const initialState = {
+  app: initialStateApp,
 };
 
 export default initialState;

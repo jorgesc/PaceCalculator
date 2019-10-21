@@ -3,12 +3,6 @@ import thunk from "redux-thunk";
 import logger from "redux-logger";
 
 import appReducer from "./reducers";
-import {IAppState} from "./initialState";
-
-export interface IState {
-  app: IAppState;
-}
 
 const reducers = combineReducers({app: appReducer});
-
 export default createStore(reducers, applyMiddleware(thunk, logger));
