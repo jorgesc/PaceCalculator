@@ -1,7 +1,7 @@
 import React from "react";
 import LapTimesDisplay from "./LapTimesDisplay/LapTimesDisplay";
 
-const LapTimesDisplayWrapper = () => {
+const LapTimesDisplayWrapper = (): React.ReactElement => {
   return (
     <LapTimesDisplay
       times={[

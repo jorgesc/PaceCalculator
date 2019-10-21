@@ -1,10 +1,12 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
+import Digit from "./Digit";
+
 interface ILapTimesTimeProps {
   label?: string;
   time?: string;
-  index?: number;
+  animationTime?: number;
 }
 
 const StyledLapTimesTime = styled.div`
@@ -13,7 +15,7 @@ const StyledLapTimesTime = styled.div`
   justify-content: center;
   width: 100%;
   align-items: baseline;
-  margin-bottom: 32px;
+  margin-bottom: 48px;
 `;
 
 const StyledLabel = styled.div`
@@ -30,44 +32,20 @@ const StyledTime = styled.div`
   flex-direction: row;
 `;
 
-const StyledDiv = styled.div`
-  font-family: Digital;
-`;
-
-const randInt = (max: number): number => {
-  return Math.floor(Math.random() * max);
-};
-
-export const Digit = ({value, delay}: {value: string; delay?: number}) => {
-  const initialState: string[] = [];
-  const [valuesToShow, setValuesToShow] = useState(initialState);
-
-  useEffect(() => {
-    const arrLength = delay ? delay * 2 + randInt(5) : 0;
-    const newArr = Array.from({length: arrLength}, () =>
-      randInt(10).toString(),
-    );
-    newArr.push(value);
-    setValuesToShow(newArr);
-  }, [value]);
-
-  useEffect(() => {
-    if (valuesToShow.length <= 1) return;
-    setTimeout(() => {
-      setValuesToShow(valuesToShow.slice(1));
-    }, 100 + randInt(50));
-  });
-
-  return <StyledDiv>{valuesToShow[0]}</StyledDiv>;
-};
-
-const LapTimesTime = ({label, time, index}: ILapTimesTimeProps) => {
+const LapTimesTime = ({
+  label,
+  time,
+  animationTime,
+}: ILapTimesTimeProps): React.ReactElement => {
   const generateTime = () => {
     if (!time) return "--:--:--";
-    return time.split("").map((curr, i) => {
-      if (curr === ":") return <StyledDiv key={i}>:</StyledDiv>;
-      return <Digit value={curr} delay={index} key={i} />;
-    });
+    return Array.from(time).map((curr, i) => (
+      <Digit
+        value={curr}
+        animationTime={curr === ":" ? 0 : animationTime}
+        key={i}
+      />
+    ));
   };
 
   return (
