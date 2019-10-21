@@ -2,7 +2,8 @@ import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
 
-import appReducer, {IAppState} from "./reducers";
+import appReducer from "./reducers";
+import {IAppState} from "./initialState";
 
 export interface IState {
   app: IAppState;
