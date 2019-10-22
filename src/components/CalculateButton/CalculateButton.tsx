@@ -6,7 +6,8 @@ interface IStyledProps {
 }
 
 interface ICalculateButtonProps extends IStyledProps {
-  text: string;
+  buttonText: string;
+  onClick: () => void;
 }
 
 const StyledCalculateButton = styled.button<IStyledProps>`
@@ -43,9 +44,10 @@ const StyledCalculateButton = styled.button<IStyledProps>`
   }
 `;
 
-const CalculateButton = ({text, disabled}: ICalculateButtonProps) => {
+const CalculateButton = (props: ICalculateButtonProps) => {
+  const {buttonText, ...remaining} = props;
   return (
-    <StyledCalculateButton disabled={disabled}>{text}</StyledCalculateButton>
+    <StyledCalculateButton {...remaining}>{buttonText}</StyledCalculateButton>
   );
 };
 

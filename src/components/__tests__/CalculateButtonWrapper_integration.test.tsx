@@ -142,4 +142,10 @@ describe("CalculateButtonWrapper", () => {
     const myComponent = myWrapper.find("button");
     expect(myComponent.props().disabled).toBe(true);
   });
+
+  it("Clicking on calculate button calls the right action", () => {
+    const spy = jest.spyOn(ActionsModule, "calculateLapTimes");
+    wrapper.find("button").simulate("click");
+    expect(spy.mock.calls).toHaveLength(1);
+  });
 });

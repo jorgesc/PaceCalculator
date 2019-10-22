@@ -2,23 +2,32 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {IState} from "../redux/initialState";
+import {calculateLapTimes, myThunkDispatch} from "../redux/logicActions";
 
-import CalculateButtonContainer, {
-  IStyledProps,
-} from "./CalculateButton/CalculateButtonContainer";
+import CalculateButtonContainer from "./CalculateButton/CalculateButtonContainer";
 
+interface IStateProps {
+  hidden?: boolean;
+  disabled: boolean;
+}
+
+interface IDispatchProps {
+  onClick: () => void;
+}
+
+interface IWrapperProps extends IStateProps, IDispatchProps {}
+
+const buttonText = "Calcular Tiempos de Paso";
 const text =
   "Introduce todos los datos en el formulario anterior y pulsa este botón para ver aquí tus tiempos de paso";
 
-const buttonText = "Calcular Tiempos de Paso";
-
-const CalculateButtonWrapper = (props: IStyledProps) => {
+const CalculateButtonWrapper = (props: IWrapperProps) => {
   return (
     <CalculateButtonContainer text={text} buttonText={buttonText} {...props} />
   );
 };
 
-const mapStateToProps = (state: IState): IStyledProps => {
+const mapStateToProps = (state: IState): IStateProps => {
   const {
     distanceFieldValue,
     timeFieldValue,
@@ -31,4 +40,11 @@ const mapStateToProps = (state: IState): IStyledProps => {
   };
 };
 
-export default connect(mapStateToProps)(CalculateButtonWrapper);
+const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
+  return {onClick: () => dispatch(calculateLapTimes)};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(CalculateButtonWrapper);

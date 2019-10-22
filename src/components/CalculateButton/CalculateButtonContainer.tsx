@@ -3,14 +3,15 @@ import styled from "styled-components";
 
 import CalculateButton from "./CalculateButton";
 
-export interface IStyledProps {
+interface IStyledProps {
   hidden?: boolean;
-  disabled?: boolean;
 }
 
 interface ICalculateButtonContainerProps extends IStyledProps {
   text: string;
   buttonText: string;
+  onClick: () => void;
+  disabled: boolean;
 }
 
 const StyledCalculateButtonContainer = styled.div<IStyledProps>`
@@ -32,16 +33,12 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   transition: left 0.5s ease-in 0.1s, opacity 0.4s ease-in 0.1s;
 `;
 
-const CalculateButtonContainer = ({
-  hidden,
-  text,
-  buttonText,
-  disabled,
-}: ICalculateButtonContainerProps) => {
+const CalculateButtonContainer = (props: ICalculateButtonContainerProps) => {
+  const {hidden, text, ...remaining} = props;
   return (
     <StyledCalculateButtonContainer hidden={hidden}>
       <div>{text}</div>
-      <CalculateButton text={buttonText} disabled={!!disabled} />
+      <CalculateButton {...remaining} />
     </StyledCalculateButtonContainer>
   );
 };

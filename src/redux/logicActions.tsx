@@ -77,3 +77,7 @@ export const sportSelectorClicked = (s: number): myThunkAction<void> => {
     dispatch(updateRythmFromState());
   };
 };
+
+export const calculateLapTimes = (): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {};
+};
