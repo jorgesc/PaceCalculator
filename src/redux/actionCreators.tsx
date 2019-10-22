@@ -1,7 +1,10 @@
+import {ILapTimesArray} from "../components/LapTimesDisplay/LapTimesDisplay";
+
 const CHANGE_SELECTED_SPORT = "CHANGE_SELECTED_SPORT";
 const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";
 const UPDATE_INPUT_FIELD_TIME = "UPDATE_INPUT_FIELD_TIME";
 const UPDATE_INPUT_FIELD_RYTHM = "UPDATE_INPUT_FIELD_RYTHM";
+const UPDATE_LAP_TIMES = "UPDATE_LAP_TIMES";
 
 interface IChangeSelectedSportAction {
   type: typeof CHANGE_SELECTED_SPORT;
@@ -21,6 +24,11 @@ interface IUpdateInputFieldTime {
 interface IUpdateInputFieldRythm {
   type: typeof UPDATE_INPUT_FIELD_RYTHM;
   payload: string;
+}
+
+interface IUpdateLapTimes {
+  type: typeof UPDATE_LAP_TIMES;
+  payload: ILapTimesArray;
 }
 
 export const changeSelectedSportAction = (
@@ -43,8 +51,13 @@ export const updateInputFieldRythm = (s: string): IUpdateInputFieldRythm => {
   return {type: UPDATE_INPUT_FIELD_RYTHM, payload: s};
 };
 
+export const updateLapTimes = (lapTimes: ILapTimesArray): IUpdateLapTimes => {
+  return {type: UPDATE_LAP_TIMES, payload: lapTimes};
+};
+
 export type AppActionTypes =
   | IChangeSelectedSportAction
   | IUpdateInputFieldDistance
   | IUpdateInputFieldTime
-  | IUpdateInputFieldRythm;
+  | IUpdateInputFieldRythm
+  | IUpdateLapTimes;

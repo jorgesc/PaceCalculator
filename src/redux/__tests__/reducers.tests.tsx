@@ -6,6 +6,7 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
+  updateLapTimes,
 } from "../actionCreators";
 
 import RunningSport from "../../models/RunningSport";
@@ -89,6 +90,30 @@ describe("appReducer", () => {
 
     const finalState = {...initialState, rythmFieldValue: "02:32"};
     expect(appReducer(initialState, updateInputFieldRythm("02:32"))).toEqual(
+      finalState,
+    );
+  });
+
+  it("Updates lapTimes", () => {
+    const initialState: IStateAppReducer = {
+      selectedSport: 0,
+      sports: [RunningSport, CyclingSport],
+      distanceFieldValue: "543",
+      timeFieldValue: "",
+      lapTimes: null,
+      rythmFieldValue: "",
+    };
+
+    const myLapTimes = [
+      {label: "km 1", time: "01:55:03"},
+      {label: "km 2", time: "02:43:43"},
+      {label: "km 3", time: "03:38:40"},
+      {label: "km 4", time: "04:16:42"},
+      {label: "km 5", time: "05:25:19"},
+    ];
+
+    const finalState = {...initialState, lapTimes: myLapTimes};
+    expect(appReducer(initialState, updateLapTimes(myLapTimes))).toEqual(
       finalState,
     );
   });

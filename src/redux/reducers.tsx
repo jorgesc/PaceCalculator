@@ -18,6 +18,9 @@ export const appReducer = (
 
     case "UPDATE_INPUT_FIELD_RYTHM":
       return {...state, rythmFieldValue: action.payload};
+
+    case "UPDATE_LAP_TIMES":
+      return {...state, lapTimes: action.payload};
   }
 
   return state;

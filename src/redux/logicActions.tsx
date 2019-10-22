@@ -6,7 +6,10 @@ import {
   updateInputFieldTime,
   updateInputFieldRythm,
   changeSelectedSportAction,
+  updateLapTimes,
 } from "./actionCreators";
+
+import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
 
 type myThunkAction<T> = ThunkAction<T, IState, undefined, AppActionTypes>;
 export type myThunkDispatch = ThunkDispatch<IState, undefined, AppActionTypes>;
@@ -79,5 +82,20 @@ export const sportSelectorClicked = (s: number): myThunkAction<void> => {
 };
 
 export const calculateLapTimes = (): myThunkAction<void> => {
-  return (dispatch: myThunkDispatch, getState: myGetState): void => {};
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    const state = getState();
+    const distance = parseInt(state.app.distanceFieldValue, 10);
+    const steps = [...new Array(Math.floor(distance / 1000))].map(
+      (v, i) => i + 1,
+    );
+    const time = HHMMSSToSeconds(state.app.timeFieldValue);
+    const speed = distance / time;
+
+    const lapTimes = steps.map(v => {
+      const t = secondsToHHMMSS((v * 1000) / speed);
+      return {label: `km ${v}`, time: t};
+    });
+
+    dispatch(updateLapTimes(lapTimes));
+  };
 };
