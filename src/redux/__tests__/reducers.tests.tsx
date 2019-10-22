@@ -1,4 +1,5 @@
-import {appReducer, IAppState} from "../reducers";
+import {appReducer} from "../reducers";
+import {IStateAppReducer} from "../initialState";
 
 import {
   changeSelectedSportAction,
@@ -12,12 +13,13 @@ import CyclingSport from "../../models/CyclingSport";
 
 describe("appReducer", () => {
   it("Changes selected sport", () => {
-    const initialState: IAppState = {
+    const initialState: IStateAppReducer = {
       selectedSport: 0,
       sports: [RunningSport, CyclingSport],
       distanceFieldValue: "",
       timeFieldValue: "",
       rythmFieldValue: "",
+      lapTimes: null,
     };
 
     const finalState = {...initialState, selectedSport: 2};
@@ -28,12 +30,13 @@ describe("appReducer", () => {
   });
 
   it("Updates Distance input field", () => {
-    const initialState: IAppState = {
+    const initialState: IStateAppReducer = {
       selectedSport: 0,
       sports: [RunningSport, CyclingSport],
       distanceFieldValue: "he",
       timeFieldValue: "",
       rythmFieldValue: "",
+      lapTimes: null,
     };
 
     const finalState = {...initialState, distanceFieldValue: "54634351"};
@@ -43,12 +46,13 @@ describe("appReducer", () => {
   });
 
   it("Only passes numbers on Distance input field updates", () => {
-    const initialState: IAppState = {
+    const initialState: IStateAppReducer = {
       selectedSport: 0,
       sports: [RunningSport, CyclingSport],
       distanceFieldValue: "543",
       timeFieldValue: "",
       rythmFieldValue: "",
+      lapTimes: null,
     };
 
     const finalState = {...initialState, distanceFieldValue: "246897"};
@@ -58,12 +62,13 @@ describe("appReducer", () => {
   });
 
   it("Updates Time input field", () => {
-    const initialState: IAppState = {
+    const initialState: IStateAppReducer = {
       selectedSport: 0,
       sports: [RunningSport, CyclingSport],
       distanceFieldValue: "543",
       timeFieldValue: "",
       rythmFieldValue: "",
+      lapTimes: null,
     };
 
     const finalState = {...initialState, timeFieldValue: "02:44:32"};
@@ -73,11 +78,12 @@ describe("appReducer", () => {
   });
 
   it("Updates Rythm input field", () => {
-    const initialState: IAppState = {
+    const initialState: IStateAppReducer = {
       selectedSport: 0,
       sports: [RunningSport, CyclingSport],
       distanceFieldValue: "543",
       timeFieldValue: "",
+      lapTimes: null,
       rythmFieldValue: "",
     };
 
