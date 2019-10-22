@@ -147,5 +147,8 @@ describe("CalculateButtonWrapper", () => {
     const spy = jest.spyOn(ActionsModule, "calculateLapTimes");
     wrapper.find("button").simulate("click");
     expect(spy.mock.calls).toHaveLength(1);
+    const actions = store.getActions();
+    expect(actions).toHaveLength(1);
+    expect(actions[0].type).toEqual("UPDATE_LAP_TIMES");
   });
 });

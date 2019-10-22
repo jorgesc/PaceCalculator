@@ -41,7 +41,7 @@ const mapStateToProps = (state: IState): IStateProps => {
 };
 
 const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
-  return {onClick: () => dispatch(calculateLapTimes)};
+  return {onClick: () => dispatch(calculateLapTimes())};
 };
 
 export default connect(
