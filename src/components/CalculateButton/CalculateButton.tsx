@@ -22,19 +22,17 @@ const StyledCalculateButton = styled.button<IStyledProps>`
   outline: none;
   margin-top: 17px;
 
-  transition: box-shadow 0.25s ease-in-out, transform 0.25s ease-in-out,
-    background-color 0.4s linear, color 0.4s linear;
+  transition: box-shadow 0.25s ease-in-out, background-color 0.4s linear,
+    color 0.4s linear;
 
   :hover:enabled {
     cursor: pointer;
     box-shadow: 0px 7px 28px rgba(0, 0, 0, 0.25),
       0px 10px 10px rgba(0, 0, 0, 0.22);
-    transform: scale(1.01);
   }
 
   :active:enabled {
     transition: box-shadow 0.01s ease-out, transform 0.01s ease-out;
-    transform: scale(1);
     box-shadow: none;
     outline: none;
   }
