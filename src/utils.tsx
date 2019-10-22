@@ -36,13 +36,13 @@ export const secondsToHHMMSS = (
   withHours: boolean = true,
 ): string => {
   const output = [];
-  let rem = s;
+  let rem = Math.round(s);
   const steps = withHours ? 2 : 1;
 
   for (let i = steps; i >= 0; i--) {
     const val = rem / 60 ** i;
-    output.push(i !== 0 ? Math.floor(val) : Math.round(val));
     rem = rem % 60 ** i;
+    output.push(i !== 0 ? Math.floor(val) : Math.round(val));
   }
 
   return output.map(x => x.toString().padStart(2, "0")).join(":");
