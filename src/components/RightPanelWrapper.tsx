@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import CalculateButtonContainer from "./CalculateButtonContainer";
+import CalculateButtonWrapper from "./CalculateButtonWrapper";
 import LapTimesDisplayWrapper from "./LapTimesDisplayWrapper";
 
 const StyledRightPanelWrapper = styled.div`
@@ -13,6 +13,7 @@ const StyledRightPanelWrapper = styled.div`
 const RightPanelWrapper = () => {
   return (
     <StyledRightPanelWrapper>
+      <CalculateButtonWrapper />
       <LapTimesDisplayWrapper />
     </StyledRightPanelWrapper>
   );
