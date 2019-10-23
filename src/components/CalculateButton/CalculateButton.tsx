@@ -12,12 +12,12 @@ interface ICalculateButtonProps extends IStyledProps {
 
 const StyledCalculateButton = styled.button<IStyledProps>`
   border: none;
-  background-color: ${props => (props.disabled ? "palegreen" : "limegreen")};
+  background-color: ${props => (props.disabled ? "#adebad" : "limegreen")};
   padding: 16px 50px 16px 50px;
   border-radius: 5px;
   font-size: 1.4em;
   font-weight: bold;
-  color: ${props => (props.disabled ? "lightgray" : "white")};
+  color: white;
   font-family: Lato;
   outline: none;
   margin-top: 17px;
