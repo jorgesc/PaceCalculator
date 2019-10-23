@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
-import Digit from "./Digit";
-
 interface ILapTimesTimeProps {
   label?: string;
   time?: string;
@@ -20,13 +18,13 @@ const StyledLapTimesTime = styled.div`
 
 const StyledLabel = styled.div`
   font-family: Lato;
-  font-size: 0.75em;
-  margin-right: 32px;
+  font-size: 0.85em;
+  margin-right: 52px;
 `;
 
 const StyledTime = styled.div`
-  font-family: "Digital";
-  font-weight: 400;
+  font-family: Lato;
+  font-weight: 700;
   font-size: 2.5em;
   display: flex;
   flex-direction: row;
@@ -37,21 +35,10 @@ const LapTimesTime = ({
   time,
   animationTime,
 }: ILapTimesTimeProps): React.ReactElement => {
-  const generateTime = () => {
-    if (!time) return "--:--:--";
-    return Array.from(time).map((curr, i) => (
-      <Digit
-        value={curr}
-        animationTime={curr === ":" ? 0 : animationTime}
-        key={i}
-      />
-    ));
-  };
-
   return (
     <StyledLapTimesTime>
       <StyledLabel>{label || "km x"}</StyledLabel>
-      <StyledTime> {generateTime()} </StyledTime>
+      <StyledTime> {time ? time : "--:--:--"} </StyledTime>
     </StyledLapTimesTime>
   );
 };
