@@ -13,6 +13,7 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
+  updateLapTimes,
 } from "../../redux/actionCreators";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
@@ -72,7 +73,7 @@ describe("InputFieldsWrapper", () => {
       .simulate("change", {target: {value: "38432"}});
 
     const actions = store.getActions();
-    expect(actions).toHaveLength(1);
+    expect(actions).toHaveLength(4);
     expect(actions[0]).toEqual(updateInputFieldDistance("38432"));
   });
 
@@ -193,7 +194,7 @@ describe("InputFieldsWrapper", () => {
       .simulate("change", {target: {value: "02:21:8"}});
 
     const actions = store.getActions();
-    expect(actions).toHaveLength(2);
+    expect(actions).toHaveLength(3);
     expect(actions[0]).toEqual(updateInputFieldTime("44:32:47"));
   });
 
@@ -211,7 +212,45 @@ describe("InputFieldsWrapper", () => {
     rythmFieldWrapper.find("input").simulate("change", {target: {value: "02"}});
 
     const actions = myStore.getActions();
-    expect(actions).toHaveLength(2);
+    expect(actions).toHaveLength(3);
     expect(actions[0]).toEqual(updateInputFieldRythm("02:"));
+  });
+
+  it("Changing distance field resets time, rythm and lapTimes", () => {
+    const timeFieldWrapper = wrapper.find(InputField).at(0);
+    timeFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "1993"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(4);
+    expect(actions[0]).toEqual(updateInputFieldDistance("1993"));
+    expect(actions[1]).toEqual(updateInputFieldTime(""));
+    expect(actions[2]).toEqual(updateInputFieldRythm(""));
+    expect(actions[3]).toEqual(updateLapTimes(null));
+  });
+
+  it("Changing time field resets lapTimes", () => {
+    const timeFieldWrapper = wrapper.find(InputField).at(1);
+    timeFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "02:21:08"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(3);
+    expect(actions[0].type).toEqual("UPDATE_INPUT_FIELD_TIME");
+    expect(actions[2]).toEqual(updateLapTimes(null));
+  });
+
+  it("Changing rythm field resets lapTimes", () => {
+    const rythmFieldWrapper = wrapper.find(InputField).at(2);
+    rythmFieldWrapper
+      .find("input")
+      .simulate("change", {target: {value: "21:08"}});
+
+    const actions = store.getActions();
+    expect(actions).toHaveLength(3);
+    expect(actions[0].type).toEqual("UPDATE_INPUT_FIELD_RYTHM");
+    expect(actions[2]).toEqual(updateLapTimes(null));
   });
 });

@@ -15,6 +15,7 @@ import {
 } from "../redux/actionCreators";
 
 import {
+  distanceInputFieldChanged,
   timeInputFieldChanged,
   rythmInputFieldChanged,
 } from "../redux/logicActions";
@@ -109,7 +110,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<IState, undefined, AppActionTypes>,
 ): IInputFieldsWrapperDispatchProps => {
   return {
-    updateDistance: (s: string) => dispatch(updateInputFieldDistance(s)),
+    updateDistance: (s: string) => dispatch(distanceInputFieldChanged(s)),
     updateTime: (s: string) => dispatch(timeInputFieldChanged(s)),
     updateRythm: (s: string) => dispatch(rythmInputFieldChanged(s)),
   };

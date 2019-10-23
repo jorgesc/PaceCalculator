@@ -3,6 +3,7 @@ import {IState} from "./initialState";
 import Sport from "../models/Sport";
 import {
   AppActionTypes,
+  updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
   changeSelectedSportAction,
@@ -56,12 +57,22 @@ export const updateRythmFromState = (): myThunkAction<void> => {
   };
 };
 
+export const distanceInputFieldChanged = (s: string): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    dispatch(updateInputFieldDistance(s));
+    dispatch(updateInputFieldTime(""));
+    dispatch(updateInputFieldRythm(""));
+    dispatch(updateLapTimes(null));
+  };
+};
+
 export const timeInputFieldChanged = (s: string): myThunkAction<void> => {
   return (dispatch: myThunkDispatch, getState: myGetState): void => {
     const {sport, timeFieldValue} = cleanState(getState());
     const newTime = sport.cleanInputTime(s, timeFieldValue);
     dispatch(updateInputFieldTime(newTime));
     dispatch(updateRythmFromState());
+    dispatch(updateLapTimes(null));
   };
 };
 
@@ -71,6 +82,7 @@ export const rythmInputFieldChanged = (s: string): myThunkAction<void> => {
     const newRythm = sport.cleanInputRythm(s, rythmFieldValue);
     dispatch(updateInputFieldRythm(newRythm));
     dispatch(updateTimeFromState());
+    dispatch(updateLapTimes(null));
   };
 };
 

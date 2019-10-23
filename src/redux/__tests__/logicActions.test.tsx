@@ -75,7 +75,7 @@ describe("Action logic tests", () => {
     const store = mockStoreCreator(initialState);
     store.dispatch(timeInputFieldChanged(t));
     const actions = store.getActions();
-    expect(actions).toHaveLength(2);
+    expect(actions).toHaveLength(3);
     expect(actions[0]).toEqual(updateInputFieldTime(t));
     expect(actions[1]).toEqual(
       updateInputFieldRythm(
@@ -89,7 +89,7 @@ describe("Action logic tests", () => {
     const store = mockStoreCreator(initialState);
     store.dispatch(rythmInputFieldChanged(t));
     const actions = store.getActions();
-    expect(actions).toHaveLength(2);
+    expect(actions).toHaveLength(3);
     expect(actions[0]).toEqual(updateInputFieldRythm(t));
     expect(actions[1]).toEqual(
       updateInputFieldTime(
