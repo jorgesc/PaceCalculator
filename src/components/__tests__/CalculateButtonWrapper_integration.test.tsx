@@ -38,6 +38,7 @@ describe("CalculateButtonWrapper", () => {
         timeFieldValue: "44:32:47",
         rythmFieldValue: "12:57",
         lapTimes: null,
+        condensedCheckboxChecked: false,
       },
     };
     store = mockStoreCreator(initialState);

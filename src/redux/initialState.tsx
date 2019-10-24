@@ -12,6 +12,7 @@ export interface IStateAppReducer {
   timeFieldValue: string;
   rythmFieldValue: string;
   lapTimes: ILapTimesArray;
+  condensedCheckboxChecked: boolean;
 }
 
 export interface IState {
@@ -25,6 +26,7 @@ const initialStateApp: IStateAppReducer = {
   timeFieldValue: "",
   rythmFieldValue: "",
   lapTimes: null,
+  condensedCheckboxChecked: false,
 };
 
 export default {
