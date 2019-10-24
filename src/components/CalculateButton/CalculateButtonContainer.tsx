@@ -15,6 +15,7 @@ interface ICalculateButtonContainerProps extends IStyledProps {
 }
 
 const StyledCalculateButtonContainer = styled.div<IStyledProps>`
+  z-index: 1;
   font-size: 0.8em;
   display: flex;
   flex-direction: column;
