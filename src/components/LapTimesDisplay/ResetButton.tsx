@@ -5,9 +5,10 @@ import ResetIcon from "../CloseIcon";
 
 interface IResetButtonProps {
   children: string;
+  onClick: () => void;
 }
 
-const StyledResetButton = styled.div`
+const StyledResetButton = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -44,9 +45,12 @@ const StyledIcon = styled.div`
   }
 `;
 
-const ResetButton = ({children}: IResetButtonProps): React.ReactElement => {
+const ResetButton = ({
+  children,
+  onClick,
+}: IResetButtonProps): React.ReactElement => {
   return (
-    <StyledResetButton>
+    <StyledResetButton onClick={onClick}>
       <StyledIcon>
         <ResetIcon />
       </StyledIcon>

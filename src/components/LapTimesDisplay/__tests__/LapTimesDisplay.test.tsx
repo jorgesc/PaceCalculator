@@ -22,6 +22,9 @@ Enzyme.configure({adapter: new Adapter()});
 
 import LapTimesTime from "../LapTimesTime";
 import LapTimesDisplay from "../LapTimesDisplay";
+import LapTimesHeader from "../LapTimesHeader";
+import Checkbox from "../Checkbox";
+import ResetButton from "../ResetButton";
 
 describe("LapTimesComponent", () => {
   it("LapTimesTime shows correct text", () => {
@@ -69,5 +72,57 @@ describe("LapTimes Container", () => {
     for (let i = 0; i < timesWrapper.length; i++) {
       expect(timesWrapper.at(i).text()).toEqual(`km ${i + 1} --:--:-- `);
     }
+  });
+});
+
+describe("LapTimesHeader", () => {
+  it("Pass correctly the condensedCheckboxChecked prop", () => {
+    const wrapper = mount(
+      <LapTimesHeader
+        condensedCheckboxChecked={true}
+        condensedCheckboxOnclick={() => null}
+      />,
+    );
+
+    expect(wrapper.find(Checkbox).props().checked).toEqual(true);
+
+    const wrapper2 = mount(
+      <LapTimesHeader
+        condensedCheckboxChecked={false}
+        condensedCheckboxOnclick={() => null}
+      />,
+    );
+
+    expect(wrapper2.find(Checkbox).props().checked).toEqual(false);
+  });
+
+  it("Clicking on condensed checkbox calls the right action", () => {
+    const onClick = jest.fn();
+    const wrapper = mount(
+      <LapTimesHeader
+        condensedCheckboxChecked={true}
+        condensedCheckboxOnclick={onClick}
+        resetButtonOnclick={() => null}
+      />,
+    );
+
+    wrapper.find(Checkbox).simulate("click");
+
+    expect(onClick.mock.calls).toHaveLength(1);
+  });
+
+  it("Clicking on reset button calls the right action", () => {
+    const onClick = jest.fn();
+    const wrapper = mount(
+      <LapTimesHeader
+        condensedCheckboxChecked={true}
+        condensedCheckboxOnclick={() => null}
+        resetButtonOnclick={onClick}
+      />,
+    );
+
+    wrapper.find(ResetButton).simulate("click");
+
+    expect(onClick.mock.calls).toHaveLength(1);
   });
 });
