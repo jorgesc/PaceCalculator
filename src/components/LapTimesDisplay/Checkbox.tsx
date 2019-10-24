@@ -32,7 +32,7 @@ const StyledSlider = styled.div<ICheckable>`
   left: ${props => (props.checked ? "25px" : "5px")};
 `;
 
-const StyledCheckboxContainer = styled.div<ICheckable>`
+export const StyledCheckboxContainer = styled.div<ICheckable>`
   cursor: pointer;
   width: 50px;
   height: 30px;
