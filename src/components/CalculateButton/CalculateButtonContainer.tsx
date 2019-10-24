@@ -7,7 +7,7 @@ interface IStyledProps {
   hidden?: boolean;
 }
 
-interface ICalculateButtonContainerProps extends IStyledProps {
+export interface ICalculateButtonContainerProps extends IStyledProps {
   text: string;
   buttonText: string;
   onClick: () => void;
