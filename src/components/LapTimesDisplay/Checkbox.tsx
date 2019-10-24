@@ -7,18 +7,7 @@ interface ICheckable {
 
 interface ICheckboxProps extends ICheckable {
   onChange: () => void;
-  label?: string;
 }
-
-const StyledWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const StyledLabel = styled.div`
-  margin-right: 10px;
-`;
 
 const StyledSlider = styled.div<ICheckable>`
   position: absolute;
@@ -48,18 +37,11 @@ export const StyledCheckboxContainer = styled.div<ICheckable>`
   }
 `;
 
-const Checkbox = ({
-  onChange,
-  label,
-  checked,
-}: ICheckboxProps): React.ReactElement => {
+const Checkbox = ({onChange, checked}: ICheckboxProps): React.ReactElement => {
   return (
-    <StyledWrapper>
-      {label ? <StyledLabel>{label}</StyledLabel> : null}
-      <StyledCheckboxContainer checked={checked} onClick={onChange}>
-        <StyledSlider checked={checked} />
-      </StyledCheckboxContainer>
-    </StyledWrapper>
+    <StyledCheckboxContainer checked={checked} onClick={onChange}>
+      <StyledSlider checked={checked} />
+    </StyledCheckboxContainer>
   );
 };
 
