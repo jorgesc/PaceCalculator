@@ -4,19 +4,19 @@ import Enzyme, {shallow, mount, ReactWrapper} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import configureStore, {MockStoreCreator, MockStore} from "redux-mock-store";
-import RunningSport from "../../models/RunningSport";
-import CyclingSport from "../../models/CyclingSport";
+import RunningSport from "../../../models/RunningSport";
+import CyclingSport from "../../../models/CyclingSport";
 
 import {Provider} from "react-redux";
-import {IState} from "../../redux/initialState";
+import {IState} from "../../../redux/initialState";
 import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
-} from "../../redux/actionCreators";
+} from "../../../redux/actionCreators";
 
-import InputFieldsWrapper from "../InputFieldsWrapper";
-import InputField from "../InputField/InputField";
+import InputFieldsWrapper from "../../InputFieldsWrapper";
+import InputField from "../../InputField/InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -49,10 +49,10 @@ describe("LapTimes Container", () => {
     const wrapper = mount(
       <LapTimesDisplay
         lapTimesHeaderText=""
-        times={times}
+        lapTimes={times}
         condensedCheckboxChecked={false}
-        condensedCheckboxOnclick={() => null}
-        resetButtonOnclick={() => null}
+        condensedCheckboxClicked={() => null}
+        resetButtonClicked={() => null}
       />,
     );
     const timesWrapper = wrapper.find(LapTimesTime);
@@ -77,10 +77,10 @@ describe("LapTimes Container", () => {
     const wrapper = mount(
       <LapTimesDisplay
         lapTimesHeaderText=""
-        times={null}
+        lapTimes={null}
         condensedCheckboxChecked={false}
-        condensedCheckboxOnclick={() => null}
-        resetButtonOnclick={() => null}
+        condensedCheckboxClicked={() => null}
+        resetButtonClicked={() => null}
       />,
     );
     const timesWrapper = wrapper.find(LapTimesTime);
@@ -97,8 +97,8 @@ describe("LapTimesHeader", () => {
       <LapTimesDisplay
         lapTimesHeaderText=""
         condensedCheckboxChecked={true}
-        condensedCheckboxOnclick={() => null}
-        resetButtonOnclick={() => null}
+        condensedCheckboxClicked={() => null}
+        resetButtonClicked={() => null}
       />,
     );
 
@@ -108,8 +108,8 @@ describe("LapTimesHeader", () => {
       <LapTimesHeader
         lapTimesHeaderText=""
         condensedCheckboxChecked={false}
-        condensedCheckboxOnclick={() => null}
-        resetButtonOnclick={() => null}
+        condensedCheckboxClicked={() => null}
+        resetButtonClicked={() => null}
       />,
     );
 
@@ -122,8 +122,8 @@ describe("LapTimesHeader", () => {
       <LapTimesDisplay
         lapTimesHeaderText=""
         condensedCheckboxChecked={true}
-        condensedCheckboxOnclick={onClick}
-        resetButtonOnclick={() => null}
+        condensedCheckboxClicked={onClick}
+        resetButtonClicked={() => null}
       />,
     );
 
@@ -138,8 +138,8 @@ describe("LapTimesHeader", () => {
       <LapTimesDisplay
         lapTimesHeaderText=""
         condensedCheckboxChecked={true}
-        condensedCheckboxOnclick={() => null}
-        resetButtonOnclick={onClick}
+        condensedCheckboxClicked={() => null}
+        resetButtonClicked={onClick}
       />,
     );
 

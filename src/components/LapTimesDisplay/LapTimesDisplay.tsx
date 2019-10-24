@@ -11,11 +11,11 @@ export type ILapTimesArray = null | Array<{
 }>;
 
 export interface ILapTimesDisplayProps {
-  times?: ILapTimesArray;
+  lapTimes?: ILapTimesArray;
   condensedCheckboxChecked: boolean;
-  condensedCheckboxOnclick: () => void;
+  condensedCheckboxClicked: () => void;
   lapTimesHeaderText: string;
-  resetButtonOnclick: () => void;
+  resetButtonClicked: () => void;
 }
 
 interface IStyledLapTimesContainerProps {
@@ -39,7 +39,7 @@ const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
 const LapTimesContainer = (
   props: ILapTimesDisplayProps,
 ): React.ReactElement => {
-  const {times, ...remaining} = props;
+  const {lapTimes, ...headerProps} = props;
 
   const generateEmptyContent = () => {
     return [...new Array(10)].map((v, i) => (
@@ -48,8 +48,8 @@ const LapTimesContainer = (
   };
 
   const generateRealContent = () => {
-    if (!times) throw new Error("times has to be defined!");
-    return times.map((t, i) => (
+    if (!lapTimes) throw new Error("times has to be defined!");
+    return lapTimes.map((t, i) => (
       <LapTimesTime
         key={i}
         label={t.label}
@@ -61,9 +61,9 @@ const LapTimesContainer = (
 
   return (
     <div>
-      <LapTimesHeader lapTimesHeaderText={headerText} {...remaining} />
-      <StyledLapTimesContainer empty={!times}>
-        {times ? generateRealContent() : generateEmptyContent()}
+      <LapTimesHeader lapTimesHeaderText={headerText} {...headerProps} />
+      <StyledLapTimesContainer empty={!lapTimes}>
+        {lapTimes ? generateRealContent() : generateEmptyContent()}
       </StyledLapTimesContainer>
     </div>
   );

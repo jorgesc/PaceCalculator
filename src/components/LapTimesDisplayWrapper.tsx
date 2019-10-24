@@ -14,18 +14,17 @@ import LapTimesDisplay, {
   ILapTimesDisplayProps,
 } from "./LapTimesDisplay/LapTimesDisplay";
 
-interface IStateProps {
-  times: ILapTimesArray;
-  condensedCheckboxChecked: boolean;
-  lapTimesHeaderText: string;
-}
+type IStateProps = Pick<
+  ILapTimesDisplayProps,
+  "lapTimes" | "condensedCheckboxChecked" | "lapTimesHeaderText"
+>;
 
-interface IDispatchProps {
-  condensedCheckboxOnclick: () => void;
-  resetButtonOnclick: () => void;
-}
+type IDispatchProps = Pick<
+  ILapTimesDisplayProps,
+  "condensedCheckboxClicked" | "resetButtonClicked"
+>;
 
-const headerText =
+const lapTimesHeaderText =
   "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
 
 const LapTimesDisplayWrapper = (
@@ -35,21 +34,11 @@ const LapTimesDisplayWrapper = (
 };
 
 const mapStateToProps = (state: IState): IStateProps => {
-  return {
-    times: state.app.lapTimes,
-    condensedCheckboxChecked: state.app.condensedCheckboxChecked,
-    lapTimesHeaderText: headerText,
-  };
-};
-
-const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
-  return {
-    resetButtonOnclick: () => dispatch(resetButtonClicked()),
-    condensedCheckboxOnclick: () => dispatch(condensedCheckboxClicked()),
-  };
+  const {lapTimes, condensedCheckboxChecked} = state.app;
+  return {condensedCheckboxChecked, lapTimesHeaderText, lapTimes};
 };
 
 export default connect<IStateProps, IDispatchProps, {}, IState>(
   mapStateToProps,
-  mapDispatchToProps,
+  {resetButtonClicked, condensedCheckboxClicked},
 )(LapTimesDisplayWrapper);

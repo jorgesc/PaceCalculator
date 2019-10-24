@@ -7,8 +7,8 @@ import ResetButton from "./ResetButton";
 interface ILapTimesHeaderProps {
   lapTimesHeaderText: string;
   condensedCheckboxChecked: boolean;
-  condensedCheckboxOnclick: () => void;
-  resetButtonOnclick: () => void;
+  condensedCheckboxClicked: () => void;
+  resetButtonClicked: () => void;
 }
 
 const StyledLapTimesHeader = styled.div`
@@ -36,8 +36,8 @@ const ButtonsWrapper = styled.div`
 const LapTimesHeader = ({
   lapTimesHeaderText,
   condensedCheckboxChecked,
-  condensedCheckboxOnclick,
-  resetButtonOnclick,
+  condensedCheckboxClicked,
+  resetButtonClicked,
 }: ILapTimesHeaderProps) => {
   return (
     <StyledLapTimesHeader>
@@ -45,10 +45,10 @@ const LapTimesHeader = ({
         <div>{lapTimesHeaderText}</div>
         <ButtonsWrapper>
           <Checkbox
-            onChange={condensedCheckboxOnclick}
+            onChange={condensedCheckboxClicked}
             checked={condensedCheckboxChecked}
           />
-          <ResetButton onClick={resetButtonOnclick}>Reset</ResetButton>
+          <ResetButton onClick={resetButtonClicked}>Reset</ResetButton>
         </ButtonsWrapper>
       </Wrapper>
     </StyledLapTimesHeader>

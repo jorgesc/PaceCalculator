@@ -13,6 +13,8 @@ import {
   updateInputFieldDistance,
   updateInputFieldTime,
   updateInputFieldRythm,
+  updateLapTimes,
+  updateCondensedCheckboxChecked,
 } from "../../redux/actionCreators";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
@@ -80,15 +82,20 @@ describe("LapTimesDisplayWrapper", () => {
   });
 
   it("Reset button onclick works", () => {
-    const spy = jest.spyOn(ActionsModule, "resetButtonClicked");
     wrapper.find(ResetButton).simulate("click");
-    expect(spy.mock.calls).toHaveLength(1);
+    const actions = store.getActions();
+    expect(actions).toHaveLength(4);
+    expect(actions[0]).toEqual(updateInputFieldDistance(""));
+    expect(actions[1]).toEqual(updateInputFieldTime(""));
+    expect(actions[2]).toEqual(updateInputFieldRythm(""));
+    expect(actions[3]).toEqual(updateLapTimes(null));
   });
 
   it("CondensedCheckbox onclick works", () => {
-    const spy = jest.spyOn(ActionsModule, "condensedCheckboxClicked");
     wrapper.find(Checkbox).simulate("click");
-    expect(spy.mock.calls).toHaveLength(1);
+    const actions = store.getActions();
+    expect(actions).toHaveLength(1);
+    expect(actions[0]).toEqual(updateCondensedCheckboxChecked(false));
   });
 
   it("Condensed checkbox gets value from state", () => {
