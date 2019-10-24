@@ -1,7 +1,11 @@
 import React from "react";
 import {connect} from "react-redux";
 
-import {myThunkDispatch, resetButtonClicked} from "../redux/logicActions";
+import {
+  myThunkDispatch,
+  resetButtonClicked,
+  condensedCheckboxClicked,
+} from "../redux/logicActions";
 
 import {IState} from "../redux/initialState";
 
@@ -33,7 +37,7 @@ const LapTimesDisplayWrapper = (
 const mapStateToProps = (state: IState): IStateProps => {
   return {
     times: state.app.lapTimes,
-    condensedCheckboxChecked: false,
+    condensedCheckboxChecked: state.app.condensedCheckboxChecked,
     lapTimesHeaderText: headerText,
   };
 };
@@ -41,7 +45,7 @@ const mapStateToProps = (state: IState): IStateProps => {
 const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
   return {
     resetButtonOnclick: () => dispatch(resetButtonClicked()),
-    condensedCheckboxOnclick: () => null,
+    condensedCheckboxOnclick: () => dispatch(condensedCheckboxClicked()),
   };
 };
 

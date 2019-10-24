@@ -8,6 +8,7 @@ import {
   updateInputFieldRythm,
   changeSelectedSportAction,
   updateLapTimes,
+  updateCondensedCheckboxChecked,
 } from "./actionCreators";
 
 import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
@@ -119,5 +120,13 @@ export const resetButtonClicked = (): myThunkAction<void> => {
     dispatch(updateInputFieldTime(""));
     dispatch(updateInputFieldRythm(""));
     dispatch(updateLapTimes(null));
+  };
+};
+
+export const condensedCheckboxClicked = (): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    dispatch(
+      updateCondensedCheckboxChecked(!getState().app.condensedCheckboxChecked),
+    );
   };
 };

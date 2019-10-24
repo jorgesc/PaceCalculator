@@ -25,6 +25,7 @@ import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
 import ResetButton from "../LapTimesDisplay/ResetButton";
+import Checkbox from "../LapTimesDisplay/Checkbox";
 
 import * as ActionsModule from "../../redux/logicActions";
 
@@ -55,7 +56,7 @@ describe("LapTimesDisplayWrapper", () => {
         timeFieldValue: "44:32:47",
         rythmFieldValue: "12:57",
         lapTimes: myLapTimes,
-        condensedCheckboxChecked: false,
+        condensedCheckboxChecked: true,
       },
     };
     store = mockStoreCreator(initialState);
@@ -82,5 +83,15 @@ describe("LapTimesDisplayWrapper", () => {
     const spy = jest.spyOn(ActionsModule, "resetButtonClicked");
     wrapper.find(ResetButton).simulate("click");
     expect(spy.mock.calls).toHaveLength(1);
+  });
+
+  it("CondensedCheckbox onclick works", () => {
+    const spy = jest.spyOn(ActionsModule, "condensedCheckboxClicked");
+    wrapper.find(Checkbox).simulate("click");
+    expect(spy.mock.calls).toHaveLength(1);
+  });
+
+  it("Condensed checkbox gets value from state", () => {
+    expect(wrapper.find(Checkbox).props().checked).toBe(true);
   });
 });

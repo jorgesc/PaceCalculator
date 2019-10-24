@@ -5,6 +5,7 @@ import {
   UPDATE_INPUT_FIELD_TIME,
   UPDATE_INPUT_FIELD_RYTHM,
   UPDATE_LAP_TIMES,
+  UPDATE_CONDENSED_CHECKBOX_CHECKED,
 } from "./actionCreators";
 
 import initialState, {IStateAppReducer} from "./initialState";
@@ -28,6 +29,9 @@ export const appReducer = (
 
     case UPDATE_LAP_TIMES:
       return {...state, lapTimes: action.payload};
+
+    case UPDATE_CONDENSED_CHECKBOX_CHECKED:
+      return {...state, condensedCheckboxChecked: action.payload};
   }
 
   return state;

@@ -7,6 +7,7 @@ import {
   updateInputFieldTime,
   updateInputFieldRythm,
   updateLapTimes,
+  updateCondensedCheckboxChecked,
 } from "../actionCreators";
 
 import RunningSport from "../../models/RunningSport";
@@ -21,6 +22,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       rythmFieldValue: "",
       lapTimes: null,
+      condensedCheckboxChecked: false,
     };
 
     const finalState = {...initialState, selectedSport: 2};
@@ -38,6 +40,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       rythmFieldValue: "",
       lapTimes: null,
+      condensedCheckboxChecked: false,
     };
 
     const finalState = {...initialState, distanceFieldValue: "54634351"};
@@ -54,6 +57,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       rythmFieldValue: "",
       lapTimes: null,
+      condensedCheckboxChecked: false,
     };
 
     const finalState = {...initialState, distanceFieldValue: "246897"};
@@ -70,6 +74,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       rythmFieldValue: "",
       lapTimes: null,
+      condensedCheckboxChecked: false,
     };
 
     const finalState = {...initialState, timeFieldValue: "02:44:32"};
@@ -86,6 +91,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       lapTimes: null,
       rythmFieldValue: "",
+      condensedCheckboxChecked: false,
     };
 
     const finalState = {...initialState, rythmFieldValue: "02:32"};
@@ -102,6 +108,7 @@ describe("appReducer", () => {
       timeFieldValue: "",
       lapTimes: null,
       rythmFieldValue: "",
+      condensedCheckboxChecked: false,
     };
 
     const myLapTimes = [
@@ -116,5 +123,28 @@ describe("appReducer", () => {
     expect(appReducer(initialState, updateLapTimes(myLapTimes))).toEqual(
       finalState,
     );
+  });
+
+  it("Updates condensedCheckbox", () => {
+    let initialState: IStateAppReducer = {
+      selectedSport: 0,
+      sports: [RunningSport, CyclingSport],
+      distanceFieldValue: "543",
+      timeFieldValue: "",
+      lapTimes: null,
+      rythmFieldValue: "",
+      condensedCheckboxChecked: false,
+    };
+
+    let finalState = {...initialState, condensedCheckboxChecked: true};
+    expect(
+      appReducer(initialState, updateCondensedCheckboxChecked(true)),
+    ).toEqual(finalState);
+
+    initialState = {...initialState, condensedCheckboxChecked: true};
+    finalState = {...initialState, condensedCheckboxChecked: false};
+    expect(
+      appReducer(initialState, updateCondensedCheckboxChecked(false)),
+    ).toEqual(finalState);
   });
 });

@@ -15,6 +15,7 @@ import {
   updateInputFieldTime,
   updateInputFieldRythm,
   updateLapTimes,
+  updateCondensedCheckboxChecked,
   changeSelectedSportAction,
 } from "../../redux/actionCreators";
 
@@ -28,6 +29,7 @@ import {
   sportSelectorClicked,
   calculateLapTimes,
   resetButtonClicked,
+  condensedCheckboxClicked,
 } from "../logicActions";
 
 const initialState = {
@@ -157,4 +159,30 @@ describe("Logic action resetButtonClicked", () => {
     expect(actions[2]).toEqual(updateInputFieldRythm(""));
     expect(actions[3]).toEqual(updateLapTimes(null));
   });
+});
+
+describe("Logic action condensedCheckboxClicked", () => {
+  const store = mockStoreCreator(initialState);
+  store.dispatch(condensedCheckboxClicked());
+  const actions = store.getActions();
+  expect(actions).toHaveLength(1);
+  expect(actions[0]).toEqual(updateCondensedCheckboxChecked(true));
+
+  const myInitialState = {
+    app: {
+      sports: [CyclingSport, RunningSport, CyclingSport],
+      selectedSport: 1,
+      distanceFieldValue: "10000",
+      timeFieldValue: "04:32:47",
+      rythmFieldValue: "27:17",
+      lapTimes: null,
+      condensedCheckboxChecked: true,
+    },
+  };
+
+  const myStore = mockStoreCreator(myInitialState);
+  myStore.dispatch(condensedCheckboxClicked());
+  const myActions = myStore.getActions();
+  expect(myActions).toHaveLength(1);
+  expect(myActions[0]).toEqual(updateCondensedCheckboxChecked(false));
 });

@@ -5,6 +5,8 @@ export const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";
 export const UPDATE_INPUT_FIELD_TIME = "UPDATE_INPUT_FIELD_TIME";
 export const UPDATE_INPUT_FIELD_RYTHM = "UPDATE_INPUT_FIELD_RYTHM";
 export const UPDATE_LAP_TIMES = "UPDATE_LAP_TIMES";
+export const UPDATE_CONDENSED_CHECKBOX_CHECKED =
+  "UPDATE_CONDENSED_CHECKBOX_CHECKED";
 
 interface IChangeSelectedSportAction {
   type: typeof CHANGE_SELECTED_SPORT;
@@ -31,6 +33,11 @@ interface IUpdateLapTimes {
   payload: ILapTimesArray;
 }
 
+interface IUpdateCondensedCheckboxChecked {
+  type: typeof UPDATE_CONDENSED_CHECKBOX_CHECKED;
+  payload: boolean;
+}
+
 export const changeSelectedSportAction = (
   selection: number,
 ): IChangeSelectedSportAction => {
@@ -55,9 +62,16 @@ export const updateLapTimes = (lapTimes: ILapTimesArray): IUpdateLapTimes => {
   return {type: UPDATE_LAP_TIMES, payload: lapTimes};
 };
 
+export const updateCondensedCheckboxChecked = (
+  checked: boolean,
+): IUpdateCondensedCheckboxChecked => {
+  return {type: UPDATE_CONDENSED_CHECKBOX_CHECKED, payload: checked};
+};
+
 export type AppActionTypes =
   | IChangeSelectedSportAction
   | IUpdateInputFieldDistance
   | IUpdateInputFieldTime
   | IUpdateInputFieldRythm
-  | IUpdateLapTimes;
+  | IUpdateLapTimes
+  | IUpdateCondensedCheckboxChecked;
