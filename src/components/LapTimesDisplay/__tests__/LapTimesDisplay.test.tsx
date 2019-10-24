@@ -8,7 +8,7 @@ import RunningSport from "../../models/RunningSport";
 import CyclingSport from "../../models/CyclingSport";
 
 import {Provider} from "react-redux";
-import {IState} from "../../redux/store";
+import {IState} from "../../redux/initialState";
 import {
   updateInputFieldDistance,
   updateInputFieldTime,
@@ -46,7 +46,15 @@ describe("LapTimes Container", () => {
       {label: "km3", time: "16:16:16"},
       {label: "km4", time: "18:18:18"},
     ];
-    const wrapper = mount(<LapTimesDisplay times={times} />);
+    const wrapper = mount(
+      <LapTimesDisplay
+        lapTimesHeaderText=""
+        times={times}
+        condensedCheckboxChecked={false}
+        condensedCheckboxOnclick={() => null}
+        resetButtonOnclick={() => null}
+      />,
+    );
     const timesWrapper = wrapper.find(LapTimesTime);
     expect(timesWrapper).toHaveLength(times.length);
     expect(timesWrapper.at(0).props().label).toEqual("km1");
@@ -66,7 +74,15 @@ describe("LapTimes Container", () => {
   });
 
   it("When times is null, it displays 10 empty elements", () => {
-    const wrapper = mount(<LapTimesDisplay times={null} />);
+    const wrapper = mount(
+      <LapTimesDisplay
+        lapTimesHeaderText=""
+        times={null}
+        condensedCheckboxChecked={false}
+        condensedCheckboxOnclick={() => null}
+        resetButtonOnclick={() => null}
+      />,
+    );
     const timesWrapper = wrapper.find(LapTimesTime);
     expect(timesWrapper).toHaveLength(10);
     for (let i = 0; i < timesWrapper.length; i++) {
@@ -78,9 +94,11 @@ describe("LapTimes Container", () => {
 describe("LapTimesHeader", () => {
   it("Pass correctly the condensedCheckboxChecked prop", () => {
     const wrapper = mount(
-      <LapTimesHeader
+      <LapTimesDisplay
+        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxOnclick={() => null}
+        resetButtonOnclick={() => null}
       />,
     );
 
@@ -88,8 +106,10 @@ describe("LapTimesHeader", () => {
 
     const wrapper2 = mount(
       <LapTimesHeader
+        lapTimesHeaderText=""
         condensedCheckboxChecked={false}
         condensedCheckboxOnclick={() => null}
+        resetButtonOnclick={() => null}
       />,
     );
 
@@ -99,7 +119,8 @@ describe("LapTimesHeader", () => {
   it("Clicking on condensed checkbox calls the right action", () => {
     const onClick = jest.fn();
     const wrapper = mount(
-      <LapTimesHeader
+      <LapTimesDisplay
+        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxOnclick={onClick}
         resetButtonOnclick={() => null}
@@ -114,7 +135,8 @@ describe("LapTimesHeader", () => {
   it("Clicking on reset button calls the right action", () => {
     const onClick = jest.fn();
     const wrapper = mount(
-      <LapTimesHeader
+      <LapTimesDisplay
+        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxOnclick={() => null}
         resetButtonOnclick={onClick}

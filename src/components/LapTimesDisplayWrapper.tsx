@@ -7,6 +7,9 @@ import LapTimesDisplay, {
   ILapTimesDisplayProps,
 } from "./LapTimesDisplay/LapTimesDisplay";
 
+const headerText =
+  "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
+
 const LapTimesDisplayWrapper = (
   props: ILapTimesDisplayProps,
 ): React.ReactElement => {
@@ -14,7 +17,13 @@ const LapTimesDisplayWrapper = (
 };
 
 const mapStateToProps = (state: IState): ILapTimesDisplayProps => {
-  return {times: state.app.lapTimes};
+  return {
+    times: state.app.lapTimes,
+    condensedCheckboxChecked: false,
+    condensedCheckboxOnclick: () => null,
+    lapTimesHeaderText: headerText,
+    resetButtonOnclick: () => null,
+  };
 };
 
 export default connect(mapStateToProps)(LapTimesDisplayWrapper);

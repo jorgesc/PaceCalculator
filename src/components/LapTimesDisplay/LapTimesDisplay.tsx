@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import LapTimesTime from "./LapTimesTime";
+import LapTimesHeader from "./LapTimesHeader";
 
 export type ILapTimesArray = null | Array<{
   label: string;
@@ -11,11 +12,18 @@ export type ILapTimesArray = null | Array<{
 
 export interface ILapTimesDisplayProps {
   times?: ILapTimesArray;
+  condensedCheckboxChecked: boolean;
+  condensedCheckboxOnclick: () => null;
+  lapTimesHeaderText: string;
+  resetButtonOnclick: () => null;
 }
 
 interface IStyledLapTimesContainerProps {
   empty: boolean;
 }
+
+const headerText =
+  "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
 
 const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
   width: 100%;
@@ -28,9 +36,11 @@ const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
   transition: color 0.5s linear;
 `;
 
-const LapTimesContainer = ({
-  times,
-}: ILapTimesDisplayProps): React.ReactElement => {
+const LapTimesContainer = (
+  props: ILapTimesDisplayProps,
+): React.ReactElement => {
+  const {times, ...remaining} = props;
+
   const generateEmptyContent = () => {
     return [...new Array(10)].map((v, i) => (
       <LapTimesTime key={i} label={`km ${i + 1}`} />
@@ -50,9 +60,12 @@ const LapTimesContainer = ({
   };
 
   return (
-    <StyledLapTimesContainer empty={!times}>
-      {times ? generateRealContent() : generateEmptyContent()}
-    </StyledLapTimesContainer>
+    <div>
+      <LapTimesHeader lapTimesHeaderText={headerText} {...remaining} />
+      <StyledLapTimesContainer empty={!times}>
+        {times ? generateRealContent() : generateEmptyContent()}
+      </StyledLapTimesContainer>
+    </div>
   );
 };
 
