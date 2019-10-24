@@ -112,3 +112,12 @@ export const calculateLapTimes = (): myThunkAction<void> => {
     dispatch(updateLapTimes(lapTimes));
   };
 };
+
+export const resetButtonClicked = (): myThunkAction<void> => {
+  return (dispatch: myThunkDispatch, getState: myGetState): void => {
+    dispatch(updateInputFieldDistance(""));
+    dispatch(updateInputFieldTime(""));
+    dispatch(updateInputFieldRythm(""));
+    dispatch(updateLapTimes(null));
+  };
+};

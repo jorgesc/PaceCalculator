@@ -24,6 +24,10 @@ import LapTimesDisplayWrapper from "../LapTimesDisplayWrapper";
 import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
+import ResetButton from "../LapTimesDisplay/ResetButton";
+
+import * as ActionsModule from "../../redux/logicActions";
+
 const myLapTimes = [
   {label: "km 1", time: "02:11:12"},
   {label: "km 2", time: "03:18:52"},
@@ -35,7 +39,7 @@ const myLapTimes = [
   {label: "km 8", time: "15:16:39"},
 ];
 
-describe("InputFieldsWrapper", () => {
+describe("LapTimesDisplayWrapper", () => {
   let mockStoreCreator: MockStoreCreator;
   let initialState: IState;
   let store: MockStore;
@@ -72,5 +76,11 @@ describe("InputFieldsWrapper", () => {
       expect(lapTimes.at(i).props().label).toEqual(myLapTimes[i].label);
       expect(lapTimes.at(i).props().time).toEqual(myLapTimes[i].time);
     }
+  });
+
+  it("Reset button onclick works", () => {
+    const spy = jest.spyOn(ActionsModule, "resetButtonClicked");
+    wrapper.find(ResetButton).simulate("click");
+    expect(spy.mock.calls).toHaveLength(1);
   });
 });

@@ -1,11 +1,25 @@
 import React from "react";
 import {connect} from "react-redux";
 
+import {myThunkDispatch, resetButtonClicked} from "../redux/logicActions";
+
 import {IState} from "../redux/initialState";
 
 import LapTimesDisplay, {
+  ILapTimesArray,
   ILapTimesDisplayProps,
 } from "./LapTimesDisplay/LapTimesDisplay";
+
+interface IStateProps {
+  times: ILapTimesArray;
+  condensedCheckboxChecked: boolean;
+  lapTimesHeaderText: string;
+}
+
+interface IDispatchProps {
+  condensedCheckboxOnclick: () => void;
+  resetButtonOnclick: () => void;
+}
 
 const headerText =
   "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
@@ -16,14 +30,22 @@ const LapTimesDisplayWrapper = (
   return <LapTimesDisplay {...props} />;
 };
 
-const mapStateToProps = (state: IState): ILapTimesDisplayProps => {
+const mapStateToProps = (state: IState): IStateProps => {
   return {
     times: state.app.lapTimes,
     condensedCheckboxChecked: false,
-    condensedCheckboxOnclick: () => null,
     lapTimesHeaderText: headerText,
-    resetButtonOnclick: () => null,
   };
 };
 
-export default connect(mapStateToProps)(LapTimesDisplayWrapper);
+const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
+  return {
+    resetButtonOnclick: () => dispatch(resetButtonClicked()),
+    condensedCheckboxOnclick: () => null,
+  };
+};
+
+export default connect<IStateProps, IDispatchProps, {}, IState>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(LapTimesDisplayWrapper);

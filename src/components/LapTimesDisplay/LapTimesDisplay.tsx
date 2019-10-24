@@ -13,9 +13,9 @@ export type ILapTimesArray = null | Array<{
 export interface ILapTimesDisplayProps {
   times?: ILapTimesArray;
   condensedCheckboxChecked: boolean;
-  condensedCheckboxOnclick: () => null;
+  condensedCheckboxOnclick: () => void;
   lapTimesHeaderText: string;
-  resetButtonOnclick: () => null;
+  resetButtonOnclick: () => void;
 }
 
 interface IStyledLapTimesContainerProps {
