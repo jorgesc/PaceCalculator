@@ -14,14 +14,8 @@ import SportSelector, {
 import {changeSelectedSportAction} from "../redux/actionCreators";
 import {sportSelectorClicked} from "../redux/logicActions";
 
-interface IComponentStateProps {
-  sports: Sport[];
-  selected: number;
-}
-
-interface IComponentDispatchProps {
-  onChange: (selected: number) => void;
-}
+type IStateProps = Pick<ISportSelectorProps, "sports" | "selected">;
+type IDispatchProps = Pick<ISportSelectorProps, "onChange">;
 
 const StyledWrapper = styled.div`
   margin-bottom: 30px;
@@ -35,25 +29,18 @@ const SportSelectorWrapper = (props: ISportSelectorProps) => {
   );
 };
 
-const mapStateToProps = (state: IState): IComponentStateProps => {
+const mapStateToProps = (state: IState): IStateProps => {
   const {sports, selectedSport} = state.app;
   return {sports, selected: selectedSport};
 };
 
-const mapDispatchToProps = (
-  dispatch: myThunkDispatch,
-): IComponentDispatchProps => {
+const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
   return {
     onChange: (selected: number) => dispatch(sportSelectorClicked(selected)),
   };
 };
 
-export default connect<
-  IComponentStateProps,
-  IComponentDispatchProps,
-  {},
-  IState
->(
+export default connect<IStateProps, IDispatchProps, {}, IState>(
   mapStateToProps,
   mapDispatchToProps,
 )(SportSelectorWrapper);
