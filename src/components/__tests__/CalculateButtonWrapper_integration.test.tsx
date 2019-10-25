@@ -145,7 +145,7 @@ describe("CalculateButtonWrapper", () => {
   });
 
   it("Clicking on calculate button calls the right action", () => {
-    const spy = jest.spyOn(ActionsModule, "calculateLapTimes");
+    const spy = jest.spyOn(ActionsModule, "calculateLapTimesClicked");
     wrapper.find("button").simulate("click");
     expect(spy.mock.calls).toHaveLength(1);
     const actions = store.getActions();

@@ -27,7 +27,7 @@ import {
   updateTimeFromState,
   myThunkDispatch,
   sportSelectorClicked,
-  calculateLapTimes,
+  calculateLapTimesClicked,
   resetButtonClicked,
   condensedCheckboxClicked,
 } from "../logicActions";
@@ -140,7 +140,7 @@ describe("Logic action calculateLapTimes", () => {
     ];
 
     const store = mockStoreCreator(myInitialState);
-    store.dispatch(calculateLapTimes());
+    store.dispatch(calculateLapTimesClicked());
     const actions = store.getActions();
     expect(actions).toHaveLength(1);
     expect(actions[0].type).toEqual("UPDATE_LAP_TIMES");

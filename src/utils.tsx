@@ -1,3 +1,5 @@
+import {ILapTimesArray} from "./components/LapTimesDisplay/LapTimesDisplay";
+
 const arrayPad = <T extends unknown>(a: T[], len: number, pad: T): T[] => {
   while (a.length < len) a.push(pad);
   return [...a];
@@ -71,4 +73,22 @@ export const addColonBetweenThreeNumbers = (newValue: string): string => {
     output = newValue.slice(0, -1) + ":" + newValue.slice(-1);
   }
   return output;
+};
+
+export const calculateLapTimes = (
+  distance: number,
+  time: number,
+): ILapTimesArray => {
+  const speed = distance / time;
+
+  const steps = [...new Array(Math.floor(distance / 1000))].map(
+    (_, i) => i + 1,
+  );
+
+  const lapTimes = steps.map(val => {
+    const t = secondsToHHMMSS((val * 1000) / speed);
+    return {label: `km ${val}`, time: t};
+  });
+
+  return lapTimes;
 };

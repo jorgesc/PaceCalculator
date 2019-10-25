@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 
 import {IState} from "../redux/initialState";
-import {calculateLapTimes, myThunkDispatch} from "../redux/logicActions";
+import {calculateLapTimesClicked, myThunkDispatch} from "../redux/logicActions";
 
 import CalculateButtonContainer, {
   ICalculateButtonContainerProps,
@@ -38,7 +38,7 @@ const mapStateToProps = (state: IState): IStateProps => {
 };
 
 const mapDispatchToProps = (dispatch: myThunkDispatch): IDispatchProps => {
-  return {onClick: () => dispatch(calculateLapTimes())};
+  return {onClick: () => dispatch(calculateLapTimesClicked())};
 };
 
 export default connect(

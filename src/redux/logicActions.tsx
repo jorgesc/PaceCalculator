@@ -11,7 +11,7 @@ import {
   updateCondensedCheckboxChecked,
 } from "./actionCreators";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
+import {HHMMSSToSeconds, secondsToHHMMSS, calculateLapTimes} from "../utils";
 
 type myThunkAction<T> = ThunkAction<T, IState, undefined, AppActionTypes>;
 export type myThunkDispatch = ThunkDispatch<IState, undefined, AppActionTypes>;
@@ -94,21 +94,13 @@ export const sportSelectorClicked = (s: number): myThunkAction<void> => {
   };
 };
 
-export const calculateLapTimes = (): myThunkAction<void> => {
+export const calculateLapTimesClicked = (): myThunkAction<void> => {
   return (dispatch: myThunkDispatch, getState: myGetState): void => {
     const {distanceFieldValue, timeFieldValue} = getState().app;
     const distance = parseInt(distanceFieldValue, 10);
     const time = HHMMSSToSeconds(timeFieldValue);
-    const speed = distance / time;
 
-    const steps = [...new Array(Math.floor(distance / 1000))].map(
-      (_, i) => i + 1,
-    );
-
-    const lapTimes = steps.map(val => {
-      const t = secondsToHHMMSS((val * 1000) / speed);
-      return {label: `km ${val}`, time: t};
-    });
+    const lapTimes = calculateLapTimes(distance, time);
 
     dispatch(updateLapTimes(lapTimes));
   };
