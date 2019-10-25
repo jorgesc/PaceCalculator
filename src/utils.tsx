@@ -9,29 +9,29 @@ interface ICustomDistance {
   distance: string;
 }
 
-const arrayPad = <T extends unknown>(a: T[], len: number, pad: T): T[] => {
+function arrayPad<T extends unknown>(a: T[], len: number, pad: T): T[] {
   while (a.length < len) a.push(pad);
   return [...a];
-};
+}
 
-const HMSToNumberArray = (hhmmss: string): number[] => {
+function HMSToNumberArray(hhmmss: string): number[] {
   const padElement = (v: string, i: number): string => {
     return i > 0 ? v.padEnd(2, "0") : v;
   };
   const parts = hhmmss.trim().split(":");
   const fixed = parts.map(padElement);
   return fixed.map(x => parseInt(x, 10));
-};
+}
 
-const addWeightedValue = (
+function addWeightedValue(
   acc: number,
   v: number,
   i: number,
   arr: number[],
-): number => {
+): number {
   acc += v * 60 ** (arr.length - i - 1);
   return acc;
-};
+}
 
 export const HHMMSSToSeconds = (
   time: string,
@@ -84,9 +84,41 @@ export const addColonBetweenThreeNumbers = (newValue: string): string => {
   return output;
 };
 
-const sortStringArrayNumerically = (arr: string[]): number[] => {
+function sortStringArrayNumerically(arr: string[]): number[] {
   return arr.map(x => parseInt(x, 10)).sort((a, b) => a - b);
-};
+}
+
+function createCustomDistancesHashmap(
+  customDistances: ICustomDistance[],
+): INumberKeyed {
+  return customDistances.reduce((acc: INumberKeyed, curr: ICustomDistance) => {
+    acc[parseInt(curr.distance, 10)] = curr.label;
+    return acc;
+  }, {});
+}
+
+function createDefaultDistancesHashmap(len: number): INumberKeyed {
+  const steps = [...new Array(len)].map((_, i) => (i + 1) * 1000);
+  return steps.reduce((acc: INumberKeyed, curr: number, i: number) => {
+    acc[curr] = `km ${i + 1}`;
+    return acc;
+  }, {});
+}
+
+function generateItem(
+  label: string,
+  time: string,
+  showInCondensedMode: boolean,
+) {
+  return {label, time, showInCondensedMode};
+}
+
+function shouldShowInCondensed(
+  k: number,
+  customDistancesValues: number[],
+): boolean {
+  return k % 5000 === 0 || customDistancesValues.includes(k);
+}
 
 export const calculateLapTimes = (
   distance: number,
@@ -95,33 +127,20 @@ export const calculateLapTimes = (
 ): ILapTimesArray => {
   const speed = distance / time;
   const numberOfSteps = Math.floor(distance / 1000);
-  const steps = [...new Array(numberOfSteps)].map((_, i) => (i + 1) * 1000);
-  const defaultDistancesValues = steps.reduce(
-    (acc: INumberKeyed, curr: number, i: number) => {
-      acc[curr] = `km ${i + 1}`;
-      return acc;
-    },
-    {},
-  );
-
-  const customDistancesValues = customDistances.reduce(
-    (acc: INumberKeyed, curr: ICustomDistance) => {
-      acc[parseInt(curr.distance, 10)] = curr.label;
-      return acc;
-    },
-    {},
-  );
 
   const myHashMap: INumberKeyed = {};
-  Object.assign(myHashMap, defaultDistancesValues);
-  Object.assign(myHashMap, customDistancesValues);
+  const customDistancesHashmap = createCustomDistancesHashmap(customDistances);
+  Object.assign(myHashMap, customDistancesHashmap);
+  Object.assign(myHashMap, createDefaultDistancesHashmap(numberOfSteps));
 
   const keys = sortStringArrayNumerically(Object.keys(myHashMap));
+
+  const customDistancesValues = Object.keys(customDistancesHashmap).map(x =>
+    parseInt(x, 10),
+  );
   return keys.map(k => {
     const t = secondsToHHMMSS(k / speed);
-    const showInCondensed =
-      k % 5000 === 0 ||
-      Object.keys(customDistancesValues).includes(k.toString());
-    return {label: myHashMap[k], time: t, showInCondensedMode: showInCondensed};
+    const showInCondensed = shouldShowInCondensed(k, customDistancesValues);
+    return generateItem(myHashMap[k], t, showInCondensed);
   });
 };
