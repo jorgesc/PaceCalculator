@@ -1,5 +1,14 @@
 import {ILapTimesArray} from "./components/LapTimesDisplay/LapTimesDisplay";
 
+interface INumberKeyed {
+  [key: number]: string;
+}
+
+interface ICustomDistance {
+  label: string;
+  distance: string;
+}
+
 const arrayPad = <T extends unknown>(a: T[], len: number, pad: T): T[] => {
   while (a.length < len) a.push(pad);
   return [...a];
@@ -75,41 +84,44 @@ export const addColonBetweenThreeNumbers = (newValue: string): string => {
   return output;
 };
 
+const sortStringArrayNumerically = (arr: string[]): number[] => {
+  return arr.map(x => parseInt(x, 10)).sort((a, b) => a - b);
+};
+
 export const calculateLapTimes = (
   distance: number,
   time: number,
-  customDistances: Array<{label: string; distance: string}> = [],
+  customDistances: ICustomDistance[] = [],
 ): ILapTimesArray => {
   const speed = distance / time;
-
-  interface IAccT {
-    [key: number]: string;
-  }
-
   const numberOfSteps = Math.floor(distance / 1000);
   const steps = [...new Array(numberOfSteps)].map((_, i) => (i + 1) * 1000);
-  const myHashMap = steps.reduce((acc: IAccT, curr: number, i: number) => {
-    acc[curr] = `km ${i + 1}`;
-    return acc;
-  }, {});
+  const defaultDistancesValues = steps.reduce(
+    (acc: INumberKeyed, curr: number, i: number) => {
+      acc[curr] = `km ${i + 1}`;
+      return acc;
+    },
+    {},
+  );
 
-  const customDistancesDistances = customDistances.map(x => x.distance);
-
-  customDistances.reduce(
-    (acc: IAccT, curr: {label: string; distance: string}) => {
+  const customDistancesValues = customDistances.reduce(
+    (acc: INumberKeyed, curr: ICustomDistance) => {
       acc[parseInt(curr.distance, 10)] = curr.label;
       return acc;
     },
-    myHashMap,
+    {},
   );
 
-  const keys = Object.keys(myHashMap)
-    .map(x => parseInt(x, 10))
-    .sort((a, b) => a - b);
+  const myHashMap: INumberKeyed = {};
+  Object.assign(myHashMap, defaultDistancesValues);
+  Object.assign(myHashMap, customDistancesValues);
+
+  const keys = sortStringArrayNumerically(Object.keys(myHashMap));
   return keys.map(k => {
     const t = secondsToHHMMSS(k / speed);
     const showInCondensed =
-      k % 5000 === 0 || customDistancesDistances.includes(k.toString());
+      k % 5000 === 0 ||
+      Object.keys(customDistancesValues).includes(k.toString());
     return {label: myHashMap[k], time: t, showInCondensedMode: showInCondensed};
   });
 };
