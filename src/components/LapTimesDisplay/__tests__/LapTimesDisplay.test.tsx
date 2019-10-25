@@ -66,11 +66,6 @@ describe("LapTimes Container", () => {
     expect(timesWrapper.at(1).props().time).toEqual("14:14:14");
     expect(timesWrapper.at(2).props().time).toEqual("16:16:16");
     expect(timesWrapper.at(3).props().time).toEqual("18:18:18");
-
-    expect(timesWrapper.at(0).props().animationTime).toEqual(1);
-    expect(timesWrapper.at(1).props().animationTime).toEqual(2);
-    expect(timesWrapper.at(2).props().animationTime).toEqual(3);
-    expect(timesWrapper.at(3).props().animationTime).toEqual(4);
   });
 
   it("When times is null, it displays 10 empty elements", () => {

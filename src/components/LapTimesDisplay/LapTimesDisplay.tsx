@@ -7,7 +7,7 @@ import LapTimesHeader from "./LapTimesHeader";
 export type ILapTimesArray = null | Array<{
   label: string;
   time: string;
-  showInCondensedMode?: boolean;
+  showInCondensedMode: boolean;
 }>;
 
 export interface ILapTimesDisplayProps {
@@ -43,20 +43,13 @@ const LapTimesContainer = (
 
   const generateEmptyContent = () => {
     return [...new Array(10)].map((v, i) => (
-      <LapTimesTime key={i} label={`km ${i + 1}`} />
+      <LapTimesTime key={i} label={`km ${i + 1}`} showInCondensedMode={false} />
     ));
   };
 
   const generateRealContent = () => {
     if (!lapTimes) throw new Error("times has to be defined!");
-    return lapTimes.map((t, i) => (
-      <LapTimesTime
-        key={i}
-        label={t.label}
-        time={t.time}
-        animationTime={i + 1}
-      />
-    ));
+    return lapTimes.map((t, i) => <LapTimesTime key={i} {...t} />);
   };
 
   return (

@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
-interface ILapTimesTimeProps {
+interface ILabelProps {
   label?: string;
-  time?: string;
-  animationTime?: number;
+  showInCondensedMode: boolean;
 }
+
+interface ITimeProps {
+  time?: string;
+}
+
+interface ILapTimesTimeProps extends ILabelProps, ITimeProps {}
 
 const StyledLapTimesTime = styled.div`
   display: flex;
@@ -16,10 +21,13 @@ const StyledLapTimesTime = styled.div`
   margin-bottom: 48px;
 `;
 
-const StyledLabel = styled.div`
+const StyledLabel = styled.div<ILabelProps>`
   font-family: Lato;
-  font-size: 0.85em;
+  font-size: ${props => (props.showInCondensedMode ? "1.05em" : "0.85em")};
+  font-weight: ${props => (props.showInCondensedMode ? "bold" : "normal")};
   margin-right: 52px;
+  flex: 1;
+  text-align: right;
 `;
 
 const StyledTime = styled.div`
@@ -28,16 +36,19 @@ const StyledTime = styled.div`
   font-size: 2.5em;
   display: flex;
   flex-direction: row;
+  flex: 2;
 `;
 
 const LapTimesTime = ({
   label,
   time,
-  animationTime,
+  showInCondensedMode,
 }: ILapTimesTimeProps): React.ReactElement => {
   return (
     <StyledLapTimesTime>
-      <StyledLabel>{label || "km x"}</StyledLabel>
+      <StyledLabel showInCondensedMode={showInCondensedMode}>
+        {label || "km x"}
+      </StyledLabel>
       <StyledTime> {time ? time : "--:--:--"} </StyledTime>
     </StyledLapTimesTime>
   );
