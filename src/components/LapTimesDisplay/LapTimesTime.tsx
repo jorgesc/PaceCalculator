@@ -15,16 +15,25 @@ interface ILapTimesTimeProps extends ILabelProps, ITimeProps {
   index: number;
 }
 
-const StyledLapTimesTime = styled.div<{hidden: boolean; index: number}>`
+interface IStyledLapTimesTimeProps {
+  hidden: boolean;
+  index: number;
+}
+
+const StyledLapTimesTime = styled.div.attrs<IStyledLapTimesTimeProps>(
+  props => ({
+    style: {
+      transition: `all 0.1s linear ${props.index * 0.1 -
+        0.1 * Math.floor(props.index / 5)}s`,
+    },
+  }),
+)<IStyledLapTimesTimeProps>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
   align-items: baseline;
   overflow: hidden;
-
-  transition: all 0.1s linear
-    ${props => `${props.index * 0.1 - 0.1 * Math.floor(props.index / 5)}s`};
   max-height: ${props => (props.hidden ? "0px" : "600px")};
   margin-bottom: ${props => (props.hidden ? "0px" : "48px")};
   transform: scaleY(${props => (props.hidden ? "0" : "1")});
