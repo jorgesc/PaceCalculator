@@ -153,11 +153,12 @@ describe("Logic action resetButtonClicked", () => {
     const store = mockStoreCreator(initialState);
     store.dispatch(resetButtonClicked());
     const actions = store.getActions();
-    expect(actions).toHaveLength(4);
+    expect(actions).toHaveLength(5);
     expect(actions[0]).toEqual(updateInputFieldDistance(""));
     expect(actions[1]).toEqual(updateInputFieldTime(""));
     expect(actions[2]).toEqual(updateInputFieldRythm(""));
     expect(actions[3]).toEqual(updateLapTimes(null));
+    expect(actions[4]).toEqual(updateCondensedCheckboxChecked(false));
   });
 });
 

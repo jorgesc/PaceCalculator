@@ -112,6 +112,7 @@ export const resetButtonClicked = (): myThunkAction<void> => {
     dispatch(updateInputFieldTime(""));
     dispatch(updateInputFieldRythm(""));
     dispatch(updateLapTimes(null));
+    dispatch(updateCondensedCheckboxChecked(false));
   };
 };
 

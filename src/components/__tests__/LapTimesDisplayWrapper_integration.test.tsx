@@ -32,14 +32,14 @@ import Checkbox from "../LapTimesDisplay/Checkbox";
 import * as ActionsModule from "../../redux/logicActions";
 
 const myLapTimes = [
-  {label: "km 1", time: "02:11:12"},
-  {label: "km 2", time: "03:18:52"},
-  {label: "km 3", time: "04:15:02"},
-  {label: "km 4", time: "05:38:16"},
-  {label: "km 5", time: "12:45:58"},
-  {label: "km 6", time: "13:25:58"},
-  {label: "km 7", time: "14:13:20"},
-  {label: "km 8", time: "15:16:39"},
+  {label: "km 1", time: "02:11:12", showInCondensedMode: false},
+  {label: "km 2", time: "03:18:52", showInCondensedMode: false},
+  {label: "km 3", time: "04:15:02", showInCondensedMode: false},
+  {label: "km 4", time: "05:38:16", showInCondensedMode: false},
+  {label: "km 5", time: "12:45:58", showInCondensedMode: true},
+  {label: "km 6", time: "13:25:58", showInCondensedMode: false},
+  {label: "km 7", time: "14:13:20", showInCondensedMode: false},
+  {label: "km 8", time: "15:16:39", showInCondensedMode: false},
 ];
 
 describe("LapTimesDisplayWrapper", () => {
@@ -84,11 +84,12 @@ describe("LapTimesDisplayWrapper", () => {
   it("Reset button onclick works", () => {
     wrapper.find(ResetButton).simulate("click");
     const actions = store.getActions();
-    expect(actions).toHaveLength(4);
+    expect(actions).toHaveLength(5);
     expect(actions[0]).toEqual(updateInputFieldDistance(""));
     expect(actions[1]).toEqual(updateInputFieldTime(""));
     expect(actions[2]).toEqual(updateInputFieldRythm(""));
     expect(actions[3]).toEqual(updateLapTimes(null));
+    expect(actions[4]).toEqual(updateCondensedCheckboxChecked(false));
   });
 
   it("CondensedCheckbox onclick works", () => {
