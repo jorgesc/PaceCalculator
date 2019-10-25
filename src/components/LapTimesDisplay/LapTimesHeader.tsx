@@ -33,6 +33,15 @@ const ButtonsWrapper = styled.div`
   margin-right: 84px;
 `;
 
+const CheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Label = styled.div`
+  margin-right: 16px;
+`;
+
 const LapTimesHeader = ({
   lapTimesHeaderText,
   condensedCheckboxChecked,
@@ -44,10 +53,13 @@ const LapTimesHeader = ({
       <Wrapper>
         <div>{lapTimesHeaderText}</div>
         <ButtonsWrapper>
-          <Checkbox
-            onChange={condensedCheckboxClicked}
-            checked={condensedCheckboxChecked}
-          />
+          <CheckboxWrapper>
+            <Label>Condensed</Label>
+            <Checkbox
+              onChange={condensedCheckboxClicked}
+              checked={condensedCheckboxChecked}
+            />
+          </CheckboxWrapper>
           <ResetButton onClick={resetButtonClicked}>Reset</ResetButton>
         </ButtonsWrapper>
       </Wrapper>
