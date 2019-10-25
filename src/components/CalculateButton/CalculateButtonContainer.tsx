@@ -35,11 +35,11 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
 `;
 
 const CalculateButtonContainer = (props: ICalculateButtonContainerProps) => {
-  const {hidden, text, ...remaining} = props;
+  const {hidden, text, ...calculateButtonProps} = props;
   return (
     <StyledCalculateButtonContainer hidden={hidden}>
       <div>{text}</div>
-      <CalculateButton {...remaining} />
+      <CalculateButton {...calculateButtonProps} />
     </StyledCalculateButtonContainer>
   );
 };
