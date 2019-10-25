@@ -10,15 +10,26 @@ interface ITimeProps {
   time?: string;
 }
 
-interface ILapTimesTimeProps extends ILabelProps, ITimeProps {}
+interface ILapTimesTimeProps extends ILabelProps, ITimeProps {
+  condensedCheckboxChecked: boolean;
+  index: number;
+}
 
-const StyledLapTimesTime = styled.div`
+const StyledLapTimesTime = styled.div<{hidden: boolean; index: number}>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
   align-items: baseline;
-  margin-bottom: 48px;
+  overflow: hidden;
+
+  transition: all 0.1s linear
+    ${props => `${props.index * 0.1 - 0.1 * Math.floor(props.index / 5)}s`};
+  max-height: ${props => (props.hidden ? "0px" : "600px")};
+  margin-bottom: ${props => (props.hidden ? "0px" : "48px")};
+  transform: scaleY(${props => (props.hidden ? "0" : "1")});
+  transform-origin: top;
+  opacity: ${props => (props.hidden ? "0" : "1")};
 `;
 
 const StyledLabel = styled.div<ILabelProps>`
@@ -43,9 +54,13 @@ const LapTimesTime = ({
   label,
   time,
   showInCondensedMode,
+  condensedCheckboxChecked,
+  index,
 }: ILapTimesTimeProps): React.ReactElement => {
   return (
-    <StyledLapTimesTime>
+    <StyledLapTimesTime
+      index={index}
+      hidden={!showInCondensedMode && condensedCheckboxChecked}>
       <StyledLabel showInCondensedMode={showInCondensedMode}>
         {label || "km x"}
       </StyledLabel>

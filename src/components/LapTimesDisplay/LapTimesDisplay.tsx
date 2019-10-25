@@ -39,22 +39,39 @@ const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
 const LapTimesContainer = (
   props: ILapTimesDisplayProps,
 ): React.ReactElement => {
-  const {lapTimes, ...headerProps} = props;
+  const {lapTimes, condensedCheckboxChecked, ...headerProps} = props;
 
   const generateEmptyContent = () => {
     return [...new Array(10)].map((v, i) => (
-      <LapTimesTime key={i} label={`km ${i + 1}`} showInCondensedMode={false} />
+      <LapTimesTime
+        key={i}
+        index={i}
+        label={`km ${i + 1}`}
+        showInCondensedMode={false}
+        condensedCheckboxChecked={condensedCheckboxChecked}
+      />
     ));
   };
 
   const generateRealContent = () => {
     if (!lapTimes) throw new Error("times has to be defined!");
-    return lapTimes.map((t, i) => <LapTimesTime key={i} {...t} />);
+    return lapTimes.map((t, i) => (
+      <LapTimesTime
+        key={i}
+        index={i}
+        {...t}
+        condensedCheckboxChecked={condensedCheckboxChecked}
+      />
+    ));
   };
 
   return (
     <div>
-      <LapTimesHeader lapTimesHeaderText={headerText} {...headerProps} />
+      <LapTimesHeader
+        lapTimesHeaderText={headerText}
+        {...headerProps}
+        condensedCheckboxChecked={condensedCheckboxChecked}
+      />
       <StyledLapTimesContainer empty={!lapTimes}>
         {lapTimes ? generateRealContent() : generateEmptyContent()}
       </StyledLapTimesContainer>
