@@ -78,17 +78,38 @@ export const addColonBetweenThreeNumbers = (newValue: string): string => {
 export const calculateLapTimes = (
   distance: number,
   time: number,
+  customDistances: Array<{label: string; distance: string}> = [],
 ): ILapTimesArray => {
   const speed = distance / time;
 
-  const steps = [...new Array(Math.floor(distance / 1000))].map(
-    (_, i) => i + 1,
+  interface IAccT {
+    [key: number]: string;
+  }
+
+  const numberOfSteps = Math.floor(distance / 1000);
+  const steps = [...new Array(numberOfSteps)].map((_, i) => (i + 1) * 1000);
+  const myHashMap = steps.reduce((acc: IAccT, curr: number, i: number) => {
+    acc[curr] = `km ${i + 1}`;
+    return acc;
+  }, {});
+
+  const customDistancesDistances = customDistances.map(x => x.distance);
+
+  customDistances.reduce(
+    (acc: IAccT, curr: {label: string; distance: string}) => {
+      acc[parseInt(curr.distance, 10)] = curr.label;
+      return acc;
+    },
+    myHashMap,
   );
 
-  const lapTimes = steps.map(val => {
-    const t = secondsToHHMMSS((val * 1000) / speed);
-    return {label: `km ${val}`, time: t};
+  const keys = Object.keys(myHashMap)
+    .map(x => parseInt(x, 10))
+    .sort((a, b) => a - b);
+  return keys.map(k => {
+    const t = secondsToHHMMSS(k / speed);
+    const showInCondensed =
+      k % 5000 === 0 || customDistancesDistances.includes(k.toString());
+    return {label: myHashMap[k], time: t, showInCondensedMode: showInCondensed};
   });
-
-  return lapTimes;
 };

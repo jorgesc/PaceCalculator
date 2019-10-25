@@ -7,7 +7,7 @@ import LapTimesHeader from "./LapTimesHeader";
 export type ILapTimesArray = null | Array<{
   label: string;
   time: string;
-  renderAlways?: boolean;
+  showInCondensedMode?: boolean;
 }>;
 
 export interface ILapTimesDisplayProps {
