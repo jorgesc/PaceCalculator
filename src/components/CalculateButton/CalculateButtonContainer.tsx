@@ -22,12 +22,11 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   align-items: center;
   text-align: center;
   width: 100%;
+  height: 128px;
   background-color: white;
 
-  border-bottom: solid 1px #dfdfdf;
-  padding-bottom: 27px;
-
   position: absolute;
+  top: 0px;
 
   left: ${props => (props.hidden ? "120%" : "0")};
   opacity: ${props => (props.hidden ? "0" : "1")};

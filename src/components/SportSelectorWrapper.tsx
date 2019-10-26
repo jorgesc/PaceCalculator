@@ -19,6 +19,8 @@ type IDispatchProps = Pick<ISportSelectorProps, "onChange">;
 
 const StyledWrapper = styled.div`
   margin-bottom: 30px;
+  width: 100%;
+  height: 100%;
 `;
 
 const SportSelectorWrapper = (props: ISportSelectorProps) => {

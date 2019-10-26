@@ -4,18 +4,14 @@ import styled from "styled-components";
 import CalculateButtonWrapper from "./CalculateButtonWrapper";
 import LapTimesDisplayWrapper from "./LapTimesDisplayWrapper";
 
-const StyledRightPanelWrapper = styled.div`
-  flex: 1 1 0;
-  position: relative;
-  overflow: hidden;
-`;
+import {PanelWrapper} from "./AppWrapper";
 
 const RightPanelWrapper = () => {
   return (
-    <StyledRightPanelWrapper>
-      <CalculateButtonWrapper />
+    <PanelWrapper style={{position: "relative"}}>
       <LapTimesDisplayWrapper />
-    </StyledRightPanelWrapper>
+      <CalculateButtonWrapper />
+    </PanelWrapper>
   );
 };
 

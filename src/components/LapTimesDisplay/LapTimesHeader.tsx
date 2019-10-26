@@ -12,7 +12,7 @@ interface ILapTimesHeaderProps {
 }
 
 const StyledLapTimesHeader = styled.div`
-  height: 130px;
+  height: 128px;
   border-bottom: solid 1px #dfdfdf;
   text-align: center;
   font-family: Lato;
