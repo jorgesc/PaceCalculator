@@ -1,7 +1,7 @@
 import Sport from "./Sport";
 import SwimmingIcon from "../static/2swim_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
+import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils/formattingUtils";
 
 class SwimmingSport extends Sport {
   public name = "Natación";
