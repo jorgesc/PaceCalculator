@@ -45,8 +45,8 @@ const StyledLabel = styled.div<ILabelProps>`
   font-family: Lato;
   font-size: ${props => (props.showInCondensedMode ? "1.05em" : "0.85em")};
   font-weight: ${props => (props.showInCondensedMode ? "bold" : "normal")};
-  margin-right: 52px;
   flex: 1;
+  padding-right: 24px;
   text-align: right;
 `;
 
@@ -56,7 +56,11 @@ const StyledTime = styled.div`
   font-size: 2.5em;
   display: flex;
   flex-direction: row;
-  flex: 2;
+  flex: 1;
+`;
+
+const StyledSpacer = styled.div`
+  flex: 1;
 `;
 
 const LapTimesTime = ({
@@ -74,6 +78,7 @@ const LapTimesTime = ({
         {label || "km x"}
       </StyledLabel>
       <StyledTime> {time ? time : "--:--:--"} </StyledTime>
+      <StyledSpacer />
     </StyledLapTimesTime>
   );
 };
