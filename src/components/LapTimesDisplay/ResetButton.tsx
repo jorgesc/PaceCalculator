@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ResetIcon from "../CloseIcon";
+import ResetIcon from "../../svgIcons/CloseIcon";
 
 interface IResetButtonProps {
   children: string;
@@ -12,6 +12,7 @@ const StyledResetButton = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
 
   border: none;
   background-color: #dfdfdf;

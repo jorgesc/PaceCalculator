@@ -2,8 +2,8 @@ import React from "react";
 
 const CloseIcon = (): React.ReactElement => {
   return (
-    <svg width="100%" height="100%" viewBox="0 0 349 349">
-      <g>
+    <svg width="100%" height="100%" viewBox="0 0 100 100">
+      <g transform="matrix(0.2870812,0,0,0.28708306,-1.7822968e-4,-5.0700555e-4)">
         <path
           d={`
           M336.559,68.611
