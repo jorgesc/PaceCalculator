@@ -3,7 +3,7 @@ import {
   addColonBetweenThreeNumbers,
   HHMMSSToSeconds,
   secondsToHHMMSS,
-} from "../utils";
+} from "../utils/formattingUtils";
 
 const speedIsValid = (s: number): boolean => {
   return s !== 0 && isFinite(s);

@@ -1,8 +1,12 @@
 import Sport from "./Sport";
 import RunningIcon from "../static/2running_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils";
-import {addColonAfterTwoNumbers, addColonBetweenThreeNumbers} from "../utils";
+import {
+  HHMMSSToSeconds,
+  secondsToHHMMSS,
+  addColonAfterTwoNumbers,
+  addColonBetweenThreeNumbers,
+} from "../utils/formattingUtils";
 
 class RunningSport extends Sport {
   public name = "Atletismo";
