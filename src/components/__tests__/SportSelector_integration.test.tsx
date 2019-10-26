@@ -5,17 +5,17 @@ import Adapter from "enzyme-adapter-react-16";
 
 import configureStore, {MockStoreCreator} from "redux-mock-store";
 
-import {IState} from "../redux/store";
+import {IState} from "../../redux/initialState";
 import {Provider} from "react-redux";
 
-import SportSelectorWrapper from "../components/SportSelectorWrapper";
-import SportSelectorButton from "../components/SportSelector/SportSelectorButton";
-import RunningSport from "../models/RunningSport";
-import CyclingSport from "../models/CyclingSport";
+import SportSelectorWrapper from "../SportSelectorWrapper";
+import SportSelectorButton from "../SportSelector/SportSelectorButton";
+import RunningSport from "../../models/RunningSport";
+import CyclingSport from "../../models/CyclingSport";
 
-import {sportSelectorClicked} from "../redux/logicActions";
+import {sportSelectorClicked} from "../../redux/logicActions";
 
-import * as logicActions from "../redux/logicActions";
+import * as logicActions from "../../redux/logicActions";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -32,6 +32,8 @@ describe("SportSelector integration", () => {
         distanceFieldValue: "",
         timeFieldValue: "",
         rythmFieldValue: "",
+        lapTimes: null,
+        condensedCheckboxChecked: false,
       },
     };
   });
