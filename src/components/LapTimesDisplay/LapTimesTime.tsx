@@ -54,9 +54,8 @@ const StyledTime = styled.div`
   font-family: Lato;
   font-weight: 700;
   font-size: 2.5em;
-  display: flex;
-  flex-direction: row;
   flex: 1;
+  text-align: center;
 `;
 
 const StyledSpacer = styled.div`
