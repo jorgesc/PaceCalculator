@@ -13,11 +13,16 @@ export const Separator = styled.div`
 `;
 
 export const HeaderWrapper = styled.div`
-  height: 128px;
+  height: 90px;
+
+  @media (min-width: ${BREAKPOINTS.SMALL}) {
+    height: 128px;
+  }
 `;
 
 export const PanelWrapper = styled.div`
   flex: 1 1 0;
+  margin-bottom: 48px;
 `;
 
 const StyledAppWrapper = styled.div`

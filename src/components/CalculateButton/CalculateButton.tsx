@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import {BREAKPOINTS} from "../../constants";
+
 interface IStyledProps {
   disabled: boolean;
 }
@@ -21,6 +23,11 @@ const StyledCalculateButton = styled.button<IStyledProps>`
   font-family: Lato;
   outline: none;
   margin-top: 17px;
+
+  width: 100%;
+  @media (min-width: ${BREAKPOINTS.SMALL}) {
+    width: auto;
+  }
 
   transition: box-shadow 0.25s ease-in-out, background-color 0.4s linear,
     color 0.4s linear;

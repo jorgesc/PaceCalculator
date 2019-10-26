@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import {BREAKPOINTS} from "../../constants";
+
 import CalculateButton from "./CalculateButton";
 
 interface IStyledProps {
@@ -16,7 +18,7 @@ export interface ICalculateButtonContainerProps extends IStyledProps {
 
 const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   z-index: 1;
-  font-size: 0.8em;
+  font-size: 0.65em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,6 +33,10 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   left: ${props => (props.hidden ? "120%" : "0")};
   opacity: ${props => (props.hidden ? "0" : "1")};
   transition: left 0.5s ease-in 0.1s, opacity 0.4s ease-in 0.1s;
+
+  @media (min-width: ${BREAKPOINTS.SMALL}) {
+    font-size: 0.8em;
+  }
 `;
 
 const CalculateButtonContainer = (props: ICalculateButtonContainerProps) => {
