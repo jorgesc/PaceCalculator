@@ -8,42 +8,50 @@ interface IResetButtonProps {
   onClick: () => void;
 }
 
+const StyledIcon = styled.div`
+  margin-right: 8px;
+  width: 10px;
+  height: 10px;
+  position: relative;
+
+  svg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    fill: #eeeeee;
+  }
+`;
+
 const StyledResetButton = styled.button`
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 
   border: none;
-  background-color: #dfdfdf;
-  border-color: blue;
-  padding: 10px 32px 10px 32px;
-  border-radius: 8px;
+  background-color: #27292a;
+  padding: 16px 32px 16px 32px;
+  border-radius: 4px;
   cursor: pointer;
-  color: #333
+  color: #eeeeee;
   font-weight: bold;
+  font-size: 0.95em;
 
-  transition: all 150ms ease;
+  :after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 0px;
+    background-color: limegreen;
+    bottom: 0px;
+    left: 0px;
 
-  :hover {
-    box-shadow: 0px 3px 7px rgba(1, 0, 0, 0.25),
-      0px 5px 5px rgba(1, 0, 0, 0.22);
+    transition: all 0.5s;
   }
 
-  :active {
-    transition: box-shadow 0.01s ease-out;
-    box-shadow: none;
-  }
-`;
-
-const StyledIcon = styled.div`
-  margin-right: 8px;
-  margin-top: 1px;
-  width: 12px;
-  height: 12px;
-
-  svg {
-    fill: #333;
+  :hover:after {
+    width: 100%;
   }
 `;
 
