@@ -38,6 +38,7 @@ const StyledResetButton = styled.button`
 
 const StyledIcon = styled.div`
   margin-right: 8px;
+  margin-top: 1px;
   width: 12px;
   height: 12px;
 
