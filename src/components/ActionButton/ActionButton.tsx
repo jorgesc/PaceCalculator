@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import ResetIcon from "../../svgIcons/CloseIcon";
+import ActionIcon from "../../svgIcons/CloseIcon";
 
-interface IResetButtonProps {
+interface IActionButtonProps {
   children: string;
   onClick: () => void;
+  icon?: string | React.ReactElement;
 }
 
-const StyledIcon = styled.div`
+export const StyledIcon = styled.div`
   margin-right: 8px;
   width: 10px;
   height: 10px;
@@ -22,7 +23,7 @@ const StyledIcon = styled.div`
   }
 `;
 
-const StyledResetButton = styled.button`
+const StyledActionButton = styled.button`
   position: relative;
   display: flex;
   flex-direction: row;
@@ -31,7 +32,7 @@ const StyledResetButton = styled.button`
 
   border: none;
   background-color: #27292a;
-  padding: 16px 32px 16px 32px;
+  padding: 12px 32px;
   border-radius: 4px;
   cursor: pointer;
   color: #eeeeee;
@@ -55,18 +56,25 @@ const StyledResetButton = styled.button`
   }
 `;
 
-const ResetButton = ({
+const ActionButton = ({
   children,
   onClick,
-}: IResetButtonProps): React.ReactElement => {
-  return (
-    <StyledResetButton onClick={onClick}>
+  icon,
+}: IActionButtonProps): React.ReactElement => {
+  const renderIcon = () => {
+    return (
       <StyledIcon>
-        <ResetIcon />
+        <ActionIcon />
       </StyledIcon>
+    );
+  };
+
+  return (
+    <StyledActionButton onClick={onClick}>
+      {icon ? renderIcon() : null}
       {children}
-    </StyledResetButton>
+    </StyledActionButton>
   );
 };
 
-export default ResetButton;
+export default ActionButton;

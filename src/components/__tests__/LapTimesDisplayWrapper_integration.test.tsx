@@ -26,7 +26,7 @@ import LapTimesDisplayWrapper from "../LapTimesDisplayWrapper";
 import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
-import ResetButton from "../LapTimesDisplay/ResetButton";
+import ActionButton from "../ActionButton/ActionButton";
 import Checkbox from "../LapTimesDisplay/Checkbox";
 
 import * as ActionsModule from "../../redux/logicActions";
@@ -82,7 +82,7 @@ describe("LapTimesDisplayWrapper", () => {
   });
 
   it("Reset button onclick works", () => {
-    wrapper.find(ResetButton).simulate("click");
+    wrapper.find(ActionButton).simulate("click");
     const actions = store.getActions();
     expect(actions).toHaveLength(5);
     expect(actions[0]).toEqual(updateInputFieldDistance(""));

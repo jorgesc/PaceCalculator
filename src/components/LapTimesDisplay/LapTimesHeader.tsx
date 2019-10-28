@@ -2,7 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import Checkbox from "./Checkbox";
-import ResetButton from "./ResetButton";
+import ResetIcon from "../../svgIcons/CloseIcon";
+import ActionButton from "../ActionButton/ActionButton";
 
 interface ILapTimesHeaderProps {
   lapTimesHeaderText: string;
@@ -60,7 +61,9 @@ const LapTimesHeader = ({
               checked={condensedCheckboxChecked}
             />
           </CheckboxWrapper>
-          <ResetButton onClick={resetButtonClicked}>Reset</ResetButton>
+          <ActionButton onClick={resetButtonClicked} icon={<ResetIcon />}>
+            Reset
+          </ActionButton>
         </ButtonsWrapper>
       </Wrapper>
     </StyledLapTimesHeader>

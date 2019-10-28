@@ -24,16 +24,30 @@ import LapTimesTime from "../LapTimesTime";
 import LapTimesDisplay from "../LapTimesDisplay";
 import LapTimesHeader from "../LapTimesHeader";
 import Checkbox from "../Checkbox";
-import ResetButton from "../ResetButton";
+import ActionButton from "../../ActionButton/ActionButton";
 
 describe("LapTimesComponent", () => {
   it("LapTimesTime shows correct text", () => {
-    const wrapper = mount(<LapTimesTime label="km 4" time="00:23:44" />);
+    const wrapper = mount(
+      <LapTimesTime
+        label="km 4"
+        time="00:23:44"
+        index={1}
+        condensedCheckboxChecked={false}
+        showInCondensedMode={false}
+      />,
+    );
     expect(wrapper.text().trim()).toEqual("km 4 00:23:44");
   });
 
   it("LapTimesTime shows correct text when time is empty", () => {
-    const wrapper = mount(<LapTimesTime />);
+    const wrapper = mount(
+      <LapTimesTime
+        index={1}
+        condensedCheckboxChecked={false}
+        showInCondensedMode={false}
+      />,
+    );
     expect(wrapper.text().trim()).toEqual("km x --:--:--");
   });
 });
@@ -41,10 +55,10 @@ describe("LapTimesComponent", () => {
 describe("LapTimes Container", () => {
   it("Contains as many LapTimesTime element as elements in input array", () => {
     const times = [
-      {label: "km1", time: "12:12:12"},
-      {label: "km2", time: "14:14:14"},
-      {label: "km3", time: "16:16:16"},
-      {label: "km4", time: "18:18:18"},
+      {label: "km1", time: "12:12:12", showInCondensedMode: false},
+      {label: "km2", time: "14:14:14", showInCondensedMode: false},
+      {label: "km3", time: "16:16:16", showInCondensedMode: false},
+      {label: "km4", time: "18:18:18", showInCondensedMode: false},
     ];
     const wrapper = mount(
       <LapTimesDisplay
@@ -138,7 +152,7 @@ describe("LapTimesHeader", () => {
       />,
     );
 
-    wrapper.find(ResetButton).simulate("click");
+    wrapper.find(ActionButton).simulate("click");
 
     expect(onClick.mock.calls).toHaveLength(1);
   });
