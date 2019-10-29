@@ -9,7 +9,7 @@ import {
 } from "../utils/formattingUtils";
 
 class RunningSport extends Sport {
-  public name = "Atletismo";
+  public name = "Running";
   public units = "mm:ss";
   public rythmPlaceholder = "04:57";
   public icon = RunningIcon;

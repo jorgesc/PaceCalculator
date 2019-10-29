@@ -14,9 +14,9 @@ type IStateProps = Pick<
 >;
 type IDispatchProps = Pick<ICalculateButtonContainerProps, "onClick">;
 
-const buttonText = "Calcular Tiempos de Paso";
+const buttonText = "Calculate Lap Times";
 const text =
-  "Introduce todos los datos en el formulario anterior y pulsa este botón para ver aquí tus tiempos de paso";
+  "Fill the previous form and click this button to calculate your lap times";
 
 const CalculateButtonWrapper = (props: ICalculateButtonContainerProps) => {
   return <CalculateButtonContainer {...props} />;

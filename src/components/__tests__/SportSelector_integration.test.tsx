@@ -48,9 +48,9 @@ describe("SportSelector integration", () => {
 
     const buttons = wrapper.find(SportSelectorButton);
     expect(buttons).toHaveLength(3);
-    expect(buttons.at(0).text()).toEqual("Atletismo");
-    expect(buttons.at(1).text()).toEqual("Atletismo");
-    expect(buttons.at(2).text()).toEqual("Ciclismo");
+    expect(buttons.at(0).text()).toEqual("Running");
+    expect(buttons.at(1).text()).toEqual("Running");
+    expect(buttons.at(2).text()).toEqual("Cycling");
   });
 
   it("The correct element is selected", () => {
