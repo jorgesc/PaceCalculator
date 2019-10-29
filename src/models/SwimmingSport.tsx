@@ -1,7 +1,12 @@
 import Sport from "./Sport";
 import SwimmingIcon from "../static/2swim_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils/formattingUtils";
+import {
+  HHMMSSToSeconds,
+  secondsToHHMMSS,
+  addColonAfterTwoNumbers,
+  addColonBetweenThreeNumbers,
+} from "../utils/formattingUtils";
 
 class SwimmingSport extends Sport {
   public name = "Swimming";
@@ -10,7 +15,11 @@ class SwimmingSport extends Sport {
   public icon = SwimmingIcon;
 
   public cleanInputRythm = (newValue: string, oldValue: string): string => {
-    return "";
+    const pattern = /^\d?(\d(:([0-5](\d?)?)?)?)?$/;
+    let output = newValue;
+    output = addColonBetweenThreeNumbers(output);
+    output = addColonAfterTwoNumbers(output, oldValue, 1);
+    return pattern.test(output) ? output : oldValue;
   };
 
   protected rythmToMetersPerSecond = (rythm: string): number =>

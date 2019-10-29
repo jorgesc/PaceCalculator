@@ -174,4 +174,16 @@ describe("Swimming", () => {
       ).toEqual(times[i]);
     }
   });
+
+  it("Cleans rythm input correctly", () => {
+    expect(RunningSport.cleanInputRythm("1", "")).toEqual("1");
+    expect(RunningSport.cleanInputRythm("81:4", "81:")).toEqual("81:4");
+    expect(RunningSport.cleanInputRythm("11", "1")).toEqual("11:");
+    expect(RunningSport.cleanInputRythm("02", "0")).toEqual("02:");
+    expect(RunningSport.cleanInputRythm("11:25", "11:2")).toEqual("11:25");
+    expect(RunningSport.cleanInputRythm("11", "11:")).toEqual("11");
+    expect(RunningSport.cleanInputRythm("11:25:44", "11:25")).toEqual("11:25");
+    expect(RunningSport.cleanInputRythm("11:2a", "11:2")).toEqual("11:2");
+    expect(RunningSport.cleanInputRythm("112", "11")).toEqual("11:2");
+  });
 });
