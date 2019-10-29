@@ -136,7 +136,7 @@ describe("Logic action calculateLapTimes", () => {
       {label: "km 7", time: "03:10:57", showInCondensedMode: false},
       {label: "km 8", time: "03:38:14", showInCondensedMode: false},
       {label: "km 9", time: "04:05:30", showInCondensedMode: false},
-      {label: "km 10", time: "04:32:47", showInCondensedMode: true},
+      {label: "End", time: "04:32:47", showInCondensedMode: true},
     ];
 
     const store = mockStoreCreator(myInitialState);

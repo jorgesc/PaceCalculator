@@ -64,9 +64,21 @@ export const calculateLapTimes = (
   const customDistancesValues = Object.keys(customDistancesHashmap).map(x =>
     parseInt(x, 10),
   );
-  return keys.map(k => {
+  const calculated = keys.map(k => {
     const t = secondsToHHMMSS(k / speed);
     const showInCondensed = shouldShowInCondensed(k, customDistancesValues);
     return generateItem(myHashMap[k], t, showInCondensed);
   });
+
+  if (distance % 1000 === 0) {
+    return [
+      ...calculated.slice(0, -1),
+      {...calculated.slice(-1)[0], label: "End", showInCondensedMode: true},
+    ];
+  }
+
+  return [
+    ...calculated,
+    generateItem("End", secondsToHHMMSS(distance / speed), true),
+  ];
 };
