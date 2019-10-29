@@ -17,6 +17,10 @@ export interface ICalculateButtonContainerProps extends IStyledProps {
 }
 
 const StyledCalculateButtonContainer = styled.div<IStyledProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   z-index: 1;
   font-size: 0.65em;
   text-align: center;
@@ -39,9 +43,9 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
 `;
 
 const StyledContentWrapper = styled.div`
-  height: 100px;
   display: flex;
   flex-direction: column;
+  height: 100px;
   align-items: center;
   justify-content: space-between;
 `;
