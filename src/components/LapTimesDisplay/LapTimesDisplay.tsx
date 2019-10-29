@@ -14,16 +14,12 @@ export interface ILapTimesDisplayProps {
   lapTimes?: ILapTimesArray;
   condensedCheckboxChecked: boolean;
   condensedCheckboxClicked: () => void;
-  lapTimesHeaderText: string;
   resetButtonClicked: () => void;
 }
 
 interface IStyledLapTimesContainerProps {
   empty: boolean;
 }
-
-const headerText =
-  "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
 
 const StyledLapTimesContainer = styled.div<IStyledLapTimesContainerProps>`
   width: 100%;
@@ -68,7 +64,6 @@ const LapTimesContainer = (
   return (
     <div>
       <LapTimesHeader
-        lapTimesHeaderText={headerText}
         {...headerProps}
         condensedCheckboxChecked={condensedCheckboxChecked}
       />

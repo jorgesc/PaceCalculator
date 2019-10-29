@@ -6,15 +6,12 @@ import ResetIcon from "../../svgIcons/CloseIcon";
 import ActionButton from "../ActionButton/ActionButton";
 
 interface ILapTimesHeaderProps {
-  lapTimesHeaderText: string;
   condensedCheckboxChecked: boolean;
   condensedCheckboxClicked: () => void;
   resetButtonClicked: () => void;
 }
 
 const StyledLapTimesHeader = styled.div`
-  height: 128px;
-  border-bottom: solid 1px #dfdfdf;
   text-align: center;
   font-family: Lato;
 `;
@@ -44,7 +41,6 @@ const Label = styled.div`
 `;
 
 const LapTimesHeader = ({
-  lapTimesHeaderText,
   condensedCheckboxChecked,
   condensedCheckboxClicked,
   resetButtonClicked,
@@ -52,10 +48,8 @@ const LapTimesHeader = ({
   return (
     <StyledLapTimesHeader>
       <Wrapper>
-        <div>{lapTimesHeaderText}</div>
         <ButtonsWrapper>
           <CheckboxWrapper>
-            <Label>Condensed</Label>
             <Checkbox
               onChange={condensedCheckboxClicked}
               checked={condensedCheckboxChecked}

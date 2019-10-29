@@ -27,6 +27,8 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   height: 128px;
   background-color: white;
 
+  border-bottom: solid 1px #dfdfdf;
+
   position: absolute;
   top: 0px;
 

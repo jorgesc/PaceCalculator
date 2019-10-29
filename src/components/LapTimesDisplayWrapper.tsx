@@ -16,16 +16,13 @@ import LapTimesDisplay, {
 
 type IStateProps = Pick<
   ILapTimesDisplayProps,
-  "lapTimes" | "condensedCheckboxChecked" | "lapTimesHeaderText"
+  "lapTimes" | "condensedCheckboxChecked"
 >;
 
 type IDispatchProps = Pick<
   ILapTimesDisplayProps,
   "condensedCheckboxClicked" | "resetButtonClicked"
 >;
-
-const lapTimesHeaderText =
-  "Aquí puedes ver los tiempos de paso estimados por cada punto kilométrico";
 
 const LapTimesDisplayWrapper = (
   props: ILapTimesDisplayProps,
@@ -35,7 +32,7 @@ const LapTimesDisplayWrapper = (
 
 const mapStateToProps = (state: IState): IStateProps => {
   const {lapTimes, condensedCheckboxChecked} = state.app;
-  return {condensedCheckboxChecked, lapTimesHeaderText, lapTimes};
+  return {condensedCheckboxChecked, lapTimes};
 };
 
 export default connect<IStateProps, IDispatchProps, {}, IState>(
