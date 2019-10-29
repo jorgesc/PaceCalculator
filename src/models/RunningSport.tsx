@@ -10,7 +10,7 @@ import {
 
 class RunningSport extends Sport {
   public name = "Running";
-  public units = "mm:ss";
+  public units = "mm:ss/km";
   public rythmPlaceholder = "04:57";
   public icon = RunningIcon;
 
