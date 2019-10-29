@@ -19,9 +19,6 @@ export interface ICalculateButtonContainerProps extends IStyledProps {
 const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   z-index: 1;
   font-size: 0.65em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   width: 100%;
   height: 128px;
@@ -41,12 +38,22 @@ const StyledCalculateButtonContainer = styled.div<IStyledProps>`
   }
 `;
 
+const StyledContentWrapper = styled.div`
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const CalculateButtonContainer = (props: ICalculateButtonContainerProps) => {
   const {hidden, text, ...calculateButtonProps} = props;
   return (
     <StyledCalculateButtonContainer hidden={hidden}>
-      <div>{text}</div>
-      <CalculateButton {...calculateButtonProps} />
+      <StyledContentWrapper>
+        <div>{text}</div>
+        <CalculateButton {...calculateButtonProps} />
+      </StyledContentWrapper>
     </StyledCalculateButtonContainer>
   );
 };
