@@ -1,6 +1,7 @@
 import Sport from "../Sport";
 import RunningSport from "../RunningSport";
 import CyclingSport from "../CyclingSport";
+import SwimmingSport from "../SwimmingSport";
 
 describe("Sport", () => {
   it("cleanInputTime works as expected", () => {
@@ -130,5 +131,47 @@ describe("Cycling", () => {
     expect(CyclingSport.cleanInputRythm("11:", "11")).toEqual("11");
     expect(CyclingSport.cleanInputRythm("403", "40")).toEqual("403");
     expect(CyclingSport.cleanInputRythm("112a", "112")).toEqual("112");
+  });
+});
+
+describe("Swimming", () => {
+  it("Calculates rythm correctly", () => {
+    const distances = [10000, 5000, 20000, 100, 10000, 10000, 10000];
+    const times = [
+      "02:46:40",
+      "02:46:40",
+      "02:46:40",
+      "2",
+      "48:00",
+      "02:46:4",
+      "",
+    ];
+    const rythms = ["01:40", "03:20", "00:50", "120:00", "28:48", "01:40", ""];
+
+    for (let i = 0; i < distances.length; i++) {
+      expect(
+        SwimmingSport.calculateRythmFromTotalTime(distances[i], times[i]),
+      ).toEqual(rythms[i]);
+    }
+  });
+
+  it("Calculates totalTime correctlly", () => {
+    const distances = [10000, 5000, 20000, 100, 10000, 1000, 10000];
+    const times = [
+      "02:46:40",
+      "02:46:40",
+      "02:46:40",
+      "02:00:00",
+      "48:00:00",
+      "02:46:40",
+      "",
+    ];
+    const rythms = ["01:40", "03:20", "00:50", "120:00", "28:48", "16:40", ""];
+
+    for (let i = 0; i < distances.length; i++) {
+      expect(
+        SwimmingSport.calculateTotalTimeFromRythm(distances[i], rythms[i]),
+      ).toEqual(times[i]);
+    }
   });
 });
