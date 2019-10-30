@@ -23,7 +23,7 @@ Enzyme.configure({adapter: new Adapter()});
 import LapTimesTime from "../LapTimesTime";
 import LapTimesDisplay from "../LapTimesDisplay";
 import LapTimesHeader from "../LapTimesHeader";
-import Checkbox from "../Checkbox";
+import Checkbox, {IControlledCheckboxProps} from "../../Checkbox/Checkbox";
 import ActionButton from "../../ActionButton/ActionButton";
 
 describe("LapTimesComponent", () => {
@@ -62,7 +62,6 @@ describe("LapTimes Container", () => {
     ];
     const wrapper = mount(
       <LapTimesDisplay
-        lapTimesHeaderText=""
         lapTimes={times}
         condensedCheckboxChecked={false}
         condensedCheckboxClicked={() => null}
@@ -85,7 +84,6 @@ describe("LapTimes Container", () => {
   it("When times is null, it displays 10 empty elements", () => {
     const wrapper = mount(
       <LapTimesDisplay
-        lapTimesHeaderText=""
         lapTimes={null}
         condensedCheckboxChecked={false}
         condensedCheckboxClicked={() => null}
@@ -104,32 +102,33 @@ describe("LapTimesHeader", () => {
   it("Pass correctly the condensedCheckboxChecked prop", () => {
     const wrapper = mount(
       <LapTimesDisplay
-        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxClicked={() => null}
         resetButtonClicked={() => null}
       />,
     );
 
-    expect(wrapper.find(Checkbox).props().checked).toEqual(true);
+    expect(
+      (wrapper.find(Checkbox).props() as IControlledCheckboxProps).value,
+    ).toEqual(true);
 
     const wrapper2 = mount(
       <LapTimesHeader
-        lapTimesHeaderText=""
         condensedCheckboxChecked={false}
         condensedCheckboxClicked={() => null}
         resetButtonClicked={() => null}
       />,
     );
 
-    expect(wrapper2.find(Checkbox).props().checked).toEqual(false);
+    expect(
+      (wrapper2.find(Checkbox).props() as IControlledCheckboxProps).value,
+    ).toEqual(false);
   });
 
   it("Clicking on condensed checkbox calls the right action", () => {
     const onClick = jest.fn();
     const wrapper = mount(
       <LapTimesDisplay
-        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxClicked={onClick}
         resetButtonClicked={() => null}
@@ -145,7 +144,6 @@ describe("LapTimesHeader", () => {
     const onClick = jest.fn();
     const wrapper = mount(
       <LapTimesDisplay
-        lapTimesHeaderText=""
         condensedCheckboxChecked={true}
         condensedCheckboxClicked={() => null}
         resetButtonClicked={onClick}

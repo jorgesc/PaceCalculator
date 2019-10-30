@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Checkbox from "./Checkbox";
+import Checkbox from "../Checkbox/Checkbox";
 import ResetIcon from "../../svgIcons/CloseIcon";
 import ActionButton from "../ActionButton/ActionButton";
 
@@ -52,7 +52,7 @@ const LapTimesHeader = ({
           <CheckboxWrapper>
             <Checkbox
               onChange={condensedCheckboxClicked}
-              checked={condensedCheckboxChecked}
+              value={condensedCheckboxChecked}
             />
           </CheckboxWrapper>
           <ActionButton onClick={resetButtonClicked} icon={<ResetIcon />}>

@@ -27,7 +27,7 @@ import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
 import ActionButton from "../ActionButton/ActionButton";
-import Checkbox from "../LapTimesDisplay/Checkbox";
+import Checkbox, {IControlledCheckboxProps} from "../Checkbox/Checkbox";
 
 import * as ActionsModule from "../../redux/logicActions";
 
@@ -100,6 +100,8 @@ describe("LapTimesDisplayWrapper", () => {
   });
 
   it("Condensed checkbox gets value from state", () => {
-    expect(wrapper.find(Checkbox).props().checked).toBe(true);
+    const props = expect(
+      (wrapper.find(Checkbox).props() as IControlledCheckboxProps).value,
+    ).toBe(true);
   });
 });
