@@ -43,10 +43,6 @@ const CheckboxWrapper = styled.div`
   align-items: center;
 `;
 
-const Label = styled.div`
-  margin-right: 16px;
-`;
-
 const LapTimesHeader = ({
   condensedCheckboxChecked,
   condensedCheckboxClicked,

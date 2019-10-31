@@ -1,9 +1,6 @@
 import React from "react";
-import styled from "styled-components";
-
 import CalculateButtonWrapper from "./CalculateButtonWrapper";
 import LapTimesDisplayWrapper from "./LapTimesDisplayWrapper";
-
 import {PanelWrapper} from "./AppWrapper";
 
 const RightPanelWrapper = () => {

@@ -1,18 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 
+import {IState} from "../redux/initialState";
 import {
-  myThunkDispatch,
   resetButtonClicked,
   condensedCheckboxClicked,
 } from "../redux/logicActions";
-
-import {IState} from "../redux/initialState";
-
-import LapTimesDisplay, {
-  ILapTimesArray,
-  ILapTimesDisplayProps,
-} from "./LapTimesDisplay";
+import LapTimesDisplay, {ILapTimesDisplayProps} from "./LapTimesDisplay";
 
 type IStateProps = Pick<
   ILapTimesDisplayProps,

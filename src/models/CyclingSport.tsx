@@ -1,8 +1,6 @@
 import Sport from "./Sport";
 import CyclingIcon from "../static/2biking_icon.png";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils/formattingUtils";
-
 class CyclingSport extends Sport {
   public name = "Cycling";
   public units = "km/h";

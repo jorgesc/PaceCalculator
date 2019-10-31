@@ -11,7 +11,7 @@ import {
   updateCondensedCheckboxChecked,
 } from "./actionCreators";
 
-import {HHMMSSToSeconds, secondsToHHMMSS} from "../utils/formattingUtils";
+import {HHMMSSToSeconds} from "../utils/formattingUtils";
 import {calculateLapTimes} from "../utils/calculationUtils";
 
 type myThunkAction<T> = ThunkAction<T, IState, undefined, AppActionTypes>;

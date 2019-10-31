@@ -1,24 +1,17 @@
 import React, {ReactElement} from "react";
-import {Dispatch} from "redux";
 import {ThunkDispatch} from "redux-thunk";
 import {connect} from "react-redux";
 import styled from "styled-components";
 
 import {IState} from "../redux/initialState";
-
-import InputField from "./InputField";
-import {
-  updateInputFieldDistance,
-  updateInputFieldTime,
-  updateInputFieldRythm,
-  AppActionTypes,
-} from "../redux/actionCreators";
-
+import {AppActionTypes} from "../redux/actionCreators";
 import {
   distanceInputFieldChanged,
   timeInputFieldChanged,
   rythmInputFieldChanged,
 } from "../redux/logicActions";
+
+import InputField from "./InputField";
 
 import distanceIcon from "../static/icon-distance.svg";
 import timeIcon from "../static/icon-clock.svg";
