@@ -12,7 +12,7 @@ export interface IControlledCheckboxProps {
 
 type ICheckboxProps = IUncontrolledCheckboxProps | IControlledCheckboxProps;
 
-const size = 8;
+const size = 6;
 
 const backgroundColor = "#e6e6e6";
 const backgroundColorActive = "#428bca";
@@ -25,7 +25,7 @@ const borderColorActiveHover = "#285e8e";
 
 const StyledWrapper = styled.div<{checked: boolean}>`
   width: ${12 * size}px;
-  height: ${8 * size}px;
+  height: ${6 * size}px;
   border-radius: 4px;
   cursor: pointer;
   overflow: hidden;
