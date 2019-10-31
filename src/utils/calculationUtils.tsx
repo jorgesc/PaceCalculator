@@ -1,5 +1,5 @@
 import {secondsToHHMMSS} from "./formattingUtils";
-import {ILapTimesArray} from "../components/LapTimesDisplay/LapTimesDisplay";
+import {ILapTimesArray} from "../components/LapTimesDisplay";
 
 interface INumberKeyed {
   [key: number]: string;

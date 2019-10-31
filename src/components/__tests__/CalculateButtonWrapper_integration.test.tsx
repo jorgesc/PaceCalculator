@@ -16,7 +16,7 @@ import {
 } from "../../redux/actionCreators";
 
 import CalculateButtonWrapper from "../CalculateButtonWrapper";
-import CalculateButtonContainer from "../CalculateButton/CalculateButtonContainer";
+import CalculateButtonContainer from "../CalculateButton";
 
 Enzyme.configure({adapter: new Adapter()});
 

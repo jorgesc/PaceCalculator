@@ -16,12 +16,12 @@ import {
 } from "../../../redux/actionCreators";
 
 import InputFieldsWrapper from "../../InputFieldsWrapper";
-import InputField from "../../InputField/InputField";
+import InputField from "../../InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 
 import LapTimesTime from "../LapTimesTime";
-import LapTimesDisplay from "../LapTimesDisplay";
+import LapTimesDisplay from "../";
 import LapTimesHeader from "../LapTimesHeader";
 import Checkbox, {IControlledCheckboxProps} from "../../Checkbox";
 import ActionButton from "../../ActionButton";

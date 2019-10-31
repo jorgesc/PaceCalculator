@@ -18,12 +18,12 @@ import {
 } from "../../redux/actionCreators";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
-import InputField from "../InputField/InputField";
+import InputField from "../InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 
 import LapTimesDisplayWrapper from "../LapTimesDisplayWrapper";
-import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
+import LapTimesDisplay from "../LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
 import ActionButton from "../ActionButton";

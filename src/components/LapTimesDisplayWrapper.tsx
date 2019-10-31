@@ -12,7 +12,7 @@ import {IState} from "../redux/initialState";
 import LapTimesDisplay, {
   ILapTimesArray,
   ILapTimesDisplayProps,
-} from "./LapTimesDisplay/LapTimesDisplay";
+} from "./LapTimesDisplay";
 
 type IStateProps = Pick<
   ILapTimesDisplayProps,

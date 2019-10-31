@@ -1,4 +1,4 @@
-import {ILapTimesArray} from "../components/LapTimesDisplay/LapTimesDisplay";
+import {ILapTimesArray} from "../components/LapTimesDisplay";
 
 export const CHANGE_SELECTED_SPORT = "CHANGE_SELECTED_SPORT";
 export const UPDATE_INPUT_FIELD_DISTANCE = "UPDATE_INPUT_FIELD_DISTANCE";

@@ -4,7 +4,7 @@ import RunningSport from "../models/RunningSport";
 import CyclingSport from "../models/CyclingSport";
 import SwimmingSport from "../models/SwimmingSport";
 
-import {ILapTimesArray} from "../components/LapTimesDisplay/LapTimesDisplay";
+import {ILapTimesArray} from "../components/LapTimesDisplay";
 
 export interface IStateAppReducer {
   sports: Sport[];
