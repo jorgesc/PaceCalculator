@@ -5,6 +5,8 @@ import Checkbox from "../Checkbox";
 import ResetIcon from "../../svgIcons/CloseIcon";
 import ActionButton from "../ActionButton";
 
+import {BREAKPOINTS} from "../../constants";
+
 interface ILapTimesHeaderProps {
   condensedCheckboxChecked: boolean;
   condensedCheckboxClicked: () => void;
@@ -27,8 +29,13 @@ const ButtonsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-left: 84px;
-  margin-right: 84px;
+  margin-left: 16px;
+  margin-right: 16px;
+
+  @media (min-width: ${BREAKPOINTS.SMALL}) {
+    margin-left: 84px;
+    margin-right: 84px;
+  }
 `;
 
 const CheckboxWrapper = styled.div`
