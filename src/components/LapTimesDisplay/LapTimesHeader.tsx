@@ -53,6 +53,8 @@ const LapTimesHeader = ({
             <Checkbox
               onChange={condensedCheckboxClicked}
               value={condensedCheckboxChecked}
+              leftText={"5 km"}
+              rightText={"1 km"}
             />
           </CheckboxWrapper>
           <ActionButton onClick={resetButtonClicked} icon={<ResetIcon />}>
