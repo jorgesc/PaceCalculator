@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-import Checkbox from "../Checkbox/Checkbox";
+import Checkbox from "../Checkbox";
 import ResetIcon from "../../svgIcons/CloseIcon";
-import ActionButton from "../ActionButton/ActionButton";
+import ActionButton from "../ActionButton";
 
 interface ILapTimesHeaderProps {
   condensedCheckboxChecked: boolean;

@@ -23,8 +23,8 @@ Enzyme.configure({adapter: new Adapter()});
 import LapTimesTime from "../LapTimesTime";
 import LapTimesDisplay from "../LapTimesDisplay";
 import LapTimesHeader from "../LapTimesHeader";
-import Checkbox, {IControlledCheckboxProps} from "../../Checkbox/Checkbox";
-import ActionButton from "../../ActionButton/ActionButton";
+import Checkbox, {IControlledCheckboxProps} from "../../Checkbox";
+import ActionButton from "../../ActionButton";
 
 describe("LapTimesComponent", () => {
   it("LapTimesTime shows correct text", () => {

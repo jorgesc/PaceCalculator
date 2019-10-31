@@ -5,8 +5,10 @@ import Adapter from "enzyme-adapter-react-16";
 Enzyme.configure({adapter: new Adapter()});
 
 import Sport from "../../../models/Sport";
-import SportSelector from "../SportSelector";
+import SportSelector from "../";
 import SportSelectorButton from "../SportSelectorButton";
+
+import Running from "../../../models/RunningSport";
 
 describe("SportSelector tests", () => {
   let sport1: Sport;
@@ -23,8 +25,10 @@ describe("SportSelector tests", () => {
       name: "Sport1",
       icon: "",
       units: "a",
-      calculateRythmFromTotalTime: (distance: number, time: string): string => "",
-      calculateTotalTimeFromRythm: (distance: number, rythm: string): string => "",
+      calculateRythmFromTotalTime: (distance: number, time: string): string =>
+        "",
+      calculateTotalTimeFromRythm: (distance: number, rythm: string): string =>
+        "",
     };
     sport2 = {...sport1, name: "Sport2", units: "b"};
     sport3 = {...sport1, name: "Sport3", units: "c"};

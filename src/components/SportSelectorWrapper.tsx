@@ -7,9 +7,7 @@ import Sport from "../models/Sport";
 
 import {myThunkDispatch} from "../redux/logicActions";
 
-import SportSelector, {
-  ISportSelectorProps,
-} from "./SportSelector/SportSelector";
+import SportSelector, {ISportSelectorProps} from "./SportSelector";
 
 import {changeSelectedSportAction} from "../redux/actionCreators";
 import {sportSelectorClicked} from "../redux/logicActions";

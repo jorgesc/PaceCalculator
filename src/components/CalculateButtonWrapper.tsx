@@ -4,22 +4,20 @@ import {connect} from "react-redux";
 import {IState} from "../redux/initialState";
 import {calculateLapTimesClicked, myThunkDispatch} from "../redux/logicActions";
 
-import CalculateButtonContainer, {
-  ICalculateButtonContainerProps,
-} from "./CalculateButton/CalculateButtonContainer";
+import CalculateButton, {ICalculateButtonProps} from "./CalculateButton";
 
 type IStateProps = Pick<
-  ICalculateButtonContainerProps,
+  ICalculateButtonProps,
   "hidden" | "disabled" | "text" | "buttonText"
 >;
-type IDispatchProps = Pick<ICalculateButtonContainerProps, "onClick">;
+type IDispatchProps = Pick<ICalculateButtonProps, "onClick">;
 
 const buttonText = "Calculate Lap Times";
 const text =
   "Fill the previous form and click this button to calculate your lap times";
 
-const CalculateButtonWrapper = (props: ICalculateButtonContainerProps) => {
-  return <CalculateButtonContainer {...props} />;
+const CalculateButtonWrapper = (props: ICalculateButtonProps) => {
+  return <CalculateButton {...props} />;
 };
 
 const mapStateToProps = (state: IState): IStateProps => {

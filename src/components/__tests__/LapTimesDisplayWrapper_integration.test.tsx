@@ -26,8 +26,8 @@ import LapTimesDisplayWrapper from "../LapTimesDisplayWrapper";
 import LapTimesDisplay from "../LapTimesDisplay/LapTimesDisplay";
 import LapTimesTime from "../LapTimesDisplay/LapTimesTime";
 
-import ActionButton from "../ActionButton/ActionButton";
-import Checkbox, {IControlledCheckboxProps} from "../Checkbox/Checkbox";
+import ActionButton from "../ActionButton";
+import Checkbox, {IControlledCheckboxProps} from "../Checkbox";
 
 import * as ActionsModule from "../../redux/logicActions";
 

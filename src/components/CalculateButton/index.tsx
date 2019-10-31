@@ -3,20 +3,20 @@ import styled from "styled-components";
 
 import {BREAKPOINTS} from "../../constants";
 
-import CalculateButton from "./CalculateButton";
+import Button from "./Button";
 
 interface IStyledProps {
   hidden?: boolean;
 }
 
-export interface ICalculateButtonContainerProps extends IStyledProps {
+export interface ICalculateButtonProps extends IStyledProps {
   text: string;
   buttonText: string;
   onClick: () => void;
   disabled: boolean;
 }
 
-const StyledCalculateButtonContainer = styled.div<IStyledProps>`
+const StyledCalculateButton = styled.div<IStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,16 +50,16 @@ const StyledContentWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const CalculateButtonContainer = (props: ICalculateButtonContainerProps) => {
-  const {hidden, text, ...calculateButtonProps} = props;
+const CalculateButton = (props: ICalculateButtonProps) => {
+  const {hidden, text, ...buttonProps} = props;
   return (
-    <StyledCalculateButtonContainer hidden={hidden}>
+    <StyledCalculateButton hidden={hidden}>
       <StyledContentWrapper>
         <div>{text}</div>
-        <CalculateButton {...calculateButtonProps} />
+        <Button {...buttonProps} />
       </StyledContentWrapper>
-    </StyledCalculateButtonContainer>
+    </StyledCalculateButton>
   );
 };
 
-export default CalculateButtonContainer;
+export default CalculateButton;

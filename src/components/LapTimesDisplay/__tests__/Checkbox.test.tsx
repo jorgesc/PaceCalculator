@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import Enzyme, {shallow, mount, ReactWrapper} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import Checkbox from "../../Checkbox/Checkbox";
+import Checkbox from "../../Checkbox";
 
 Enzyme.configure({adapter: new Adapter()});
 

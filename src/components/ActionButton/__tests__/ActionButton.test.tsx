@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import ActionButton, {StyledIcon} from "../ActionButton";
+import ActionButton, {StyledIcon} from "../";
 
 Enzyme.configure({adapter: new Adapter()});
 

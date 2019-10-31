@@ -17,7 +17,7 @@ import {
 } from "../../redux/actionCreators";
 
 import InputFieldsWrapper from "../InputFieldsWrapper";
-import InputField from "../InputField/InputField";
+import InputField from "../InputField";
 
 Enzyme.configure({adapter: new Adapter()});
 

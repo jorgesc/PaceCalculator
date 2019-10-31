@@ -4,7 +4,7 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({adapter: new Adapter()});
 
-import InputField from "../InputField";
+import InputField from "../";
 
 describe("InputField tests", () => {
   let wrapper: ReactWrapper;

@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 import {IState} from "../redux/initialState";
 
-import InputField from "./InputField/InputField";
+import InputField from "./InputField";
 import {
   updateInputFieldDistance,
   updateInputFieldTime,
