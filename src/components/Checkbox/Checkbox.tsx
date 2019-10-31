@@ -1,11 +1,16 @@
 import React, {useState} from "react";
 import styled, {createGlobalStyle} from "styled-components";
 
-interface IUncontrolledCheckboxProps {
+interface IBasicProps {
+  leftText?: string;
+  rightText?: string;
+}
+
+interface IUncontrolledCheckboxProps extends IBasicProps {
   onChange: (value: boolean) => void;
 }
 
-export interface IControlledCheckboxProps {
+export interface IControlledCheckboxProps extends IBasicProps {
   value: boolean;
   onChange: () => void;
 }
@@ -99,25 +104,30 @@ const StyledTextLeft = styled(StyledText)`
   }
 `;
 
-const ControlledCheckbox = ({value, onChange}: IControlledCheckboxProps) => {
+const ControlledCheckbox = ({
+  value,
+  onChange,
+  leftText,
+  rightText,
+}: IControlledCheckboxProps) => {
   return (
     <StyledWrapper checked={value} onClick={onChange}>
       <StyledSwitchInner checked={value}>
-        <StyledTextLeft>On</StyledTextLeft>
+        <StyledTextLeft>{leftText || "On"}</StyledTextLeft>
         <StyledSwitchKnob />
-        <StyledText>Off</StyledText>
+        <StyledText>{rightText || "Off"}</StyledText>
       </StyledSwitchInner>
     </StyledWrapper>
   );
 };
 
 const UncontrolledCheckbox = (props: IUncontrolledCheckboxProps) => {
-  const [checked, setChecked] = useState(false);
+  const [value, setValue] = useState(false);
   const onChange = () => {
-    setChecked(!checked);
-    props.onChange(!checked); // It won't really update the value until next render!!!
+    setValue(!value);
+    props.onChange(!value); // It won't really update the value until next render!!!
   };
-  return <ControlledCheckbox value={checked} onChange={onChange} />;
+  return <ControlledCheckbox {...{...props, value, onChange}} />;
 };
 
 function isControlled(obj: ICheckboxProps): obj is IControlledCheckboxProps {

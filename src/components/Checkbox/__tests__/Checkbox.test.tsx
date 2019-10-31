@@ -29,4 +29,24 @@ describe("Checkbox tests", () => {
     expect(wrapper.props().value).toBe(false);
     expect(callback.mock.calls).toHaveLength(1);
   });
+
+  it("Shows correct texts", () => {
+    const wrapper = mount(<Checkbox onChange={() => null} />);
+    expect(wrapper.text()).toEqual("OnOff");
+
+    const wrapperLeft = mount(
+      <Checkbox onChange={() => null} leftText={"Hello"} />,
+    );
+    expect(wrapperLeft.text()).toEqual("HelloOff");
+
+    const wrapperRight = mount(
+      <Checkbox onChange={() => null} rightText={"World"} />,
+    );
+    expect(wrapperRight.text()).toEqual("OnWorld");
+
+    const wrapperAll = mount(
+      <Checkbox onChange={() => null} leftText={"Hello"} rightText={"World"} />,
+    );
+    expect(wrapperAll.text()).toEqual("HelloWorld");
+  });
 });
